@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Redaguoti paskaitą</title>
+	
 
-    <!-- Fonts -->
+    <!-- Fonts Testas-->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <!-- Required meta tags -->
     <meta charset="utf-8">
