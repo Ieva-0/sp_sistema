@@ -25,6 +25,35 @@
             height: 100vh;
         }
 
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        #customers td,
+        #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            text-transform: uppercase;
+        }
+
         .flex-center {
             align-items: center;
             display: flex;
@@ -62,10 +91,19 @@
         .m-b-md {
             margin-bottom: 30px;
         }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
     </style>
-
+    <span style="display:inline-block; width:WIDTH;"></span>
     <div class="content">
-
+        <div class="title m-b-md">
+            Įmonės posistemė
+        </div>
         <div class="links">
             <a href="{{ URL::previous() }}">Go Back</a>
             <a href="{{ url('imone/prisijungti ') }}">Prisijungti</a>
@@ -76,25 +114,35 @@
     </div>
 </head>
 
+<span style="display:inline-block; width:WIDTH;"></span>
 
 <body>
-    <div class="flex-center position-ref full-height">
-       
-    <div class="list-group">
-        <a href="#" class="list-group-item active">
-            <h4 class="list-group-item-heading">First List Group Item Heading</h4>
-            <p class="list-group-item-text">List Group Item Text</p>
-        </a>
-        <a href="#" class="list-group-item">
-            <h4 class="list-group-item-heading">Second List Group Item Heading</h4>
-            <p class="list-group-item-text">List Group Item Text</p>
-        </a>
-        <a href="#" class="list-group-item">
-            <h4 class="list-group-item-heading">Third List Group Item Heading</h4>
-            <p class="list-group-item-text">List Group Item Text</p>
-        </a>
-    </div>
 
+    <div class="position-ref full-height">
+
+
+        <table id="customers" style="width:80%" class="content" align="center">
+            <tr>
+                <th>Srities pavadinimas</th>
+                <th>Modulis</th>
+                <th>Data</th>
+            </tr>
+            <tr onclick="window.location='redaguoti_paskaita/paskaita1';">
+                <td>Įvadinė paskaita</td>
+                <td>Duomenų bazės</td>
+                <td>2019-12-01</td>
+            </tr>
+            <tr onclick="window.location='redaguoti_paskaita/paskaita1';">
+                <td>Įvadinė paskaita</td>
+                <td>Duomenų bazės</td>
+                <td>2019-12-01</td>
+            </tr>
+            <tr onclick="window.location='redaguoti_paskaita/paskaita1';">
+                <td>Įvadinė paskaita</td>
+                <td>Duomenų bazės</td>
+                <td>2019-12-01</td>
+            </tr>
+        </table>
     </div>
 </body>
 

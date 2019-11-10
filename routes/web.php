@@ -26,3 +26,12 @@ Route::get('/imone/registracija', function () {
 Route::get('/imone/paskaitos', function () {
     return view('Imone/imones_paskaitu_sarasas');
 });
+Route::get('/imone/sukurti_paskaita', function () {
+    return view('Imone/paskaitos_kurimo_langas');
+});
+Route::get('/imone/redaguoti_paskaita', function () {
+    return view('Imone/paskaitos_redagavimo_langas');
+});
+Route::get('/imone/redaguoti_paskaita/paskaita1', function () {
+    return view('Imone/paskaita1');
+});
