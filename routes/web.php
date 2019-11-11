@@ -140,29 +140,29 @@ Route::get('/studentas/tvarkarastis', function () {
 //Destytojas
 
 Route::get('/Destytojas', function () {
-    return view('Destytojo/Destytojo_navigavimo_meniu');
+    return view('Destytojas/Destytojo_navigavimo_meniu');
 });
 
 Route::get('/Destytojas/Dokumentai', function () {
-    return view('Destytojo/Destytojo_dokumento_pridejimas');
+    return view('Destytojas/Destytojo_dokumento_pridejimas');
 });
 
 Route::get('/Destytojas/Laiskai', function () {
-    return view('Destytojo/Destytojo_laisku_siuntimas');
+    return view('Destytojas/Destytojo_laisku_siuntimas');
 });
 
 Route::get('/Destytojas/Auditorijos', function () {
-    return view('Destytojo/Destytojo_Auditorijos_rezervacija');
+    return view('Destytojas/Destytojo_Auditorijos_rezervacija');
 });
 
 Route::get('/Destytojas/Profilis', function () {
-    return view('Destytojo/Destytojo_profilis');
+    return view('Destytojas/Destytojo_profilis');
 });
 
 Route::get('/Destytojas/Prisijungti', function () {
-    return view('Destytojo/Destytojo_prisijungimo_langas');
+    return view('Destytojas/Destytojo_prisijungimo_langas');
 });
 
 Route::get('/Destytojas/registracija', function () {
-    return view('Destytojo/Destytojo_registracijos_langas');
+    return view('Destytojas/Destytojo_registracijos_langas');
 });
