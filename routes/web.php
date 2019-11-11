@@ -95,3 +95,44 @@ Route::get('/studijos/moduliai', function () {
 Route::get('/studijos/moduliai/1', function () {
     return view('Studiju posisteme.modulio_ivertinimai');
 });
+
+
+Route::get('/studentas', function () {
+    return view('Studentas/studento_pagrindinis_meniu');
+});
+
+Route::get('/studentas/prisijungti', function () {
+    return view('Studentas/studento_prisijungimas');
+});
+
+Route::get('/studentas/uzsiemimu_registracija', function () {
+    return view('Studentas/studento_uzsiemimu_registracija');
+});
+
+Route::get('/studentas/Erasmus', function () {
+    return view('Studentas/studento_Erasmus_registracija');
+});
+
+Route::get('/studentas/karjeros_mentorius', function () {
+    return view('Studentas/studento_karjeros_mentorio_registracija');
+});
+
+Route::get('/studentas/mokslo_grupes', function () {
+    return view('Studentas/studento_mokslo_grupes_registracija');
+});
+
+Route::get('/studentas/praktikos', function () {
+    return view('Studentas/studento_praktikos_registracija');
+});
+
+Route::get('/studentas/profilis', function () {
+    return view('Studentas/studento_profilio_perziura');
+});
+
+Route::get('/studentas/profilio_redagavimas', function () {
+    return view('Studentas/studento_profilio_redagavimas');
+});
+
+Route::get('/studentas/tvarkarastis', function () {
+    return view('Studentas/studento_tvarkarastis');
+});
