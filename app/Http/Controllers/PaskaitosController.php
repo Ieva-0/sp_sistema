@@ -18,8 +18,10 @@ class PaskaitosController extends Controller
     {
         $paskaitos = Paskaita::all()->toArray();
 
-        return view('Imone.paskaita.paskaitos_kurimo_langas.index', compact('paskaitos'));
 
+       
+
+        return view('Imone.paskaita.paskaitos_kurimo_langas.index', compact('paskaitos'));
     }
     //
 
@@ -31,7 +33,8 @@ class PaskaitosController extends Controller
      */
     public function create()
     {
-        return view('Imone.paskaita.paskaitos_kurimo_langas');
+        $auditorija_list = DB::table('auditorija')->get();
+        return view('Imone.paskaita.paskaitos_kurimo_langas')->with('auditorija_list', $auditorija_list);
     }
 
     /**
@@ -64,7 +67,7 @@ class PaskaitosController extends Controller
             'trukme' => $request->get('trukme'),
             'vieta' => $request->get('vieta'),
             'tema' => $request->get('tema'),
-            'papildoma_informacija' => $request->get('papildoma_informacija'),
+            'papildoma_informacija' => $request->get('papildoma_informacija'), 
             'lektorius' => $request->get('lektorius'),
             'laikas' => $request->get('laikas'),
             'mokymo_kalba' => $request->get('mokymo_kalba'),
@@ -73,7 +76,6 @@ class PaskaitosController extends Controller
         ]);
         $paskaita->save();
         return redirect()->back()->with('message', 'Paskaitos duomenys sėkmingai pridėti');
-
     }
 
     /**
@@ -83,9 +85,7 @@ class PaskaitosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request)
-    {
-
-    }
+    { }
 
     /**
      * Show the form for editing the specified resource.

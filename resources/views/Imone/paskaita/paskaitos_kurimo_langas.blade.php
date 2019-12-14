@@ -78,7 +78,7 @@
                     <div class="form-group">
                         <label>Trukmė:</label>
                         <div>
-                            <input class="form-control" type="time"  id="appt" name="trukme" min="00:00" max="12:00" required>
+                            <input class="form-control" type="time" id="appt" name="trukme" min="00:00" max="12:00" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -105,19 +105,33 @@
                             <input class="form-control" type="text" required name="fk_Darbuotojasid">
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label>Auditorija:</label>
-                        <div>
-                            <input class="form-control" type="number" required name="fk_Auditorijaid_Auditorija">
-                        </div>
+                        <label>Pasirinkite auditoriją:</label>
+                        <select name="fk_Auditorijaid_Auditorija" id="0" class="form-control input-lg dynamic" data-dependent="state" required>
+                            <option value="" selected disabled>Pasirinkite auditoriją</option>
+                            @foreach($auditorija_list as $auditorija)
+                            <option value="{{ $auditorija->id_Auditorija}}">{{ $auditorija->kabineto_Nr }}, {{ $auditorija->adresas }} [{{ $auditorija->vietu_skaicius }}]</option>
+                            @endforeach
+                        </select>
                     </div>
-                    <div class="form-group">
+
+
+
+
+                    <div>
                         <label>Paskaitos vykimo laikas:</label>
-                        <div>
-                            <input class="form-control" type="number" required name="laikas">
-                        </div>
+                        <select id="1" name="laikas" class="form-control">
+                            <option value="1">09:00-10:30</option>
+                            <option value="2">11:00-12:30</option>
+                            <option value="3">13:30-15:00</option>
+                            <option value="4">15:30-17:00</option>
+                            <option value="5">17:30-19:00</option>
+                            <option value="6">19:15-20:45</option>
+                        </select>
                     </div>
                     <div>
+                        <label>Mokymo kalbos:</label>
                         <select id="1" name="mokymo_kalba" class="form-control">
                             <option value="1">Lietuvių</option>
                             <option value="2">English</option>

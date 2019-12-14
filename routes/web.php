@@ -37,6 +37,7 @@ Route::get('/imone/redaguoti_paskaita/paskaita1', function () {
 });
 Route::post('/imone/create/create', 'PaskaitosController@store');
 Route::get('/imone/create', 'PaskaitosController@create');
+
 //Route::resource('imone/create','PaskaitosController');
 
 

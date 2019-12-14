@@ -136,9 +136,15 @@
             }
         </style>
 
-        <form class="login-form">
-            <input type="text" placeholder="Prisijungimo vardas" />
-            <input type="password" placeholder="Slaptažodis" />
+        <form method="post" class="login-form" action="{{ url('imone') }}">
+            {{ csrf_field() }}
+            <div class="form-group">
+                <input type="el_pastas" placeholder="El. paštas" />
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Slaptažodis" />
+            </div>
+            
             <button>
                 <div class="links">
                     <a href="{{ url('imone') }}">Prisijungti</a>
