@@ -57,7 +57,7 @@ class PaskaitosController extends Controller
                 'lektorius',
                 'laikas' => 'required',
                 'mokymo_kalba' => 'required',
-                'fk_Darbuotojasid' => 'required',
+                'fk_Darbuotojasid',
                 'fk_Auditorijaid_Auditorija' => 'required'
             ]
         );

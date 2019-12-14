@@ -118,7 +118,15 @@
             <td>Įvadinė paskaita</td>
             <td>Duomenų bazės</td>
             <td>2019-12-01</td>
+        </tr>
 
+        @foreach($paskaitos_list as $paskaita)
+        <tr onclick="window.location='redaguoti_paskaita/paskaita1';">
+            <td>{{ $paskaita->vieta}}</td>
+            <td>{{ $paskaita->tema}}</td>
+            <td>{{ $paskaita->data}}</td>
+        </tr>
+        @endforeach
 
     </table>
 </div>

@@ -23,9 +23,9 @@ Route::get('/imone/prisijungti', function () {
 Route::get('/imone/registracija', function () {
     return view('Imone/imones_registracijos_langas');
 });
-Route::get('/imone/paskaitos', function () {
-    return view('Imone/imones_paskaitu_sarasas');
-});
+
+Route::get('/imone/paskaitos', 'PaskaituListController@index');
+
 Route::get('/imone/sukurti_paskaita', function () {
     return view('Imone/paskaitos_kurimo_langas');
 });
@@ -35,6 +35,7 @@ Route::get('/imone/redaguoti_paskaita', function () {
 Route::get('/imone/redaguoti_paskaita/paskaita1', function () {
     return view('Imone/paskaita1');
 });
+
 Route::post('/imone/create/create', 'PaskaitosController@store');
 Route::get('/imone/create', 'PaskaitosController@create');
 

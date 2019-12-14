@@ -100,12 +100,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Darbuotojas:</label>
+                        <label>fk_Darbuotojasid:</label>
                         <div>
                             <input class="form-control" type="text" required name="fk_Darbuotojasid">
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label>Pasirinkite auditoriją:</label>
                         <select name="fk_Auditorijaid_Auditorija" id="0" class="form-control input-lg dynamic" data-dependent="state" required>
