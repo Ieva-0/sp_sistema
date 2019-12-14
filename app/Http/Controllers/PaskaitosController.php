@@ -18,25 +18,8 @@ class PaskaitosController extends Controller
     {
         $paskaitos = Paskaita::all()->toArray();
 
-        return view('Imone.paskaita.index', compact('paskaitos'));
+        return view('Imone.paskaita.paskaitos_kurimo_langas.index', compact('paskaitos'));
 
-
-        // Fetch all records
-        // $userData['data'] = Paskaita::getuserData();
-
-        // $userData['edit'] = $id;
-
-        // // Fetch edit record
-        // if ($id > 0) {
-        //     $userData['editData'] = Paskaita::getuserData($id);
-        // }
-
-        // // Pass to view
-        // return view('index')->with("userData", $userData);
-
-        //
-        //$paskaita = Paskaita::all();
-        //return view('paskaita.index', compact('paskaita'));
     }
     //
 
@@ -59,7 +42,8 @@ class PaskaitosController extends Controller
      */
     public function store(Request $request)
     {
-       /* $this->validate(
+
+        $this->validate(
             $request,
             [
                 'data' => 'required',
@@ -73,9 +57,9 @@ class PaskaitosController extends Controller
                 'fk_Darbuotojasid' => 'required',
                 'fk_Auditorijaid_Auditorija' => 'required'
             ]
-        );*/
-
-        $paskaita = array(
+        );
+        print_r("HEEEEEEEY");
+        $paskaita = new Paskaita([
             'data' => $request->get('data'),
             'trukme' => $request->get('trukme'),
             'vieta' => $request->get('vieta'),
@@ -86,12 +70,10 @@ class PaskaitosController extends Controller
             'mokymo_kalba' => $request->get('mokymo_kalba'),
             'fk_Darbuotojasid' => $request->get('fk_Darbuotojasid'),
             'fk_Auditorijaid_Auditorija' => $request->get('fk_Auditorijaid_Auditorija')
-        );
-        //DB::table('paskaita')->insert($paskaita);
-        //$paskaita->save();
+        ]);
+        $paskaita->save();
+        return redirect()->back()->with('message', 'Paskaitos duomenys sėkmingai pridėti');
 
-
-        //return redirect()->route('imone.imone/create')->with('success', 'Data Added');
     }
 
     /**
@@ -102,11 +84,7 @@ class PaskaitosController extends Controller
      */
     public function show(Request $request)
     {
-        //
-        $result = DB::select("insert into paskaita (id, tema, data, trukme,  ,  vieta ,  papildoma_informacija ,  lektorius ,
-        laikas ,  mokymo_kalba ,  fk_Darbuotojasid ,  fk_Auditorijaid_Auditorija )
-        VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
-        print_r($result);
+
     }
 
     /**

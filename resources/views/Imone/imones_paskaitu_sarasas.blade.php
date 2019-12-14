@@ -3,7 +3,7 @@
 @section('content')+
 <div class="content">
     <div class="links">
-        <a href="{{ url('imone/create/create') }}">Paskaitos sukūrimas</a>
+        <a href="{{ url('imone/create') }}">Paskaitos sukūrimas</a>
     </div>
 </div>
 <br>

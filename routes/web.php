@@ -35,7 +35,9 @@ Route::get('/imone/redaguoti_paskaita', function () {
 Route::get('/imone/redaguoti_paskaita/paskaita1', function () {
     return view('Imone/paskaita1');
 });
-Route::resource('imone/create','PaskaitosController');
+Route::post('/imone/create/create', 'PaskaitosController@store');
+Route::get('/imone/create', 'PaskaitosController@create');
+//Route::resource('imone/create','PaskaitosController');
 
 
 Route::get('/studijos/registracija', function () {

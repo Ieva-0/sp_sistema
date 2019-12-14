@@ -38,8 +38,6 @@
 
         </div>
         <div>
-
-
             <!-- edit form column -->
             <div>
                 @if(count($errors)) > 0 )
@@ -53,18 +51,18 @@
 
                 </div>
                 @endif
-                @if(\Session::has('success'))
+                @if(session()->has('message'))
 
                 <div class="alert alert-info alert-dismissable">
                     <a class="panel-close close" data-dismiss="alert">×</a>
                     <i class="fa fa-coffee"></i>
-                    {{ \Session::get('seccess')}}
+                    {{ session()->get('message') }}
                 </div>
                 @endif
                 <h3>Paskaitos informacija</h3>
 
-                <form method="post" action="{{url('imone/create/create')}}" class="form-horizontal" role="form">
-
+                <form method="post" action="{{url('imone/create/create')}}" class="form-horizontal">
+                    @csrf
                     <div class="form-group">
                         <label>Paskaitos pavadinimas:</label>
                         <div>
@@ -78,9 +76,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Vedimo laikas:</label>
+                        <label>Trukmė:</label>
                         <div>
-                            <input class="form-control" type="time" name="laikas" id="appt" name="trukme" min="00:00" max="12:00" required>
+                            <input class="form-control" type="time"  id="appt" name="trukme" min="00:00" max="12:00" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -113,6 +111,12 @@
                             <input class="form-control" type="number" required name="fk_Auditorijaid_Auditorija">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label>Paskaitos vykimo laikas:</label>
+                        <div>
+                            <input class="form-control" type="number" required name="laikas">
+                        </div>
+                    </div>
                     <div>
                         <select id="1" name="mokymo_kalba" class="form-control">
                             <option value="1">Lietuvių</option>
@@ -124,7 +128,7 @@
                         <div>
                             <input type="submit" class="btn btn-primary" value="Išsaugoti">
                             <span></span>
-                            <input type="button" class="btn btn-danger" value="Ištrynti">
+                            <input type="button" class="btn btn-danger" value="Ištrinti">
                             <span></span>
                             <input type="reset" class="btn btn-default" value="Atšaukti pakeitimus">
                         </div>
