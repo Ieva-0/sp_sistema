@@ -72,22 +72,16 @@
             <a href="{{ url('imone/prisijungti ') }}">Prisijungti</a>
             <a href="{{ url('imone/registracija ') }}">Registruotis</a>
             <a href="{{ url('imone/paskaitos ') }}">Paskaitu sąrašas</a>
-            <a href="https://forge.laravel.com">Praktikų sąrašas</a>
+            <a href="{{ url('imone/paskaitos ') }}">Praktikų sąrašas</a>
         </div>
     </div>
 </head>
 
 <body>
-    <div class="flex-center position-ref full-height">
-        @if (Route::has('login'))
-        <div class="top-right links">
-            <a href="{{ url('/login') }}">Login</a>
-            <a href="{{ url('/register') }}">Register</a>
-        </div>
-        @endif
-
-
-    </div>
+   <div>
+       <br>
+        @yield('content')
+   </div>
 </body>
 
 </html>

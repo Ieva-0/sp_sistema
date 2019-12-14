@@ -19,7 +19,7 @@ class User extends Authenticatable
     ];
     /**
      * The attributes that should be hidden for arrays.
-     *
+     *   protected $fillable = ['data', 'trukme','vieta','tema','papildoma_informacija','lektorius','laikas','mokymo_kalba','fk_Darbuotojasid','fk_Auditorijaid_Auditorija'];
      * @var array
      */
     protected $hidden = [

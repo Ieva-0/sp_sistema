@@ -10,7 +10,7 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
+// IMONE
 Route::get('/', function () {
     return view('welcome');
 });
@@ -35,6 +35,7 @@ Route::get('/imone/redaguoti_paskaita', function () {
 Route::get('/imone/redaguoti_paskaita/paskaita1', function () {
     return view('Imone/paskaita1');
 });
+Route::resource('imone/create','PaskaitosController');
 
 
 Route::get('/studijos/registracija', function () {
