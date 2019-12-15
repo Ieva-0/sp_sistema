@@ -2,16 +2,18 @@
 @section('title', 'Prisijungti')
 @section('content')
     <h2>Prisijungti</h2>
-    <form>
+    <form method="post" action="/prisijungimas">
         @csrf
         <div class="form-group">
-            <label for="prisijungimo_vardas">Prisijungimo vardas</label>
-            <input type="text" class="form-control" id="prisijungimo_vardas" style="width:15vw">
+            <label for="email">El. paštas</label>
+            <input type="email" class="form-control" id="email" name="email" style="width:15vw">
         </div>
         <div class="form-group">
             <label for="slaptazodis">Slaptažodis</label>
-            <input type="password" class="form-control" id="slaptazodis" style="width:15vw">
+            <input type="password" class="form-control" id="password" name="password" style="width:15vw">
         </div>
         <button class="btn btn-primary">Prisijungti</button>
+        {{ $errors->first('message') }}
+
     </form>
 @endsection
