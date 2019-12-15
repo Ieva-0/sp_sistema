@@ -39,15 +39,14 @@ Route::get('/imone/redaguoti_paskaita/paskaita1', function () {
 Route::post('/imone/create/create', 'PaskaitosController@store');
 Route::get('/imone/create', 'PaskaitosController@create');
 
+Route::get('/registracija', 'RegistrationController@create');
+Route::post('/registracija', 'RegistrationController@store');
 //Route::resource('imone/create','PaskaitosController');
 
-
-Route::get('/studijos/registracija', function () {
-    return view('Studiju posisteme.registracija');
-});
-Route::get('/studijos/prisijungti', function () {
-    return view('Studiju posisteme.prisijungimas');
-});
+//STUDIJU POSISTEME
+Route::get('/prisijungimas', 'SessionsController@create');
+Route::post('/prisijungimas', 'SessionsController@store');
+Route::get('/atsijungimas', 'SessionsController@destroy');
 Route::get('/studijos', function () {
     return view('Studiju posisteme.pradinis');
 });
@@ -101,7 +100,7 @@ Route::get('/studijos/moduliai/1', function () {
     return view('Studiju posisteme.modulio_ivertinimai');
 });
 
-
+//------------------------------------------------------------------
 Route::get('/studentas', function () {
     return view('Studentas/studento_pagrindinis_meniu');
 });
