@@ -35,6 +35,10 @@ Route::get('/imone/redaguoti_paskaita/paskaita1', function () {
     return view('Imone/paskaita1');
 });
 
+Route::get('/imone/praktikos', function () {
+    return view('Imone/imones_praktiku_sarasas');
+});
+
 
 // Route::get('dashboard/posts/{id}/edit', 'PostsController@edit');
 // Route::put('dashboard/posts/{id}', 'PostsController@update');
