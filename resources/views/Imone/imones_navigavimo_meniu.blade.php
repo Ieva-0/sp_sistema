@@ -69,7 +69,7 @@
         </div>
 
         <div class="links">
-            <a href="{{ url('imone/prisijungti ') }}">Prisijungti</a>
+            <a href="{{ url('imone/prisijungimas ') }}">Prisijungti</a>
             <a href="{{ url('imone/registracija ') }}">Registruotis</a>
             <a href="{{ url('imone/paskaitos ') }}">Paskaitu sąrašas</a>
             <a href="{{ url('imone/paskaitos ') }}">Praktikų sąrašas</a>

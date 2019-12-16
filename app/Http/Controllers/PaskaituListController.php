@@ -15,7 +15,9 @@ class PaskaituListController extends Controller
     public function index()
     {
         //
-        $paskaitos_list = DB::table('paskaita')->get();
+        $first = DB::table('imones')->where('fk_imone_user', auth()->user()->id)->first();
+        $paskaitos_list = DB::table('paskaita')->where('fk_Darbuotojasid', $first->id)->get();
+
         return view('Imone/imones_paskaitu_sarasas')->with('paskaitos_list', $paskaitos_list);
         //
     }
@@ -27,7 +29,6 @@ class PaskaituListController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**

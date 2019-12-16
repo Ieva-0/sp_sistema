@@ -19,7 +19,7 @@ class PaskaitosController extends Controller
         $paskaitos = Paskaita::all()->toArray();
 
 
-       
+
 
         return view('Imone.paskaita.paskaitos_kurimo_langas.index', compact('paskaitos'));
     }
@@ -61,17 +61,18 @@ class PaskaitosController extends Controller
                 'fk_Auditorijaid_Auditorija' => 'required'
             ]
         );
+        $first = DB::table('imones')->where('fk_imone_user', auth()->user()->id)->first();
         print_r("HEEEEEEEY");
         $paskaita = new Paskaita([
             'data' => $request->get('data'),
             'trukme' => $request->get('trukme'),
             'vieta' => $request->get('vieta'),
             'tema' => $request->get('tema'),
-            'papildoma_informacija' => $request->get('papildoma_informacija'), 
+            'papildoma_informacija' => $request->get('papildoma_informacija'),
             'lektorius' => $request->get('lektorius'),
             'laikas' => $request->get('laikas'),
             'mokymo_kalba' => $request->get('mokymo_kalba'),
-            'fk_Darbuotojasid' => $request->get('fk_Darbuotojasid'),
+            'fk_Darbuotojasid' => $first->id,
             'fk_Auditorijaid_Auditorija' => $request->get('fk_Auditorijaid_Auditorija')
         ]);
         $paskaita->save();
@@ -85,7 +86,8 @@ class PaskaitosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request)
-    { }
+    {
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -95,7 +97,9 @@ class PaskaitosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $paskaita = Paskaita::FindOrFail($id);
+        $auditorija_list = DB::table('auditorija')->get();
+        return view('imone.paskaitos_redagavimo_langas', compact('paskaita'), compact('auditorija_list'));
     }
 
     /**
@@ -105,9 +109,34 @@ class PaskaitosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( $id)
     {
-        //
+        printf("ASODIJASOIDJ");
+        $paskaita = Paskaita::findOrFail($id);
+        printf("ASODIJASOIDJ");
+        // $paskaita->update([
+        //     'data' => $request->get('data'),
+        //     'trukme' => $request->get('trukme'),
+        //     'vieta' => $request->get('vieta'),
+        //     'tema' => $request->get('tema'),
+        //     'papildoma_informacija' => $request->get('papildoma_informacija'),
+        //     'lektorius' => $request->get('lektorius'),
+        //     'laikas' => $request->get('laikas'),
+        //     'mokymo_kalba' => $request->get('mokymo_kalba'),
+        //     'fk_Auditorijaid_Auditorija' => $request->get('fk_Auditorijaid_Auditorija')
+        // ]);
+        $paskaita->update([
+            'data' => request('data'),
+            'trukme' => request('trukme'),
+            'vieta' => request('vieta'),
+            'tema' => request('tema'),
+            'papildoma_informacija' => request('papildoma_informacija'),
+            'lektorius' => request('lektorius'),
+            'laikas' => request('laikas'),
+            'mokymo_kalba' => request('mokymo_kalba'),
+            'fk_Auditorijaid_Auditorija' => request('fk_Auditorijaid_Auditorija')
+        ]);
+        return redirect('/imone/paskaitos');
     }
 
     /**

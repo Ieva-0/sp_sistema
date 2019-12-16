@@ -135,22 +135,20 @@
                 cursor: pointer;
             }
         </style>
+        <form method="post" class="login-form" action="/imone/prisijungimas">
+            @csrf
+            <div class="form-group">
+                <label for="email">El. paštas</label>
+                <input type="email" class="form-control" id="email" name="email" style="width:15vw">
+            </div>
+            <div class="form-group">
+                <label for="slaptazodis">Slaptažodis</label>
+                <input type="password" class="form-control" id="password" name="password" style="width:15vw">
+            </div>
+            <button class="btn btn-primary">Prisijungti</button>
+            <p class="message">Dar neprisiregistrave? <a href="registracija">Registruotis</a></p>
+            {{ $errors->first('message') }}
 
-        <form method="post" class="login-form" action="{{ url('imone') }}">
-            {{ csrf_field() }}
-            <div class="form-group">
-                <input type="el_pastas" placeholder="El. paštas" />
-            </div>
-            <div class="form-group">
-                <input type="password" placeholder="Slaptažodis" />
-            </div>
-            
-            <button>
-                <div class="links">
-                    <a href="{{ url('imone') }}">Prisijungti</a>
-                </div>
-            </button>
-            <p class="message">Dar neprisiregistrave?<a href="registracija">Registracija</a></p>
         </form>
     </div>
 </div>

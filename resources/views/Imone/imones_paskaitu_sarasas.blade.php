@@ -103,28 +103,17 @@
             <th>Pavadinimas</th>
             <th>Modulis</th>
             <th>Data</th>
-        </tr>
-        <tr onclick="window.location='redaguoti_paskaita/paskaita1';">
-            <td>Įvadinė paskaita</td>
-            <td>Duomenų bazės</td>
-            <td>2019-12-01</td>
-        </tr>
-        <tr onclick="window.location='redaguoti_paskaita/paskaita1';">
-            <td>Įvadinė paskaita</td>
-            <td>Duomenų bazės</td>
-            <td>2019-12-01</td>
-        </tr>
-        <tr onclick="window.location='redaguoti_paskaita/paskaita1';">
-            <td>Įvadinė paskaita</td>
-            <td>Duomenų bazės</td>
-            <td>2019-12-01</td>
+            <th>Veiksmai:</th>
         </tr>
 
         @foreach($paskaitos_list as $paskaita)
-        <tr onclick="window.location='redaguoti_paskaita/paskaita1';">
+        <tr>
             <td>{{ $paskaita->vieta}}</td>
             <td>{{ $paskaita->tema}}</td>
             <td>{{ $paskaita->data}}</td>
+            <td>
+                <a class="btn btn-primary" href="{{ route('paskaita-edit',['id' => $paskaita->id]) }}">Edit</a>
+            </td>
         </tr>
         @endforeach
 

@@ -17,31 +17,47 @@ Route::get('/', function () {
 Route::get('/imone', function () {
     return view('Imone/imones_navigavimo_meniu');
 });
-Route::get('/imone/prisijungti', function () {
-    return view('Imone/imones_prisijungimo_langas');
-});
-Route::get('/imone/registracija', function () {
-    return view('Imone/imones_registracijos_langas');
-});
+Route::get('/imone/prisijungimas', 'ImoneSessionsController@create');
+Route::post('/imone/prisijungimas', 'ImoneSessionsController@store');
+Route::get('/imone/atsijungimas', 'ImoneSessionsController@destroy');
 
+Route::get('/imone/registracija', 'ImoneRegistrationController@create');
+Route::post('/imone/registracija', 'ImoneRegistrationController@store');
 Route::get('/imone/paskaitos', 'PaskaituListController@index');
 
 Route::get('/imone/sukurti_paskaita', function () {
     return view('Imone/paskaitos_kurimo_langas');
 });
-Route::get('/imone/redaguoti_paskaita', function () {
+Route::get('/imone/redaguoti_paskaita/', function () {
     return view('Imone/paskaitos_redagavimo_langas');
 });
 Route::get('/imone/redaguoti_paskaita/paskaita1', function () {
     return view('Imone/paskaita1');
 });
 
+
+// Route::get('dashboard/posts/{id}/edit', 'PostsController@edit');
+// Route::put('dashboard/posts/{id}', 'PostsController@update');
+// Route::patch('dashboard/posts/{id}', 'PostsController@update');
+//Route::get('ruangjns/{ruangjn}/edit', 'RuanganjnsController@edit')->name('ruangjn-edit');
+Route::get('/imone/paskaitos/{id}/edit/', 'PaskaitosController@edit')->name('paskaita-edit');
+Route::put('imone/paskaitos/{id}', 'PaskaitosController@update')->name('paskaita-edit-update');
+Route::patch('imone/paskaitos/{id}', 'PaskaitosController@update');
+//<!-- Route::get('ruangjns/{ruangjn}/edit', 'RuanganjnsController@edit')->name('ruangjn-edit'); -->
+// <!-- {{route('ruangjn-edit', ['ruangjn' => $data->id])}} -->
+//Route::resource('imone','PaskaitosController');
+//Route::resource('imone.create','PaskaitosController@create');
+
+
+//Route::resource('imone/create','PaskaitosController');
+//
+
+
 Route::post('/imone/create/create', 'PaskaitosController@store');
 Route::get('/imone/create', 'PaskaitosController@create');
 
 Route::get('/registracija', 'RegistrationController@create');
 Route::post('/registracija', 'RegistrationController@store');
-//Route::resource('imone/create','PaskaitosController');
 
 //STUDIJU POSISTEME
 Route::get('/prisijungimas', 'SessionsController@create');
