@@ -134,11 +134,9 @@
                     <div class="form-group">
                         <label></label>
                         <div>
-                            <input type="submit" class="btn btn-primary" value="Išsaugoti">
+                            <input type="submit" class="btn btn-primary" value="Įrašyti paskaitą">
                             <span></span>
-                            <input type="button" class="btn btn-danger" value="Ištrinti">
-                            <span></span>
-                            <input type="reset" class="btn btn-default" value="Atšaukti pakeitimus">
+                            <input action="/imone/paskaitos" type="reset" onclick="return confirm('Ar tikrai?')" class="btn btn-danger" value="Atšaukti kūrimo pakeitimus">
                         </div>
                     </div>
                 </form>

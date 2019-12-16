@@ -62,10 +62,8 @@
                 <h3>Paskaitos redagavimasz</h3>
 
                 <form method="post" enctype="multipart/form-data" action="{{ route('paskaita-edit-update',['id' => $paskaita->id]) }}" class="form-horizontal">
-
                     {{ method_field('PATCH') }}
                     {{ csrf_field() }}
-
                     <div class="form-group">
                         <label>Paskaitos pavadinimas:</label>
                         <div>
@@ -179,12 +177,26 @@
                         <label></label>
                         <div>
                             <input type="submit" class="btn btn-primary" value="Išsaugoti pakeitimus">
-                            <input type="delete" class="btn btn-danger" value="Ištrinti paskaita">
                         </div>
-                    </div>
                 </form>
+                <br>
+                <div>
+                    <form method="POST" action="/imone/paskaitos/{{$paskaita->id}}">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <input type="submit" onclick="return confirm('Ar tikrai?')" class="btn btn-danger delete-user" value="Ištrinti paskaitą">
+                    </form>
+                </div>
+                <br>
+                <div>
+                    <input onclick="return confirm('Ar tikrai?')" action="/imone/paskaitos/{{$paskaita->id}}/edit" type="reset" class="btn btn-info" value="Atšaukti pakeitimus">
+                </div>
             </div>
+
+
+
         </div>
     </div>
-    <hr>
-    @endsection
+</div>
+<hr>
+@endsection

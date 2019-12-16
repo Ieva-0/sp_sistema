@@ -69,6 +69,7 @@
         </div>
 
         <div class="links">
+            <a href="{{ URL::previous() }}">Atgal</a>
             @if (Auth::guest())
             <a href="{{ url('imone/prisijungimas ') }}">Prisijungti</a>
             <a href="{{ url('imone/registracija ') }}">Registruotis</a>

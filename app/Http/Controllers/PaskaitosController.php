@@ -7,46 +7,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Paskaita;
 
-use App\Http\Requests\ServiceRequest;
-use App\Service;
 use App\Http\Controllers\Controller;
 
 class PaskaitosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index($id = 0)
     {
         $paskaitos = Paskaita::all()->toArray();
-
-
-
-
         return view('Imone.paskaita.paskaitos_kurimo_langas.index', compact('paskaitos'));
     }
-    //
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $auditorija_list = DB::table('auditorija')->get();
         return view('Imone.paskaita.paskaitos_kurimo_langas')->with('auditorija_list', $auditorija_list);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
 
@@ -83,22 +58,11 @@ class PaskaitosController extends Controller
         return redirect()->back()->with('message', 'Paskaitos duomenys sėkmingai pridėti');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Request $request)
     {
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $paskaita = Paskaita::FindOrFail($id);
@@ -106,31 +70,9 @@ class PaskaitosController extends Controller
         return view('imone.paskaitos_redagavimo_langas', compact('paskaita'), compact('auditorija_list'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Paskaita $paskaita, $id)
     {
-        //$paskaita->update($request->all());
         $paskaita = Paskaita::findOrFail($id);
-        //dd($request->tema);
-        // $paskaita->update([
-        //     'data' => $request->get('data'),
-        //     'trukme' => $request->get('trukme'),
-        //     'vieta' => $request->get('vieta'),
-        //     'tema' => $request->get('tema'),
-        //     'papildoma_informacija' => $request->get('papildoma_informacija'),
-        //     'lektorius' => $request->get('lektorius'),
-        //     'laikas' => $request->get('laikas'),
-        //     'mokymo_kalba' => $request->get('mokymo_kalba'),
-        //     'fk_Auditorijaid_Auditorija' => $request->get('fk_Auditorijaid_Auditorija')
-        // ]);
-        //
-
         $paskaita->update([
             'tema' => request('tema'),
             'data' => request('data'),
@@ -145,15 +87,10 @@ class PaskaitosController extends Controller
         return redirect('/imone/paskaitos');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        DB::table('paskaita')->delete($id);
-        //
+        $room = Paskaita::findOrFail($id);
+        $room->delete();
+        return redirect('/imone/paskaitos')->with('message', 'Paskaitos duomenys sėkmingai ištrinti');
     }
 }
