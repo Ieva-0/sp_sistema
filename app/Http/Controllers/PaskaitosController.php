@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Paskaita;
 
+use App\Http\Requests\ServiceRequest;
+use App\Service;
+use App\Http\Controllers\Controller;
+
 class PaskaitosController extends Controller
 {
     /**
@@ -109,11 +113,11 @@ class PaskaitosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update( $id)
+    public function update(Request $request, Paskaita $paskaita, $id)
     {
-        printf("ASODIJASOIDJ");
+        //$paskaita->update($request->all());
         $paskaita = Paskaita::findOrFail($id);
-        printf("ASODIJASOIDJ");
+        //dd($request->tema);
         // $paskaita->update([
         //     'data' => $request->get('data'),
         //     'trukme' => $request->get('trukme'),
@@ -125,11 +129,13 @@ class PaskaitosController extends Controller
         //     'mokymo_kalba' => $request->get('mokymo_kalba'),
         //     'fk_Auditorijaid_Auditorija' => $request->get('fk_Auditorijaid_Auditorija')
         // ]);
+        //
+
         $paskaita->update([
+            'tema' => request('tema'),
             'data' => request('data'),
             'trukme' => request('trukme'),
             'vieta' => request('vieta'),
-            'tema' => request('tema'),
             'papildoma_informacija' => request('papildoma_informacija'),
             'lektorius' => request('lektorius'),
             'laikas' => request('laikas'),
@@ -147,6 +153,7 @@ class PaskaitosController extends Controller
      */
     public function destroy($id)
     {
+        DB::table('paskaita')->delete($id);
         //
     }
 }

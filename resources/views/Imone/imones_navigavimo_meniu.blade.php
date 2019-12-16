@@ -69,20 +69,25 @@
         </div>
 
         <div class="links">
+            @if (Auth::guest())
             <a href="{{ url('imone/prisijungimas ') }}">Prisijungti</a>
             <a href="{{ url('imone/registracija ') }}">Registruotis</a>
+            @endif
+            @if (Auth::check())
             <a href="{{ url('imone/paskaitos ') }}">Paskaitu sąrašas</a>
             <a href="{{ url('imone/praktikos ') }}">Praktikų sąrašas</a>
             <a href="{{ url('atsijungimas') }}">Atsijungti</a>
+
         </div>
     </div>
 </head>
 
 <body>
-   <div>
-       <br>
+    <div>
+        <br>
         @yield('content')
-   </div>
+    </div>
+    @endif
 </body>
 
 </html>

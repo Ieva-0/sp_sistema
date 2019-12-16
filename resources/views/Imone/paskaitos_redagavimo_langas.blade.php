@@ -61,9 +61,11 @@
                 @endif
                 <h3>Paskaitos redagavimasz</h3>
 
-                <form method="POST"  action="{{ route('paskaita-edit-update',['id' => $paskaita->id]) }}" class="form-horizontal">
-                    @csrf
-                    @method('PUT')
+                <form method="post" enctype="multipart/form-data" action="{{ route('paskaita-edit-update',['id' => $paskaita->id]) }}" class="form-horizontal">
+
+                    {{ method_field('PATCH') }}
+                    {{ csrf_field() }}
+
                     <div class="form-group">
                         <label>Paskaitos pavadinimas:</label>
                         <div>
@@ -160,13 +162,13 @@
                     <div>
                         <label>Mokymo kalbos:</label>
                         <select id="1" name="mokymo_kalba" class="form-control">
-                            @if( 1 == $paskaita->laikas)
+                            @if( 1 == $paskaita->mokymo_kalba)
                             <option selected value="1">Lietuvių</option>
                             @else
-                            <option  value="1">Lietuvių</option>
+                            <option value="1">Lietuvių</option>
                             @endif
 
-                            @if( 2 == $paskaita->laikas)
+                            @if( 2 == $paskaita->mokymo_kalba)
                             <option selected value="2">English</option>
                             @else
                             <option value="2">English</option>
@@ -177,6 +179,7 @@
                         <label></label>
                         <div>
                             <input type="submit" class="btn btn-primary" value="Išsaugoti pakeitimus">
+                            <input type="delete" class="btn btn-danger" value="Ištrinti paskaita">
                         </div>
                     </div>
                 </form>

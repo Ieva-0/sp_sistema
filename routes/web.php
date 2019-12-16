@@ -45,7 +45,7 @@ Route::get('/imone/praktikos', function () {
 // Route::patch('dashboard/posts/{id}', 'PostsController@update');
 //Route::get('ruangjns/{ruangjn}/edit', 'RuanganjnsController@edit')->name('ruangjn-edit');
 Route::get('/imone/paskaitos/{id}/edit/', 'PaskaitosController@edit')->name('paskaita-edit');
-Route::put('imone/paskaitos/{id}', 'PaskaitosController@update')->name('paskaita-edit-update');
+Route::post('imone/paskaitos/{id}', 'PaskaitosController@update')->name('paskaita-edit-update');
 Route::patch('imone/paskaitos/{id}', 'PaskaitosController@update');
 //<!-- Route::get('ruangjns/{ruangjn}/edit', 'RuanganjnsController@edit')->name('ruangjn-edit'); -->
 // <!-- {{route('ruangjn-edit', ['ruangjn' => $data->id])}} -->
