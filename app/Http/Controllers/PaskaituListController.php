@@ -18,8 +18,12 @@ class PaskaituListController extends Controller
         $first = DB::table('imones')->where('fk_imone_user', auth()->user()->id)->first();
         $paskaitos_list = DB::table('paskaita')->where('fk_Darbuotojasid', $first->id)->get();
 
+
+        if (sizeof($paskaitos_list) == 0) {
+
+            return view('/imone/imones_paskaitu_sarasas_tuscia')->with('paskaitos_list', $paskaitos_list)->with('message', 'Jūs neturite sukūrę paskaitų jeigu norėtumėte matyti paskaitas, spauskite „Paskaitos sukūrimas”.');
+        }
         return view('Imone/imones_paskaitu_sarasas')->with('paskaitos_list', $paskaitos_list);
-        //
     }
 
     /**

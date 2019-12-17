@@ -78,7 +78,6 @@
         <div class="title m-b-md">
             Įmonės posistemė
         </div>
-
         <div class="links">
             <a href="{{ URL::previous() }}">Atgal</a>
             @if (Auth::guest())
@@ -90,8 +89,6 @@
             <a href="{{ url('imone/praktikos ') }}">Praktikų sąrašas</a>
             <a href="{{ url('atsijungimas') }}">Atsijungti</a>
             <a href="{{ url('aplikacija-praktikai') }}">Prašymo pateikimas praktikai</a>
-
-
         </div>
     </div>
 </head>

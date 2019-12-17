@@ -119,7 +119,15 @@
                         <select name="fk_praktikosid" id="0" class="form-control input-lg dynamic" data-dependent="state" required>
                             <option value="" selected disabled>Pasirinkite praktiką</option>
                             @foreach($results as $praktika)
+                            @if(isset($id))
+                            @if ($praktika->id == $id)
+                            <option selected value="{{ $praktika->id}}">{{ $praktika->pavadinimas }}, {{ $praktika->trukme }}, {{ $praktika->projekto_Tema }} [{{ $praktika->dalyviu_Skaicius }}dal.]</option>
+                            @else
                             <option value="{{ $praktika->id}}">{{ $praktika->pavadinimas }}, {{ $praktika->trukme }}, {{ $praktika->projekto_Tema }} [{{ $praktika->dalyviu_Skaicius }}dal.]</option>
+                            @endif
+                            @else
+                            <option value="{{ $praktika->id}}">{{ $praktika->pavadinimas }}, {{ $praktika->trukme }}, {{ $praktika->projekto_Tema }} [{{ $praktika->dalyviu_Skaicius }}dal.]</option>
+                            @endif
                             @endforeach
                         </select>
                     </div>

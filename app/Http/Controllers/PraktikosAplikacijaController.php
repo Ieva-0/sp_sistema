@@ -15,12 +15,13 @@ class PraktikosAplikacijaController extends Controller
     //
     public function index($id = 0)
     {
+
         // $paskaitos = Registracija_praktikai::all()->toArray();
         //return view('Imone.paskaita.paskaitos_kurimo_langas.index', compact('paskaitos'));
     }
     public function create()
     {
-        $results = DB::select("SELECT praktikos.id,praktikos.trukme,praktikos.id,dalyviu_Skaicius,projekto_Tema,laikas,pavadinimas,sritis  FROM praktikos LEFT JOIN imones ON praktikos.fk_Imoneid=imones.id");
+        $results = DB::select("SELECT praktikos.id,praktikos.trukme,praktikos.id,dalyviu_Skaicius,projekto_Tema,laikas,pavadinimas,sritis,el_pastas  FROM praktikos LEFT JOIN imones ON praktikos.fk_Imoneid=imones.id");
 
         //        return view('Imone/imones_praktiku_sarasas')->with('praktiku_list', $results);
         //$auditorija_list = DB::table('auditorija')->get();
@@ -62,8 +63,13 @@ class PraktikosAplikacijaController extends Controller
         return redirect()->back()->with('message', 'Praktikos aplikacija sėkmingai išsiūsta');
     }
 
-    public function show(Request $request)
+    public function show($id = 0)
     {
+        $results = DB::select("SELECT praktikos.id,praktikos.trukme,praktikos.id,dalyviu_Skaicius,projekto_Tema,laikas,pavadinimas,sritis,el_pastas  FROM praktikos LEFT JOIN imones ON praktikos.fk_Imoneid=imones.id");
+
+        //        return view('Imone/imones_praktiku_sarasas')->with('praktiku_list', $results);
+        //$auditorija_list = DB::table('auditorija')->get();
+        return view('Imone.registracija.registracija_praktikai')->with('results', $results)->with('id',$id); //->with('auditorija_list', $auditorija_list);
     }
 
 

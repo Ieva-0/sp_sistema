@@ -135,6 +135,26 @@
                 margin: 0;
             }
         </style>
+        <div>@if(count($errors))
+            <div class="alert alert-info alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-coffee"></i>
+
+                @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+
+            </div>
+            @endif
+            @if(session()->has('message'))
+
+            <div class="alert alert-info alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-coffee"></i>
+                {{ session()->get('message') }}
+            </div>
+            @endif
+        </div>
         <form class="login-form" method="POST" action="/imone/registracija">
             @csrf
             <input type="email" class="form-control" id="email" name="email" style="width:15vw" placeholder="El.paštas" required />
@@ -145,7 +165,7 @@
 
             <button type="submit" class="btn btn-primary">Registruotis</button>
             <p class="message">Jau prisiregistrave? <a href="prisijungimas">Prisijungti</a></p>
-            {{ $errors->first() }}
+    
         </form>
 
     </div>

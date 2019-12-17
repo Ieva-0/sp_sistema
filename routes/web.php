@@ -24,11 +24,12 @@ Route::get('/imone/atsijungimas', 'ImoneSessionsController@destroy');
 
 Route::get('/imone/registracija', 'ImoneRegistrationController@create');
 Route::post('/imone/registracija', 'ImoneRegistrationController@store');
-Route::get('/imone/paskaitos', 'PaskaituListController@index');
+Route::get('/imone/paskaitos', 'PaskaituListController@index')->name('paskaitos-list');
 
 //PRAKTIKAI
 Route::post('/aplikacija-praktikai/create', 'PraktikosAplikacijaController@store');
 Route::get('/aplikacija-praktikai', 'PraktikosAplikacijaController@create');
+Route::get('/aplikacija-praktikai/{id}', 'PraktikosAplikacijaController@show')->name('aplikacija-praktikai');
 
 Route::post('/imone/create-praktika/create', 'PraktikosController@store');
 Route::get('/imone/create-praktika', 'PraktikosController@create');
@@ -139,9 +140,10 @@ Route::get('/studentas/mokslo_grupes', function () {
     return view('Studentas/studento_mokslo_grupes_registracija');
 });
 
-Route::get('/studentas/praktikos', function () {
-    return view('Studentas/studento_praktikos_registracija');
-});
+// Route::get('/studentas/praktikos', function () {
+//     return view('Studentas/studento_praktikos_registracija');
+// });
+Route::get('/studentas/praktikos', 'StudentoPraktikosController@index');
 
 Route::get('/studentas/profilis', function () {
     return view('Studentas/studento_profilio_perziura');

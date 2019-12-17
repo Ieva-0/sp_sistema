@@ -8,6 +8,7 @@ use App\User;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Imone;
+use Illuminate\Support\Facades\Validator;
 use Session;
 use Illuminate\Support\Facades\DB;
 
@@ -23,11 +24,19 @@ class ImoneRegistrationController extends Controller
 
     public function store(Request $request)
     {
+
         $this->validate(request(), [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|confirmed'
         ]);
+        // return Validator::make($request, [
+        //     'name' => 'required|string|max:255:users',
+        //     'email' => 'required|string|email|max:255|unique:users',
+        //     'password' => 'required|string|min:6|confirmed',
+        // ]);
+
+        //return redirect('/imone/registracija')->with('message', 'Toks prisijungimo vardas/El. paštas jau yra');
 
         $user = User::create([
             'name' => request('name'),

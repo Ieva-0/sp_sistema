@@ -139,7 +139,7 @@
             }
         </style>
         <div class="container">
-            @if(count($errors)) > 0 )
+            @if(count($errors))
             <div class="alert alert-info alert-dismissable">
                 <a class="panel-close close" data-dismiss="alert">×</a>
                 <i class="fa fa-coffee"></i>
@@ -171,8 +171,7 @@
             </div>
             <button class="btn btn-primary">Prisijungti</button>
             <p class="message">Dar neprisiregistrave? <a href="registracija">Registruotis</a></p>
-            {{ $errors->first('message') }}
-
+          
         </form>
     </div>
 </div>

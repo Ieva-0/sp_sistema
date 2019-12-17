@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,13 +19,15 @@
 
     <!-- Styles -->
     <style>
-        html, body {
+        html,
+        body {
             background-color: #fff;
             color: #636b6f;
             font-weight: 100;
             height: 100vh;
             margin: 0;
         }
+
         .content {
 
             padding: 60px;
@@ -35,7 +38,8 @@
             font-size: 40px;
             padding-bottom: 50px;
         }
-        .top-right > a{
+
+        .top-right>a {
             position: absolute;
             right: 10px;
             top: 18px;
@@ -47,7 +51,8 @@
             text-decoration: none;
             text-transform: uppercase;
         }
-        .top-left > a{
+
+        .top-left>a {
             position: absolute;
             left: 10px;
             top: 18px;
@@ -60,7 +65,7 @@
             text-transform: uppercase;
         }
 
-        .links > a {
+        .links>a {
             text-align: center;
             color: #636b6f;
             padding: 0 25px;
@@ -99,6 +104,7 @@
             color: white;
             text-transform: uppercase;
         }
+
         .table {
             margin: auto;
         }
@@ -107,15 +113,14 @@
 
             text-align: left;
         }
-        .submit{
+
+        .submit {
             padding-top: 20px;
         }
-
-
-
     </style>
 
 </head>
+
 <body>
     <div class="title">
         Praktikos
@@ -126,28 +131,48 @@
     </div>
 
     <div class="align-middle">
-        <table class="table table-bordered " style="width: 80%" >
+        <table class="table table-bordered " style="width: 80%">
             <thead class="thead-dark">
-            <tr>
-                <th scope="col">Ikėlimo data</th>
-                <th scope="col">Imonės Pavadinimas</th>
-                <th scope="col">Ieškoma pozicija</th>
-                <th scope="col">Kontaktai</th>
-            </tr>
+                <tr>
+                    <th scope="col">Ikėlimo data</th>
+                    <th scope="col">Imonės Pavadinimas</th>
+                    <th scope="col">Ieškoma pozicija</th>
+                    <th scope="col">Kontaktai</th>
+                    <th scope="col">Trukmė</th>
+                    <th scope="col">Prisiregistravusių</th>
+                    <th scope="col">Veiksmas</th>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">2019-11-22</th>
-                <td>Centric</td>
-                <td>Back_end programuotojas</td>
-                <td>centric@gmail.com</td>
-            </tr>
-            <tr>
-                <th scope="row">2019-11-22</th>
-                <td>AdeoWeb</td>
-                <td>Back_end programuotojas</td>
-                <td>Adeo@gmail.com</td>
-            </tr>
+                <tr>
+                    <th scope="row">2019-11-22</th>
+                    <td>Centric</td>
+                    <td>Back_end programuotojas</td>
+                    <td>centric@gmail.com</td>
+                    <td>23 val.</td>
+                    <td>70 dal.</td>
+                </tr>
+                <tr>
+                    <th scope="row">2019-11-22</th>
+                    <td>AdeoWeb</td>
+                    <td>Back_end programuotojas</td>
+                    <td>Adeo@gmail.com</td>
+                    <td>23 val.</td>
+                    <td>70 dal.</td>
+                </tr>
+                @foreach($praktiku_list as $praktika)
+                <tr>
+                    <td>{{ $praktika->laikas}}</td>
+                    <td>{{ $praktika->pavadinimas}}</td>
+                    <td>{{ $praktika->projekto_Tema }}</td>
+                    <td>{{ $praktika->el_pastas}}</td>
+                    <td>{{ $praktika->trukme}} val.</td>
+                    <td>{{ $praktika->dalyviu_Skaicius}} dal.</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ route('aplikacija-praktikai',['id' => $praktika->id]) }}">Pateikti</a>
+                    </td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -164,12 +189,12 @@
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
 
-            <div class="custom-file" style="width: 50%" >
+            <div class="custom-file" style="width: 50%">
                 <input type="file" class="custom-file-input" id="customFile">
                 <label class="custom-file-label" for="customFile">Įkelkite CV</label>
             </div>
-            <div class = "submit">
-            <button type="submit" class="btn btn-primary">Siūsti</button>
+            <div class="submit">
+                <button type="submit" class="btn btn-primary">Siūsti</button>
             </div>
 
 

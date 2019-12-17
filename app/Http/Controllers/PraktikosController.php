@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Session;
 use App\Product;
 use App\Praktika;
+
+use App\Registracija_praktikai;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -24,12 +26,18 @@ class PraktikosController extends Controller
         $first = DB::table('imones')->where('fk_imone_user', auth()->user()->id)->first();
         $praktiku_list = DB::table('praktikos')->where('fk_Imoneid', $first->id)->get();
         $imone = $first->pavadinimas;
-        return view('Imone/imones_praktiku_sarasas')->with('praktiku_list', $praktiku_list)->with('imone', $imone);
+        // return view('Imone/imones_praktiku_sarasas')->with('praktiku_list', $praktiku_list)->with('imone', $imone);
+
+
+        if (sizeof($praktiku_list) == 0) {
+            return view('Imone/imones_praktiku_sarasas_tuscia')->with('praktiku_list', $praktiku_list)->with('imone', $imone)->with('message', 'Jūs neturite sukūrę paskaitų jeigu norėtumėte matyti paskaitas, spauskite „Paskaitos sukūrimas”.');
+        } else {
+
+            return view('Imone/imones_praktiku_sarasas')->with('praktiku_list', $praktiku_list)->with('imone', $imone);
+        }
     }
     public function create()
     {
-        // $auditorija_list = DB::table('auditorija')->get();
-        // return view('Imone.Praktika.paskaitos_kurimo_langas')->with('auditorija_list', $auditorija_list);
         return view('Imone.paskaita.praktikos_kurimo_langas');
     }
 
@@ -83,6 +91,10 @@ class PraktikosController extends Controller
 
     public function destroy($id)
     {
+        $first = DB::table('registracija_praktikai')->where('fk_praktikosid', $id)->delete();
+        //$registracija = Registracija_praktikai::findOrFail($id);
+        // $registracija->delete();
+
         $praktika = Praktika::findOrFail($id);
         $praktika->delete();
         return redirect('/imone/praktikos')->with('message', 'Praktikos duomenys sėkmingai ištrinti');

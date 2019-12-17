@@ -40,25 +40,6 @@
         <div>
             <!-- edit form column -->
             <div>
-                @if(count($errors)) > 0 )
-                <div class="alert alert-info alert-dismissable">
-                    <a class="panel-close close" data-dismiss="alert">×</a>
-                    <i class="fa fa-coffee"></i>
-
-                    @foreach($errors->all() as $error)
-                    <li>{{$error}}</li>
-                    @endforeach
-
-                </div>
-                @endif
-                @if(session()->has('message'))
-
-                <div class="alert alert-info alert-dismissable">
-                    <a class="panel-close close" data-dismiss="alert">×</a>
-                    <i class="fa fa-coffee"></i>
-                    {{ session()->get('message') }}
-                </div>
-                @endif
                 <h3>Paskaitos informacija</h3>
 
                 <form method="post" action="{{url('imone/create/create')}}" class="form-horizontal">

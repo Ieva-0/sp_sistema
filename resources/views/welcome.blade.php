@@ -21,7 +21,7 @@
         <form style="margin:15px 0 15px 0" action="/studentas">
             <button class="btn btn-primary" type="submit">Studentų posistemė</button>
         </form>
-        <form style="margin:15px 0 15px 0" action="/destytojas">
+        <form style="margin:15px 0 15px 0" action="/Destytojas">
             <button class="btn btn-primary" type="submit">Dėstytojų posistemė</button>
         </form>
         <form style="margin:15px 0 15px 0" action="/studijos">
