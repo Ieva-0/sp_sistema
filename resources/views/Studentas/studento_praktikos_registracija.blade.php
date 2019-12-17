@@ -142,7 +142,7 @@
                     <th scope="col">Prisiregistravusių</th>
                     <th scope="col">Veiksmas</th>
                 </tr>
-            </thead>
+                <!-- </thead>
             <tbody>
                 <tr>
                     <th scope="row">2019-11-22</th>
@@ -159,7 +159,7 @@
                     <td>Adeo@gmail.com</td>
                     <td>23 val.</td>
                     <td>70 dal.</td>
-                </tr>
+                </tr> --> -->
                 @foreach($praktiku_list as $praktika)
                 <tr>
                     <td>{{ $praktika->laikas}}</td>
@@ -173,7 +173,7 @@
                     </td>
                 </tr>
                 @endforeach
-            </tbody>
+                </tbody>
         </table>
     </div>
 

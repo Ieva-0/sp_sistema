@@ -90,6 +90,9 @@ class PaskaitosController extends Controller
 
     public function destroy($id)
     {
+        DB::table('studentu_paskaitos')->where('fk_Paskaitaid', $id)->delete();
+        //$delete_stuff = DB::table('studentu_paskaitos')->get();
+
         $room = Paskaita::findOrFail($id);
         $room->delete();
         return redirect('/imone/paskaitos')->with('message', 'Paskaitos duomenys sėkmingai ištrinti');
