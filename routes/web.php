@@ -10,13 +10,14 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-// IMONE
+// IMONES POSISTEME
 Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/imone', function () {
     return view('Imone/imones_navigavimo_meniu');
 });
+// LOGIN REGISTER IMONE
 Route::get('/imone/prisijungimas', 'ImoneSessionsController@create');
 Route::post('/imone/prisijungimas', 'ImoneSessionsController@store');
 Route::get('/imone/atsijungimas', 'ImoneSessionsController@destroy');
@@ -25,31 +26,9 @@ Route::get('/imone/registracija', 'ImoneRegistrationController@create');
 Route::post('/imone/registracija', 'ImoneRegistrationController@store');
 Route::get('/imone/paskaitos', 'PaskaituListController@index');
 
-// Route::get('/imone/sukurti_paskaita', function () {
-//     return view('Imone/paskaitos_kurimo_langas');
-// });
-// Route::get('/imone/redaguoti_paskaita/', function () {
-//     return view('Imone/paskaitos_redagavimo_langas');
-// });
-// Route::get('/imone/redaguoti_paskaita/paskaita1', function () {
-//     return view('Imone/paskaita1');
-// });
-
-
+//PRAKTIKAI
 Route::post('/aplikacija-praktikai/create', 'PraktikosAplikacijaController@store');
 Route::get('/aplikacija-praktikai', 'PraktikosAplikacijaController@create');
-
-// Route::get('dashboard/posts/{id}/edit', 'PostsController@edit');
-// Route::put('dashboard/posts/{id}', 'PostsController@update');
-// Route::patch('dashboard/posts/{id}', 'PostsController@update');
-//Route::get('ruangjns/{ruangjn}/edit', 'RuanganjnsController@edit')->name('ruangjn-edit');
-Route::get('/imone/paskaitos/{id}/edit/', 'PaskaitosController@edit')->name('paskaita-edit');
-Route::post('imone/paskaitos/{id}', 'PaskaitosController@update')->name('paskaita-edit-update');
-Route::patch('imone/paskaitos/{id}', 'PaskaitosController@update');
-
-Route::post('/imone/create/create', 'PaskaitosController@store');
-Route::get('/imone/create', 'PaskaitosController@create');
-Route::delete('imone/paskaitos/{id}', 'PaskaitosController@destroy')->name('paskaita-destroy');
 
 Route::post('/imone/create-praktika/create', 'PraktikosController@store');
 Route::get('/imone/create-praktika', 'PraktikosController@create');
@@ -60,15 +39,19 @@ Route::get('/imone/praktikos/{id}/edit', 'PraktikosController@edit')->name('prak
 Route::post('imone/praktikos/{id}', 'PraktikosController@update')->name('praktika-edit-update');
 Route::patch('imone/praktikos/{id}', 'PraktikosController@update');
 Route::delete('imone/praktikos/{id}', 'PraktikosController@destroy')->name('praktika-destroy');
+Route::get('/imone/praktikos/{id}/edit/list', 'PraktikosController@show')->name('praktika-student-list');
 
-//<!-- Route::get('ruangjns/{ruangjn}/edit', 'RuanganjnsController@edit')->name('ruangjn-edit'); -->
-// <!-- {{route('ruangjn-edit', ['ruangjn' => $data->id])}} -->
-//Route::resource('imone','PaskaitosController');
-//Route::resource('imone.create','PaskaitosController@create');
+//PASKAITOS
+Route::get('/imone/paskaitos/{id}/edit/', 'PaskaitosController@edit')->name('paskaita-edit');
+Route::post('imone/paskaitos/{id}', 'PaskaitosController@update')->name('paskaita-edit-update');
+Route::patch('imone/paskaitos/{id}', 'PaskaitosController@update');
+
+Route::post('/imone/create/create', 'PaskaitosController@store');
+Route::get('/imone/create', 'PaskaitosController@create');
+Route::delete('imone/paskaitos/{id}', 'PaskaitosController@destroy')->name('paskaita-destroy');
 
 
-//Route::resource('imone/create','PaskaitosController');
-//
+
 
 
 Route::get('/registracija', 'RegistrationController@create');

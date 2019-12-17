@@ -34,14 +34,14 @@
     <hr>
     <div class="row">
         <!-- left column -->
-        <div class="col-md-3">
+        <div class="col-md-4">
 
         </div>
         <div>
             <!-- edit form column -->
             <div>
-              
-                <h3>Paskaitos redagavimasz</h3>
+
+                <h3>Paskaitos redagavimas</h3>
 
                 <form method="post" enctype="multipart/form-data" action="{{ route('paskaita-edit-update',['id' => $paskaita->id]) }}" class="form-horizontal">
                     {{ method_field('PATCH') }}
@@ -181,4 +181,5 @@
     </div>
 </div>
 <hr>
+
 @endsection

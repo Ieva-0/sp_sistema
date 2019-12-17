@@ -58,10 +58,11 @@ class PraktikosController extends Controller
         return redirect()->back()->with('message', 'Praktikos duomenys sėkmingai pridėti');
     }
 
-    public function show(Request $request)
+    public function show($id)
     {
+        $student_list = DB::table('registracija_praktikai')->where('fk_praktikosid', $id)->get();
+        return view('imone.prisiregistravusiu_studentu_sarasas')->with('student_list', $student_list);
     }
-
 
     public function edit($id)
     {

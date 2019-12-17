@@ -32,12 +32,18 @@
 <div class="container">
     <h1 align="center">Praktikos redagavimas</h1>
     <hr>
-    <div class="row">
+    <div>
         <!-- left column -->
-        <div class="col-md-3">
 
-        </div>
+
         <div>
+            <div>
+                <div align="right">
+                    <form method="" action="{{ route('praktika-student-list',['id' => $praktika->id]) }}">
+                        <input type="submit" class="btn btn-info" value="Prisiregistravę studentai">
+                    </form>
+                </div>
+            </div>
             <!-- edit form column -->
             <div>
                 <h3>Puslapis skirtas redaguoti praktiką</h3>
@@ -84,7 +90,9 @@
                     <input onclick="return confirm('Ar tikrai?')" action="/imone/praktikos/{{$praktika->id}}/edit" type="reset" class="btn btn-info" value="Atšaukti kūrimo pakeitimus">
                 </div>
             </div>
+
         </div>
+
     </div>
 </div>
 <hr>

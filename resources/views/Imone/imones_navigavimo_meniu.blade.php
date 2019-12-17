@@ -23,9 +23,13 @@
             background-color: #fff;
             color: #636b6f;
             font-family: 'Raleway';
-            font-weight: 100;
+            font-weight: 1000;
             height: 100vh;
             margin: 0;
+        }
+
+        .gfg {
+            all: unset;
         }
 
         .full-height {
@@ -86,7 +90,7 @@
             <a href="{{ url('imone/praktikos ') }}">Praktikų sąrašas</a>
             <a href="{{ url('atsijungimas') }}">Atsijungti</a>
             <a href="{{ url('aplikacija-praktikai') }}">Prašymo pateikimas praktikai</a>
-            
+
 
         </div>
     </div>
