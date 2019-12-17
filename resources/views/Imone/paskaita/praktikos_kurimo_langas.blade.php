@@ -30,7 +30,7 @@
 </head>
 
 <div class="container">
-    <h1 align="center">Paskaitos įvedimas</h1>
+    <h1 align="center">Praktikos įvedimas</h1>
     <hr>
     <div class="row">
         <!-- left column -->

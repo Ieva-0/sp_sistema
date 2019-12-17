@@ -1,4 +1,4 @@
-<title>Paskaitos įvedimas</title>
+<title>Praktikos registracija</title>
 
 
 <!-- Fonts Testas-->
@@ -33,7 +33,7 @@
 </head>
 
 <div class="container">
-    <h1 align="center">Paskaitos įvedimas</h1>
+    <h1 align="center">Praktikos registracija</h1>
     <hr>
     <div class="row">
         <!-- left column -->
@@ -62,7 +62,7 @@
                     {{ session()->get('message') }}
                 </div>
                 @endif
-                <h3>Paskaitos informacija</h3>
+                <h3>Anketos informacija</h3>
 
                 <form method="post" action="{{url('/aplikacija-praktikai/create')}}" class="form-horizontal">
                     @csrf
