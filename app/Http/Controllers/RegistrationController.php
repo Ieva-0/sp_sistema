@@ -30,13 +30,27 @@ class RegistrationController extends Controller
             'password' => request('password'),
             'user_level' => request('user_level')
         ]);
+        if(request('user_level') == '1')
+        {
+            Studentas::create([
+                'Vardas' => request('name'),
+                'Pavarde' => request('surname'),
+                'El_Pastas' => request('email'),
+                'fk_studentas_user' => $user->id
+            ]);
+        }
+        if(request('user_level') == '2')
+        {
+            Destytojas::create([
 
-        Studentas::create([
-            'Vardas' => request('name'),
-            'Pavarde' => request('surname'),
-            'El_Pastas' => request('email'),
-            'fk_studentas_user' => $user->id
-        ]);
+            ]);
+        }
+        if(request('user_level') == '3')
+        {
+            Imone::create([
+                
+            ]);
+        }
 
         auth()->login($user);
 
