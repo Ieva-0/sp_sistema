@@ -19,14 +19,13 @@ class ImoneSessionsController extends Controller
                 'message' => 'Neteisingi prisijungimo duomenys'
             ]);
         }
-
-        return redirect()->to('/imone');
+        return redirect()->to('/imone')->with('message', 'Sėkmingai prisijungėte prie įmonės posistemės');
     }
 
     public function destroy()
     {
         auth()->logout();
-
-        return redirect()->to('/');
+        
+        return redirect()->to('/')->with('message', 'Sėkmingai prisijungėte prie įmonės posistemės');;
     }
 }

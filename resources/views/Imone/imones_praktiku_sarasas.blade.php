@@ -128,7 +128,10 @@
         <div class="alert alert-info alert-dismissable">
             <a class="panel-close close" data-dismiss="alert">×</a>
             <i class="fa fa-coffee"></i>
-            {{ session()->get('message') }}
+            <b>
+                <p style="font-family:georgia,garamond,serif;font-size:16px;font-style:italic;">
+                    {{ session()->get('message') }} </p>
+            </b>
         </div>
         @endif
     </div>
@@ -138,58 +141,8 @@
             <th>Įmonė</th>
             <th>Trukmė</th>
             <th>Data</th>
-            <th>Kandidatuojančių skaičius:</th>
+            <th>Kandidatų skaičius:</th>
             <th>Valdymas:</th>
-        </tr>
-        <tr onclick="window.location='redaguoti_paskaita/paskaita1';">
-            <td>C# web-praktika</td>
-            <td>Teltonika</td>
-            <td>96 val.</td>
-            <td>2019-12-01</td>
-            <td>62</td>
-            <td>
-                <a class="btn btn-primary" href=" {{ url('/imone/redaguoti_paskaita/paskaita1') }}">Edit</a>
-            </td>
-        </tr>
-        <tr onclick="window.location='redaguoti_paskaita/paskaita1';">
-            <td>PhotoShop - praktika</td>
-            <td>Teltonika</td>
-            <td>56 val.</td>
-            <td>2019-12-02</td>
-            <td>50</td>
-            <td>
-                <a class="btn btn-primary" href=" {{ url('/imone/redaguoti_paskaita/paskaita1') }}">Edit</a>
-            </td>
-        </tr>
-        <tr onclick="window.location='redaguoti_paskaita/paskaita1';">
-            <td>BackEnd developer</td>
-            <td>Teltonika</td>
-            <td>108 val.</td>
-            <td>2019-12-16</td>
-            <td>29</td>
-            <td>
-                <a class="btn btn-primary" href=" {{ url('/imone/redaguoti_paskaita/paskaita1') }}">Edit</a>
-            </td>
-        </tr>
-        <tr onclick="window.location='redaguoti_paskaita/paskaita1';">
-            <td>Embeded Systems developer</td>
-            <td>Teltonika</td>
-            <td>56 val.</td>
-            <td>2019-12-16</td>
-            <td>21</td>
-            <td>
-                <a class="btn btn-primary" href=" {{ url('/imone/redaguoti_paskaita/paskaita1') }}">Edit</a>
-            </td>
-        </tr>
-        <tr onclick="window.location='redaguoti_paskaita/paskaita1';">
-            <td>Embeded Systems developer</td>
-            <td>Teltonika</td>
-            <td>56 val.</td>
-            <td>2019-12-16</td>
-            <td>21</td>
-            <td>
-                <a class="btn btn-primary" href=" {{ url('/imone/redaguoti_paskaita/paskaita1') }}">Edit</a>
-            </td>
         </tr>
         @foreach($praktiku_list as $praktika)
         <tr>

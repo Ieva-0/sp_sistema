@@ -36,6 +36,8 @@ Route::get('/imone/paskaitos', 'PaskaituListController@index');
 // });
 
 
+Route::post('/aplikacija-praktikai/create', 'PraktikosAplikacijaController@store');
+Route::get('/aplikacija-praktikai', 'PraktikosAplikacijaController@create');
 
 // Route::get('dashboard/posts/{id}/edit', 'PostsController@edit');
 // Route::put('dashboard/posts/{id}', 'PostsController@update');
@@ -54,7 +56,7 @@ Route::get('/imone/create-praktika', 'PraktikosController@create');
 
 
 Route::get('/imone/praktikos', 'PraktikosController@index');
-Route::get('/imone/praktikos/{id}/edit/', 'PraktikosController@edit')->name('praktika-edit');
+Route::get('/imone/praktikos/{id}/edit', 'PraktikosController@edit')->name('praktika-edit');
 Route::post('imone/praktikos/{id}', 'PraktikosController@update')->name('praktika-edit-update');
 Route::patch('imone/praktikos/{id}', 'PraktikosController@update');
 Route::delete('imone/praktikos/{id}', 'PraktikosController@destroy')->name('praktika-destroy');

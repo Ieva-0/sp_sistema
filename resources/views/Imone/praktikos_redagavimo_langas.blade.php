@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 <!-- Required meta tags -->
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -40,25 +40,6 @@
         <div>
             <!-- edit form column -->
             <div>
-                @if(count($errors)) > 0 )
-                <div class="alert alert-info alert-dismissable">
-                    <a class="panel-close close" data-dismiss="alert">×</a>
-                    <i class="fa fa-coffee"></i>
-
-                    @foreach($errors->all() as $error)
-                    <li>{{$error}}</li>
-                    @endforeach
-
-                </div>
-                @endif
-                @if(session()->has('message'))
-
-                <div class="alert alert-info alert-dismissable">
-                    <a class="panel-close close" data-dismiss="alert">×</a>
-                    <i class="fa fa-coffee"></i>
-                    {{ session()->get('message') }}
-                </div>
-                @endif
                 <h3>Puslapis skirtas redaguoti praktiką</h3>
 
                 <form method="post" enctype="multipart/form-data" action="{{ route('praktika-edit-update',['id' => $praktika->id]) }}" class="form-horizontal">
@@ -92,7 +73,6 @@
                     </div>
                 </form>
                 <div>
-
                     <form method="POST" action="/imone/praktikos/{{$praktika->id}}">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
@@ -106,5 +86,6 @@
             </div>
         </div>
     </div>
-    <hr>
-    @endsection
+</div>
+<hr>
+@endsection

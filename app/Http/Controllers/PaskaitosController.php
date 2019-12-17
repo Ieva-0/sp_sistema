@@ -84,7 +84,8 @@ class PaskaitosController extends Controller
             'mokymo_kalba' => request('mokymo_kalba'),
             'fk_Auditorijaid_Auditorija' => request('fk_Auditorijaid_Auditorija')
         ]);
-        return redirect('/imone/paskaitos');
+        return redirect()->back()->with('message', 'Paskaitos duomenys sėkmingai atnaujinti');
+        //return redirect('/imone/paskaitos');
     }
 
     public function destroy($id)

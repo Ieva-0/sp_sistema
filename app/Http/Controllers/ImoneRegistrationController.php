@@ -8,6 +8,10 @@ use App\User;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Imone;
+use Session;
+use Illuminate\Support\Facades\DB;
+
+use App\Http\Controllers\Controller;
 
 class ImoneRegistrationController extends Controller
 {
@@ -40,8 +44,6 @@ class ImoneRegistrationController extends Controller
         ]);
 
         auth()->login($user);
-
-        return redirect()->to('/');
-        //
+        return redirect('/imone/prisijungimas')->with('message', 'Sėkmingai prisiregistravote prie įmonės posistemės');
     }
 }
