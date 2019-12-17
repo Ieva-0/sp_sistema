@@ -9,6 +9,13 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <!-- Styles -->
     <style>
         html,
@@ -16,9 +23,13 @@
             background-color: #fff;
             color: #636b6f;
             font-family: 'Raleway';
-            font-weight: 100;
+            font-weight: 1000;
             height: 100vh;
             margin: 0;
+        }
+
+        .gfg {
+            all: unset;
         }
 
         .full-height {
@@ -67,27 +78,48 @@
         <div class="title m-b-md">
             Įmonės posistemė
         </div>
-
         <div class="links">
-            <a href="{{ url('imone/prisijungti ') }}">Prisijungti</a>
+            <a href="{{ URL::previous() }}">Atgal</a>
+            @if (Auth::guest())
+            <a href="{{ url('imone/prisijungimas ') }}">Prisijungti</a>
             <a href="{{ url('imone/registracija ') }}">Registruotis</a>
+            @endif
+            @if (Auth::check())
             <a href="{{ url('imone/paskaitos ') }}">Paskaitu sąrašas</a>
-            <a href="https://forge.laravel.com">Praktikų sąrašas</a>
+            <a href="{{ url('imone/praktikos ') }}">Praktikų sąrašas</a>
+            <a href="{{ url('atsijungimas') }}">Atsijungti</a>
+            <a href="{{ url('aplikacija-praktikai') }}">Prašymo pateikimas praktikai</a>
         </div>
     </div>
 </head>
 
 <body>
-    <div class="flex-center position-ref full-height">
-        @if (Route::has('login'))
-        <div class="top-right links">
-            <a href="{{ url('/login') }}">Login</a>
-            <a href="{{ url('/register') }}">Register</a>
+    <div class="container">
+        @if(count($errors)) > 0 )
+        <div class="alert alert-info alert-dismissable">
+            <a class="panel-close close" data-dismiss="alert">×</a>
+            <i class="fa fa-coffee"></i>
+
+            @foreach($errors->all() as $error)
+            <li>{{$error}}</li>
+            @endforeach
+
         </div>
         @endif
+        @if(session()->has('message'))
 
-
+        <div class="alert alert-info alert-dismissable">
+            <a class="panel-close close" data-dismiss="alert">×</a>
+            <i class="fa fa-coffee"></i>
+            {{ session()->get('message') }}
+        </div>
+        @endif
     </div>
+    <div>
+        <br>
+        @yield('content')
+    </div>
+    @endif
 </body>
 
 </html>

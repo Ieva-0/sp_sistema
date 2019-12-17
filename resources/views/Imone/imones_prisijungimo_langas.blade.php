@@ -1,5 +1,8 @@
 <div class="login-page">
     <div class="form">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
         <style>
             @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
@@ -135,16 +138,40 @@
                 cursor: pointer;
             }
         </style>
+        <div class="container">
+            @if(count($errors))
+            <div class="alert alert-info alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-coffee"></i>
 
-        <form class="login-form">
-            <input type="text" placeholder="Prisijungimo vardas" />
-            <input type="password" placeholder="Slaptažodis" />
-            <button>
-                <div class="links">
-                    <a href="{{ url('imone') }}">Prisijungti</a>
-                </div>
-            </button>
-            <p class="message">Dar neprisiregistrave?<a href="registracija">Registracija</a></p>
+                @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+
+            </div>
+            @endif
+            @if(session()->has('message'))
+
+            <div class="alert alert-info alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-coffee"></i>
+                {{ session()->get('message') }}
+            </div>
+            @endif
+        </div>
+        <form method="post" class="login-form" action="/imone/prisijungimas">
+            @csrf
+            <div class="form-group">
+                <label for="email">El. paštas</label>
+                <input type="email" class="form-control" id="email" name="email" style="width:15vw">
+            </div>
+            <div class="form-group">
+                <label for="slaptazodis">Slaptažodis</label>
+                <input type="password" class="form-control" id="password" name="password" style="width:15vw">
+            </div>
+            <button class="btn btn-primary">Prisijungti</button>
+            <p class="message">Dar neprisiregistrave? <a href="registracija">Registruotis</a></p>
+          
         </form>
     </div>
 </div>

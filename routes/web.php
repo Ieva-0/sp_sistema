@@ -10,41 +10,58 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
+// IMONES POSISTEME
 Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/imone', function () {
     return view('Imone/imones_navigavimo_meniu');
 });
-Route::get('/imone/prisijungti', function () {
-    return view('Imone/imones_prisijungimo_langas');
-});
-Route::get('/imone/registracija', function () {
-    return view('Imone/imones_registracijos_langas');
-});
-Route::get('/imone/paskaitos', function () {
-    return view('Imone/imones_paskaitu_sarasas');
-});
-Route::get('/imone/sukurti_paskaita', function () {
-    return view('Imone/paskaitos_kurimo_langas');
-});
-Route::get('/imone/redaguoti_paskaita', function () {
-    return view('Imone/paskaitos_redagavimo_langas');
-});
-Route::get('/imone/redaguoti_paskaita/paskaita1', function () {
-    return view('Imone/paskaita1');
-});
+// LOGIN REGISTER IMONE
+Route::get('/imone/prisijungimas', 'ImoneSessionsController@create');
+Route::post('/imone/prisijungimas', 'ImoneSessionsController@store');
+Route::get('/imone/atsijungimas', 'ImoneSessionsController@destroy');
 
-//STUDIJU POSISTEME
+Route::get('/imone/registracija', 'ImoneRegistrationController@create');
+Route::post('/imone/registracija', 'ImoneRegistrationController@store');
+Route::get('/imone/paskaitos', 'PaskaituListController@index')->name('paskaitos-list');
+
+//PRAKTIKAI
+Route::post('/aplikacija-praktikai/create', 'PraktikosAplikacijaController@store');
+Route::get('/aplikacija-praktikai', 'PraktikosAplikacijaController@create');
+Route::get('/aplikacija-praktikai/{id}', 'PraktikosAplikacijaController@show')->name('aplikacija-praktikai');
+
+Route::post('/imone/create-praktika/create', 'PraktikosController@store');
+Route::get('/imone/create-praktika', 'PraktikosController@create');
+
+
+Route::get('/imone/praktikos', 'PraktikosController@index');
+Route::get('/imone/praktikos/{id}/edit', 'PraktikosController@edit')->name('praktika-edit');
+Route::post('imone/praktikos/{id}', 'PraktikosController@update')->name('praktika-edit-update');
+Route::patch('imone/praktikos/{id}', 'PraktikosController@update');
+Route::delete('imone/praktikos/{id}', 'PraktikosController@destroy')->name('praktika-destroy');
+Route::get('/imone/praktikos/{id}/edit/list', 'PraktikosController@show')->name('praktika-student-list');
+
+//PASKAITOS
+Route::get('/imone/paskaitos/{id}/edit/', 'PaskaitosController@edit')->name('paskaita-edit');
+Route::post('imone/paskaitos/{id}', 'PaskaitosController@update')->name('paskaita-edit-update');
+Route::patch('imone/paskaitos/{id}', 'PaskaitosController@update');
+
+Route::post('/imone/create/create', 'PaskaitosController@store');
+Route::get('/imone/create', 'PaskaitosController@create');
+Route::delete('imone/paskaitos/{id}', 'PaskaitosController@destroy')->name('paskaita-destroy');
+
+
+
+
 
 Route::get('/registracija', 'RegistrationController@create');
 Route::post('/registracija', 'RegistrationController@store');
 
+//STUDIJU POSISTEME
 Route::get('/prisijungimas', 'SessionsController@create');
 Route::post('/prisijungimas', 'SessionsController@store');
 Route::get('/atsijungimas', 'SessionsController@destroy');
-
 Route::get('/studijos', function () {
     return view('Studiju posisteme.pradinis');
 });
@@ -123,9 +140,10 @@ Route::get('/studentas/mokslo_grupes', function () {
     return view('Studentas/studento_mokslo_grupes_registracija');
 });
 
-Route::get('/studentas/praktikos', function () {
-    return view('Studentas/studento_praktikos_registracija');
-});
+// Route::get('/studentas/praktikos', function () {
+//     return view('Studentas/studento_praktikos_registracija');
+// });
+Route::get('/studentas/praktikos', 'StudentoPraktikosController@index');
 
 Route::get('/studentas/profilis', function () {
     return view('Studentas/studento_profilio_perziura');

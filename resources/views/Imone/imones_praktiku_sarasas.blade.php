@@ -1,9 +1,9 @@
 @extends('Imone.imones_navigavimo_meniu')
 
-@section('content')+
+@section('content')
 <div class="content">
     <div class="links">
-        <a href="{{ url('imone/create') }}">Paskaitos sukūrimas</a>
+        <a href="{{ url('/imone/create-praktika') }}">Praktikos sukūrimas</a>
     </div>
 </div>
 <br>
@@ -107,26 +107,56 @@
     }
 </style>
 
+<span style="display:inline-block; width:WIDTH;"></span>
+
 <div class="container">
-    
+
+    <div>
+        @if(count($errors)) > 0 )
+        <div class="alert alert-info alert-dismissable">
+            <a class="panel-close close" data-dismiss="alert">×</a>
+            <i class="fa fa-coffee"></i>
+
+            @foreach($errors->all() as $error)
+            <li>{{$error}}</li>
+            @endforeach
+
+        </div>
+        @endif
+        @if(session()->has('message'))
+
+        <div class="alert alert-info alert-dismissable">
+            <a class="panel-close close" data-dismiss="alert">×</a>
+            <i class="fa fa-coffee"></i>
+            <b>
+                <p style="font-family:georgia,garamond,serif;font-size:16px;font-style:italic;">
+                    {{ session()->get('message') }} </p>
+            </b>
+        </div>
+        @endif
+    </div>
     <table id="customers" style="width:80%" class="content" align="center">
         <tr>
-            <th>Pavadinimas</th>
-            <th>Modulis</th>
+            <th>Projekto tema</th>
+            <th>Įmonė</th>
+            <th>Trukmė</th>
             <th>Data</th>
-            <th>Veiksmai:</th>
+            <th>Kandidatų skaičius:</th>
+            <th>Valdymas:</th>
         </tr>
-
-        @foreach($paskaitos_list as $paskaita)
+        @foreach($praktiku_list as $praktika)
         <tr>
-            <td>{{ $paskaita->vieta}}</td>
-            <td>{{ $paskaita->tema}}</td>
-            <td>{{ $paskaita->data}}</td>
+            <td>{{ $praktika->projekto_Tema }}</td>
+            <td>{{ $imone}}</td>
+            <td>{{ $praktika->trukme}} val.</td>
+            <td>{{ $praktika->laikas}}</td>
+            <td>{{ $praktika->dalyviu_Skaicius}} dal.</td>
             <td>
-                <a class="btn btn-primary" href="{{ route('paskaita-edit',['id' => $paskaita->id]) }}">Edit</a>
+                <a class="btn btn-primary" href="{{ route('praktika-edit',['id' => $praktika->id]) }}">Edit</a>
             </td>
         </tr>
         @endforeach
+
 
     </table>
 </div>

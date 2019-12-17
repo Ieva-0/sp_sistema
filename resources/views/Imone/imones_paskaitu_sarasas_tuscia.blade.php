@@ -107,26 +107,14 @@
     }
 </style>
 
-<div class="container">
-    
-    <table id="customers" style="width:80%" class="content" align="center">
-        <tr>
-            <th>Pavadinimas</th>
-            <th>Modulis</th>
-            <th>Data</th>
-            <th>Veiksmai:</th>
-        </tr>
+<div class="container" style="font-style: italic;  font-weight: bold;">
 
-        @foreach($paskaitos_list as $paskaita)
-        <tr>
-            <td>{{ $paskaita->vieta}}</td>
-            <td>{{ $paskaita->tema}}</td>
-            <td>{{ $paskaita->data}}</td>
-            <td>
-                <a class="btn btn-primary" href="{{ route('paskaita-edit',['id' => $paskaita->id]) }}">Edit</a>
-            </td>
-        </tr>
-        @endforeach
+    <table id="customers" style="width:80%" class="content" align="center">
+        <div class="alert alert-info alert-dismissable">
+            <a class="panel-close close" data-dismiss="alert">×</a>
+            <i class="fa fa-coffee"></i>
+            Jūs neturite sukūrę paskaitų jeigu norėtumėte matyti paskaitas, spauskite „Paskaitos sukūrimas”.
+        </div>
 
     </table>
 </div>

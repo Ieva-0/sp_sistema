@@ -135,14 +135,37 @@
                 margin: 0;
             }
         </style>
-        <form class="login-form">
-            <input type="text" placeholder="Prisijungimo vardas" />
-            <input type="password" placeholder="Slaptažodis" />
-            <input type="text" placeholder="E. paštas" />
-            <button type="button">
-            <div class="links"><a href="{{ url('imone/prisijungti') }}">Registruotis</a></div>
-            </button>
-            <p class="message">Jau prisiregistrave? <a href="prisijungti">Prisijungti</a></p>
+        <div>@if(count($errors))
+            <div class="alert alert-info alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-coffee"></i>
+
+                @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+
+            </div>
+            @endif
+            @if(session()->has('message'))
+
+            <div class="alert alert-info alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-coffee"></i>
+                {{ session()->get('message') }}
+            </div>
+            @endif
+        </div>
+        <form class="login-form" method="POST" action="/imone/registracija">
+            @csrf
+            <input type="email" class="form-control" id="email" name="email" style="width:15vw" placeholder="El.paštas" required />
+            <input type="text" class="form-control" id="name" name="name" style="width:15vw" placeholder="Įmonės pavadinimas" required />
+            <input type="text" class="form-control" id="surname" name="surname" style="width:15vw" placeholder="Sritis" required />
+            <input type="password" class="form-control" id="password" name="password" placeholder="Slaptažodis" style="width:15vw" />
+            <input type="password" class="form-control" id="password_confirmation" placeholder="Slaptažodžio patvirtinimas" name="password_confirmation" style="width:15vw" required />
+
+            <button type="submit" class="btn btn-primary">Registruotis</button>
+            <p class="message">Jau prisiregistrave? <a href="prisijungimas">Prisijungti</a></p>
+    
         </form>
 
     </div>
