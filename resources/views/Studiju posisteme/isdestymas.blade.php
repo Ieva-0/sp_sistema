@@ -23,7 +23,7 @@
                 <a class="nav-link" href="/studijos/projektai" style="color:white">Erasmus+</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/studijos/mentoryste" style="color:white">Karjeros mentorystė</a>
+                <a class="nav-link" href="/studijos/mentoryste/prasymai" style="color:white">Karjeros mentorystė</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/studijos/grupes" style="color:white">Mokslo grupės</a>
@@ -48,7 +48,7 @@
         </ul>
     </div>
 </nav>
-<div class="container" style="height:93vh;width:60vw;margin:0 auto; background-color: rgb(245, 245, 245);padding:50px">
+<div class="container" style="width:60vw;margin:0 auto; background-color: rgb(245, 245, 245);padding:50px">
     @yield('content')
 </div>
 </body>

@@ -5,29 +5,24 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Vardas</th>
             <th scope="col">Pavardė</th>
-            <th scope="col">Fakultetas</th>
+            <th scope="col">El. Paštas</th>
+            <th scope="col">Tabelio nr.</th>
             <th scope="col"></th>
 
         </tr>
         </thead>
         <tbody>
+        @foreach($destytojai as $destytojas)
         <tr>
-            <th scope="row">1</th>
-            <td>Jonas</td>
-            <td>Petraitis</td>
-            <td>Informatikos</td>
-            <td><form action="/studijos/laisvi/1">@csrf<button class="btn btn-primary">Plačiau</button></form></td>
+            <td>{{$destytojas->vardas}}</td>
+            <td>{{$destytojas->pavarde}}</td>
+            <td>{{$destytojas->tabelio_nr}}</td>
+            <td>{{$destytojas->el_pastas}}</td>
+            <td><form>@csrf<button class="btn btn-primary">Plačiau</button></form></td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Adomas</td>
-            <td>Adomaitis</td>
-            <td>Chemijos</td>
-            <td><form action="/studijos/mentoryste/laisvi/1">@csrf<button class="btn btn-primary">Plačiau</button></form></td>
-        </tr>
+            @endforeach
         </tbody>
     </table>
 @endsection

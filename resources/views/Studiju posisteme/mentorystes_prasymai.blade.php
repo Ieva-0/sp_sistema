@@ -1,5 +1,5 @@
 @extends('Studiju posisteme.isdestymas')
-@section('title', 'Erasmus+')
+@section('title', 'Karjeros mentorystės prašymai')
 @section('content')
 <h2>Karjeros mentorystės prašymai</h2>
 <form action="/studijos/mentoryste/laisvi" style="float:left;margin:10px 10px 15px 0">
@@ -9,34 +9,29 @@
 <table class="table">
     <thead>
     <tr>
-        <th scope="col">#</th>
         <th scope="col">Vardas</th>
         <th scope="col">Pavardė</th>
-        <th scope="col">Fakultetas</th>
         <th scope="col">Studijų programa</th>
         <th scope="col">Kursas</th>
+        <th scope="col">El. Paštas</th>
         <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>Vardenis</td>
-        <td>Pavardenis</td>
-        <td>Informatikos</td>
-        <td>Programų sistemos</td>
-        <td>2</td>
-        <td><form action="/studijos/mentoryste/1">@csrf<button class="btn btn-primary">Plačiau</button></form></td>
-    </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jonas</td>
-        <td>Jonaitis</td>
-        <td>Chemijos</td>
-        <td>Taikomoji chemija</td>
-        <td>3</td>
-        <td><form action="/studijos/mentoryste/1">@csrf<button class="btn btn-primary">Plačiau</button></form></td>
-    </tr>
+    @foreach($prasymai as $prasymas)
+        @foreach($studentai as $studentas)
+            @if($prasymas->studentas == $studentas->fk_studentas_user)
+            <tr>
+                <td>{{ $studentas->Vardas }} </td>
+                <td>{{ $studentas->Pavarde }}</td>
+                <td>{{ $studentas->Studiju_programa }}</td>
+                <td>{{ $studentas->Kursas }}</td>
+                <td>{{ $studentas->El_Pastas }}</td>
+                <td><form action="/studijos/mentoryste/prasymai/{{ $prasymas->id }}" method="get">@csrf <button class="btn btn-primary">Plačiau</button></form></td>
+            </tr>
+            @endif
+        @endforeach
+    @endforeach
     </tbody>
 </table>
 @endsection

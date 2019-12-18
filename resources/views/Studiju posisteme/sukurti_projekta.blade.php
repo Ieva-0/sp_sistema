@@ -2,42 +2,48 @@
 @section('title', 'Naujas Erasmus+ projektas')
 @section('content')
     <h2>Sukurti naują Erasmus+ projektą</h2>
-    <form action="/studijos/projektai">
+    @if($errors->first())
+        <div class="alert alert-info" >
+            {{ $errors->first() }}
+        </div>
+    @endif
+    <form action="/studijos/projektai" method="post">
         @csrf
         <div class="form-group">
             <label for="metai">Metai</label>
-            <select class="form-control" id="metai" style="width:15vw">
-                <option>2019/2020</option>
-                <option>2020/2021</option>
-                <option>2021/2022</option>
+            <select class="form-control" id="metai" name="metai" style="width:15vw">
+                <option value="2019/2020">2019/2020</option>
+                <option value="2020/2021">2020/2021</option>
+                <option value="2021/2022">2021/2022</option>
             </select>
         </div>
         <div class="form-group">
             <label for="semestras">Semestras</label>
-            <select class="form-control" id="semestras" style="width:15vw">
-                <option>Rudens</option>
-                <option>Pavasario</option>
+            <select class="form-control" id="semestras" name="semestras" style="width:15vw">
+                <option value=1>Rudens</option>
+                <option value=2>Pavasario</option>
             </select>
         </div>
         <div class="form-group">
             <label for="salis">Šalis</label>
-            <input type="text" class="form-control" id="salis" style="width:15vw">
+            <input type="text" class="form-control" id="salis" name="salis" style="width:15vw">
         </div>
         <div class="form-group">
             <label for="istaiga">Mokymo įstaiga</label>
-            <input type="text" class="form-control" id="istaiga" style="width:15vw">
+            <input type="text" class="form-control" id="istaiga" name="istaiga" style="width:15vw">
         </div>
         <div class="form-group">
             <label for="dalyviai">Dalyvių kiekis</label>
-            <input type="text" class="form-control" id="dalyviai" style="width:15vw">
+            <input type="number" class="form-control" id="dalyviai" name="dalyviai" style="width:15vw">
         </div>
         <div class="form-group">
-            <label for="semestras">Dalyvių tipas</label>
-            <select class="form-control" id="semestras" style="width:15vw">
-                <option>Studentai</option>
-                <option>Dėstytojai</option>
+            <label for="tipas">Dalyvių tipas</label>
+            <select class="form-control" id="tipas" name="tipas" style="width:15vw">
+                <option value=1>Studentai</option>
+                <option value=2>Dėstytojai</option>
             </select>
         </div>
+        <input type="hidden" value="1" name="user" />
         <button class="btn btn-primary">Sukurti</button>
     </form>
 @endsection

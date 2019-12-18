@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Studentas extends Model
 {
     public $timestamps = false;
-
-    protected $fillable = [
-        'Vardas', 'Pavarde', 'El_Pastas', 'fk_studentas_user'
-    ];
+    public $table = 'studentas';
+    protected $fillable = ['fk_Destytojastabelio_nr'];
 }

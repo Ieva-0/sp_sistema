@@ -9,37 +9,26 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Pavadinimas</th>
             <th scope="col">Fakultetas</th>
             <th scope="col">Vadovas</th>
             <th scope="col">Narių kiekis</th>
-            <th scope="col">Likę vietos</th>
+            <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
+        @foreach($grupes as $grupe)
         <tr>
-            <th scope="row">1</th>
-            <td>Molekulinė fizika</td>
-            <td>Gamtos mokslų</td>
-            <td>Jonas Jonauskas</td>
-            <td>10</td>
-            <td>7</td>
-            <td><form action="/studijos/grupes/1">@csrf<button class="btn btn-primary">Plačiau/Redaguoti</button></form></td>
-            <td><form action="/studijos/grupes/1/nariai">@csrf<button class="btn btn-primary">Nariai</button></form></td>
+            <td>{{ $grupe->Pavadinimas }}</td>
+            <td>{{ $grupe->Fakultetas }}</td>
+            <td>@foreach($destytojai as $destytojas) @if($grupe->vadovas == $destytojas->fk_destytojas_user) @endif @endforeach </td>
+            <td>{{ $nariai->where('grupe', $grupe->id)->count() }}/{{ $grupe->Nariu_kiekis }}</td>
+            <td><form action="/studijos/grupes/{{$grupe->id}}/redaguoti">@csrf<button class="btn btn-primary">Plačiau/Redaguoti</button></form></td>
+            <td><form action="/studijos/grupes/{{$grupe->id}}" method="post">@csrf @method('delete')<button class="btn btn-primary">Ištrinti</button></form></td>
         </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>Marketingo strategijos</td>
-            <td>Ekonomikos</td>
-            <td>Petras Petrauskas</td>
-            <td>15</td>
-            <td>2</td>
-            <td><form action="/studijos/grupes/1">@csrf<button class="btn btn-primary">Plačiau/Redaguoti</button></form></td>
-            <td><form action="/studijos/grupes/1/nariai">@csrf<button class="btn btn-primary">Nariai</button></form></td>
-        </tr>
+        @endforeach
         </tbody>
     </table>
 @endsection

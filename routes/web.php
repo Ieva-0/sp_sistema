@@ -59,61 +59,58 @@ Route::get('/registracija', 'RegistrationController@create');
 Route::post('/registracija', 'RegistrationController@store');
 
 //STUDIJU POSISTEME
+
 Route::get('/prisijungimas', 'SessionsController@create');
 Route::post('/prisijungimas', 'SessionsController@store');
 Route::get('/atsijungimas', 'SessionsController@destroy');
+
 Route::get('/studijos', function () {
     return view('Studiju posisteme.pradinis');
 });
 // ERASMUS+
-Route::get('/studijos/projektai', function () {
-    return view('Studiju posisteme.projektai');
-});
-Route::get('/studijos/projektai/1', function () {
-    return view('Studiju posisteme.projektas');
-});
-Route::get('/studijos/projektai/1/dalyviai', function () {
-    return view('Studiju posisteme.projekto_dalyviai');
-});
-Route::get('/studijos/projektai/sukurti', function () {
-    return view('Studiju posisteme.sukurti_projekta');
-});
-Route::get('/studijos/projektai/prasymai', function () {
-    return view('Studiju posisteme.projektu_prasymai');
-});
-Route::get('/studijos/projektai/prasymai/1', function () {
-    return view('Studiju posisteme.projekto_prasymas');
-});
+Route::get('/studijos/projektai', 'ErasmusController@index');
+Route::post('/studijos/projektai', 'ErasmusController@store');
+Route::get('/studijos/projektai/sukurti', 'ErasmusController@create');
+Route::delete('/studijos/projektai/{id}', 'ErasmusController@destroy');
+//Route::get('/studijos/projektai/{id}', 'ErasmusController@show');
+Route::get('/studijos/projektai/{id}/redaguoti', 'ErasmusController@edit');
+Route::patch('/studijos/projektai/{id}', 'ErasmusController@update');
+
+//Eramus+ dalyviai
+Route::get('/studijos/projektai/{id}/dalyviai', 'ErasmusController@dalyviai');
+Route::delete('/studijos/projektai/{id}/dalyviai/{id2}', 'ErasmusController@dalyviai_destroy');
+//Route::post('/studijos/projektai/{id}/dalyviai', 'ErasmusController@dalyviai_store'); // kai patvirtinamas prasymas
+
+//Erasmus+ prasymai
+Route::get('/studijos/projektai/{id}/prasymai', 'ErasmusController@prasymai');
+Route::get('/studijos/projektai/{id}/prasymai/sukurti', 'ErasmusController@prasymai_create');
+Route::get('/studijos/projektai/{id}/prasymai/{id2}', 'ErasmusController@prasymas'); // parodyti kur studentas dalyvavo/pateike prasyma
+Route::delete('/studijos/projektai/{id}/prasymai/{id2}', 'ErasmusController@prasymai_destroy');
+Route::post('/studijos/projektai/{id}/prasymai', 'ErasmusController@prasymai_store');
+
+
 // KARJEROS MENTORYSTE
-Route::get('/studijos/mentoryste', function () {
-    return view('Studiju posisteme.mentorystes_prasymai');
-});
-Route::get('/studijos/mentoryste/1', function () {
-    return view('Studiju posisteme.mentorystes_prasymas');
-});
-Route::get('/studijos/mentoryste/laisvi', function () {
-    return view('Studiju posisteme.laisvi_mentoriai');
-});
+Route::get('/studijos/mentoryste/prasymai', 'MentorysteController@index');
+Route::get('/studijos/mentoryste/prasymai/{id}', 'MentorysteController@show');
+Route::get('/studijos/mentoryste/laisvi', 'MentorysteController@laisvi');
+Route::delete('/studijos/mentoryste/prasymai/{id}', 'MentorysteController@destroy');
+
 // MOKSLO GRUPES
-Route::get('/studijos/grupes', function () {
-    return view('Studiju posisteme.grupes');
-});
-Route::get('/studijos/grupes/sukurti', function () {
-    return view('Studiju posisteme.sukurti_grupe');
-});
-Route::get('/studijos/grupes/1', function () {
-    return view('Studiju posisteme.grupe');
-});
-Route::get('/studijos/grupes/1/nariai', function () {
-    return view('Studiju posisteme.grupes_nariai');
-});
+Route::get('/studijos/grupes', 'GrupesController@index');
+Route::get('/studijos/grupes/sukurti', 'GrupesController@create');
+Route::post('/studijos/grupes', 'GrupesController@store');
+Route::get('/studijos/grupes/{id}', 'GrupesController@show');
+Route::get('/studijos/grupes/{id}/redaguoti', 'GrupesController@edit');
+Route::patch('/studijos/grupes/{id}', 'GrupesController@update');
+Route::delete('/studijos/grupes/{id}', 'GrupesController@destroy');
+
+//Grupiu nariai
+Route::get('/studijos/grupes/{id}/nariai', 'GrupesController@nariai');
+Route::delete('/studijos/grupes/{id}/nariai/{id2}', 'GrupesController@nariai_destroy');
+
 // MODULIU IVERTINIMAI
-Route::get('/studijos/moduliai', function () {
-    return view('Studiju posisteme.moduliai');
-});
-Route::get('/studijos/moduliai/1', function () {
-    return view('Studiju posisteme.modulio_ivertinimai');
-});
+Route::get('/studijos/moduliai', 'IvertinimaiController@moduliai');
+Route::get('/studijos/moduliai/{id}', 'IvertinimaiController@');
 
 //------------------------------------------------------------------
 Route::get('/studentas', function () {
