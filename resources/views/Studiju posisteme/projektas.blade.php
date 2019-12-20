@@ -1,5 +1,5 @@
 @extends('Studiju posisteme.isdestymas')
-@section('title', 'Grupė')
+@section('title', 'Projektas')
 @section('content')
     <form action="/studijos/projektai">
         @csrf
@@ -37,10 +37,10 @@
                 <option>Dėstytojai</option>
             </select>
         </div>
-        <button class="btn btn-primary">Patvirtinti</button>
+        <button class="btn btn-dark" style="float:left">Patvirtinti</button>
     </form>
-    <form action="/studijos/projektai" style="float:left;margin:10px 0 15px 0">
+    <form action="/studijos/projektai" style="float:left;margin-left:15px">
         @csrf
-        <button class="btn btn-primary" type="submit">Atšaukti</button>
+        <button class="btn btn-dark" type="submit">Atšaukti</button>
     </form>
 @endsection

@@ -2,30 +2,41 @@
 @section('title', 'Projekto prašymas')
 @section('content')
     <h2>Projekto prašymas</h2>
+    @if($projektas->dalyvio_tipas == 1)
     <h6 style="margin-top:10px">Vardas, pavardė</h6>
-    <p>Jonas Jonaitis</p>
-    <h6 style="margin-top:10px">Fakultetas</h6>
-    <p>Informatikos</p>
+    <p>{{ $studentas->Vardas }} {{ $studentas->Pavarde }}</p>
+    <h6 style="margin-top:10px">El. Paštas</h6>
+        <p>{{ $studentas->El_Pastas }}</p>
     <h6 style="margin-top:10px">Studijų programa</h6>
-    <p>Programų sistemos</p>
+    <p>{{ $studentas->Studiju_programa }}</p>
     <h6 style="margin-top:10px">Kursas</h6>
-    <p>2</p>
+    <p>{{ $studentas->Kursas }}</p>
+    @else
+        <h6 style="margin-top:10px">Vardas, pavardė</h6>
+        <p>{{ $destytojas->vardas }} {{ $destytojas->pavarde }}</p>
+        <h6 style="margin-top:10px">El. Paštas</h6>
+        <p>{{ $destytojas->el_pastas }}</p>
+        <h6 style="margin-top:10px">Tabelio nr.</h6>
+        <p>{{ $destytojas->tabelio_nr }}</p>
+    @endif
     <h6 style="margin-top:10px">Motyvacinis</h6>
-    <p>Motyvacinis tekstas.</p>
-    <h6 style="margin-top:10px">Pažangumas</h6>
-    <p>Pažangus</p>
+    <p style="width:40vw">{{ $prasymas->motyvacinis_tekstas }}</p>
     <h6 style="margin-top:10px">Šalis</h6>
-    <p>Slovakija</p>
+    <p>{{ $projektas->salis }}</p>
     <h6 style="margin-top:10px">Įstaiga</h6>
-    <p>Technologijų universitetas</p>
+    <p>{{ $projektas->mokymo_istaiga }}</p>
     <h6 style="margin-top:10px">Semestras</h6>
-    <p>Pavasario 2019/2020</p>
-    <form action="/studijos/projektai/prasymai" style="float:left;margin:10px 10px 15px 0">
+    <p>@foreach($semestro_tipai as $tipas) @if($tipas->id == $projektas->semestras) {{ $tipas->name }} @endif @endforeach {{ $projektas->metai }}</p>
+    <form action="/studijos/projektai/{{ $projektas->id }}/prasymai/{{ $prasymas->id }}" method="post" style="float:left;margin:10px 10px 15px 0">
         @csrf
-        <button class="btn btn-primary" type="submit">Patvirtinti</button>
+        @method('delete')
+        <input type="hidden" name="decision"  value=1 />
+        <button class="btn btn-dark" type="submit">Patvirtinti</button>
     </form>
-    <form action="/studijos/projektai/prasymai" style="float:left;margin:10px 0 15px 0">
+    <form action="/studijos/projektai/{{ $projektas->id }}/prasymai/{{ $prasymas->id }}" method="post" style="float:left;margin:10px 0 15px 0">
         @csrf
-        <button class="btn btn-primary" type="submit">Atmesti</button>
+        @method('delete')
+        <input type="hidden" name="decision"  value=0 />
+        <button class="btn btn-dark" type="submit">Atmesti</button>
     </form>
 @endsection

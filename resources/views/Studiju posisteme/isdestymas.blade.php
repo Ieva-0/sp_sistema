@@ -6,9 +6,92 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,600" rel="stylesheet" type="text/css">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Styles -->
+    <style>
+        html,
+        body {
+            color: #636b6f;
+            font-family: 'Raleway';
+            height: 100vh;
+            margin: 0;
+        }
+
+        .gfg {
+            all: unset;
+        }
+
+        .full-height {
+            height: 100vh;
+        }
+
+        .flex-center {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .position-ref {
+            position: relative;
+        }
+
+        .top-right {
+            position: absolute;
+            right: 10px;
+            top: 18px;
+        }
+
+        .content {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 40px;
+        }
+
+        .links>a {
+            color: #636b6f;
+            padding: 0 25px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .m-b-md {
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
-<body style="background-color: lightgrey;">
-<nav class="navbar navbar-expand-lg navbar-light bg-primary" style="height:7vh">
+<body style="background-color: rgb(245,245,245);">
+<div class="content" style="background-color: rgb(230,230,230);padding:30px">
+    <div class="title m-b-md">
+        Įmonės posistemė
+    </div>
+    <div class="links">
+        @guest
+            <a href="/studijos/prisijungimas">Prisijungti</a>
+            <a href="/studijos/registracija">Registruotis</a>
+        @endguest
+        @auth
+            <a href="/studijos/projektai">Erasmus+ projektai</a>
+            <a href="/studijos/mentoryste/prasymai">Karjeros mentorystė</a>
+            <a href="/studijos/grupes">Mokslo grupės</a>
+            <a href="/studijos/moduliai">Modulių įvertinimai</a>
+            <a href="/studijos/atsijungti">Atsijungti</a>
+        @endauth
+    </div>
+</div>
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-dark" style="height:7vh">
     <a class="navbar-brand" href="/studijos" style="color:white">Studijų patirties sistema</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -23,7 +106,7 @@
                 <a class="nav-link" href="/studijos/projektai" style="color:white">Erasmus+</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/studijos/mentoryste" style="color:white">Karjeros mentorystė</a>
+                <a class="nav-link" href="/studijos/mentoryste/prasymai" style="color:white">Karjeros mentorystė</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/studijos/grupes" style="color:white">Mokslo grupės</a>
@@ -47,8 +130,8 @@
             @endauth
         </ul>
     </div>
-</nav>
-<div class="container" style="height:93vh;width:60vw;margin:0 auto; background-color: rgb(245, 245, 245);padding:50px">
+</nav>-->
+<div class="container" style="padding:50px">
     @yield('content')
 </div>
 </body>
