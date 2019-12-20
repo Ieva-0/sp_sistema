@@ -24,12 +24,12 @@
                 @endforeach
             </select>
         </div>
-        <button class="btn btn-primary" type="submit" style="float:left">Priskirti</button>
+        <button class="btn btn-dark" type="submit" style="float:left">Priskirti</button>
     </form>
     <form action="/studijos/mentoryste/prasymai/{{$prasymas->id}}" method="post">
         @csrf
         @method('delete')
         <input type="hidden" name="decision"  value=0 />
-        <button class="btn btn-primary" type="submit" style="float:left; margin-left:15px">Atmesti</button>
+        <button class="btn btn-dark" type="submit" style="float:left; margin-left:15px">Atmesti</button>
     </form>
 @endsection

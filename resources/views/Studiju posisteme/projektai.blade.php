@@ -4,7 +4,7 @@
     <h2>Erasmus+ projektai</h2>
     <form action="/studijos/projektai/sukurti" style="float:left;margin:10px 10px 15px 0">
         @csrf
-        <button class="btn btn-primary" type="submit">Sukurti naują projektą</button>
+        <button class="btn btn-dark" type="submit">Sukurti naują projektą</button>
     </form>
     <table class="table">
         <thead>
@@ -31,10 +31,10 @@
             <td>{{ $dalyviai->where('projektas', $projektas->id)->count() }}/{{ $projektas->dalyviu_skaicius }}</td>
             @if(false)
             <td>{{ $prasymai->where('projektas', $projektas->id)->count() }}</td>
-            <td><form action="/studijos/projektai/{{$projektas->id}}/redaguoti" method="get">@csrf<button class="btn btn-primary">Redaguoti</button></form></td>
-            <td><form action="/studijos/projektai/{{$projektas->id}}" method="post">@csrf @method('delete')<button class="btn btn-primary">Ištrinti</button></form></td>
+            <td><form action="/studijos/projektai/{{$projektas->id}}/redaguoti" method="get">@csrf<button class="btn btn-dark">Redaguoti</button></form></td>
+            <td><form action="/studijos/projektai/{{$projektas->id}}" method="post">@csrf @method('delete')<button class="btn btn-dark">Ištrinti</button></form></td>
                 @else
-                <td><form action="/studijos/projektai/{{$projektas->id}}/prasymai/sukurti" method="get">@csrf <button class="btn btn-primary">Pateikti prašymą</button></form></td>
+                <td><form action="/studijos/projektai/{{$projektas->id}}/prasymai/sukurti" method="get">@csrf <button class="btn btn-dark">Pateikti prašymą</button></form></td>
             @endif
         </tr>
         @endforeach

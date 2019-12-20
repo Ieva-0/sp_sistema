@@ -25,7 +25,10 @@ class ErasmusController extends Controller
     }
     public function create()
     {
-        return view('Studiju posisteme.sukurti_projekta');
+        if(Gate::allows('centras')) {
+            return view('Studiju posisteme.sukurti_projekta');
+        }
+        else abort(404);
     }
     public function store()
     {
@@ -61,8 +64,11 @@ class ErasmusController extends Controller
     }
     public function edit($id)
     {
-        $projektas = Projektas::FindOrFail($id);
-        return view('Studiju posisteme.redaguoti-projekta', compact('projektas'));
+        if(Gate::allows('centras')) {
+            $projektas = Projektas::FindOrFail($id);
+            return view('Studiju posisteme.redaguoti-projekta', compact('projektas'));
+        }
+        else abort(404);
     }
     public function update($id)
     {
@@ -97,85 +103,5 @@ class ErasmusController extends Controller
         $projektas->delete();
         return redirect('/studijos/projektai');
     }
-    public function dalyviai($id)
-    {
-        $dalyviai = ProjDalyvis::where('projektas', $id)->get();
-        $projektas = Projektas::FindOrFail($id);
-        $users = User::all();
-        $studentai = Studentas::all();
-        $destytojai = Destytojas::all();
-        return view('Studiju posisteme.projekto_dalyviai', compact('dalyviai', 'studentai', 'destytojai', 'projektas'));
-    }
-    public function dalyviai_destroy($id, $id2)
-    {
-        $dalyvis = ProjDalyvis::FindOrFail($id2);
-        $dalyvis->delete();
-        return redirect()->action('ErasmusController@dalyviai', ['id' => $id]);
-    }
-    public function prasymai($id)
-    {
-        $prasymai = ProjPrasymas::all();
-        $projektas = Projektas::FindOrFail($id);
-        $users = User::all();
-        $studentai = Studentas::all();
-        $destytojai = Destytojas::all();
-        return view('Studiju posisteme.projekto_prasymai', compact('prasymai', 'projektas', 'studentai', 'destytojai'));
 
-    }
-    public function prasymas($id, $id2)
-    {
-        $projektas = Projektas::FindOrFail($id);
-        $prasymas = ProjPrasymas::FindOrFail($id2);
-        $user = User::FindOrFail($prasymas->user);
-        $semestro_tipai = DB::table('semestro_tipai')->get();
-//        if($projektas->dalyvio_tipas == 1) {
-            $studentas = Studentas::where('fk_studentas_user', $user->id)->first();
-//            return view('Studiju posisteme.projekto_prasymas', compact('projektas', 'prasymas', 'studentas', 'semestro_tipai'));
-//        }
-//        else {
-            $destytojas = Destytojas::where('fk_destytojas_user', $user->id)->first();
-            return view('Studiju posisteme.projekto_prasymas', compact('projektas', 'prasymas', 'destytojas', 'studentas', 'semestro_tipai'));
-//        }
-    }
-    public function prasymai_destroy($id, $id2)
-    {
-        if(request('decision') == 1)
-        {
-            $prasymas = ProjPrasymas::FindOrFail($id2);
-            ProjDalyvis::create([
-               'user' => $prasymas->user,
-                'projektas' => $id
-            ]);
-            $prasymas->delete();
-        }
-        else {
-            $prasymas = ProjPrasymas::FindOrFail($id2);
-            $prasymas->delete();
-        }
-        return redirect()->action('ErasmusController@prasymai', ['id' => $id]);
-    }
-    public function prasymai_create($id)
-    {
-        $projektas = Projektas::FindOrFail($id);
-        $semestro_tipai = DB::table('semestro_tipai')->get();
-        return view('Studiju posisteme.sukurti_projekto_prasyma', compact('projektas', 'semestro_tipai'));
-    }
-    public function prasymai_store($id)
-    {
-        $this->validate(request(), [
-        'motyvacinis' => 'required|max:1000|min:30',
-        ],
-        [
-            'motyvacinis.required' => 'Būtina pateikti motyvacinį laišką.',
-            'motyvacinis.max' => 'Motyvacinis laiškas turi būti trumpesnis nei 1000 simbolių.',
-            'motyvacinis.min' => 'Motyvacinis laiškas turi būti ilgesnis nei 30 simbolių.',
-        ]);
-        ProjPrasymas::create([
-            'user' => '1',
-            'projektas' => $id,
-            'motyvacinis_tekstas' => request('motyvacinis'),
-            'data' => Carbon::now()->format('Y-m-d')
-        ]);
-        return redirect('/studijos/projektai');
-    }
 }

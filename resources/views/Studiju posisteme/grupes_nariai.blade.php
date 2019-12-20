@@ -22,7 +22,7 @@
                             <td>{{ $studentas->Vardas }} </td>
                             <td>{{ $studentas->Pavarde }}</td>
                             <td>{{ $studentas->El_Pastas }}</td>
-                            <td><form action="/studijos/grupes/{{ $grupe->id }}/nariai/{{ $narys->id }}" method="post">@csrf @method('delete')<button class="btn btn-primary">Pašalinti</button></form></td>
+                            <td><form action="/studijos/grupes/{{ $grupe->id }}/nariai/{{ $narys->id }}" method="post">@csrf @method('delete')<button class="btn btn-dark">Pašalinti</button></form></td>
                         @endif
                     @endforeach
                 </tr>
@@ -33,7 +33,7 @@
                             <td>{{ $destytojas->vardas }}</td>
                             <td>{{ $destytojas->pavarde }}</td>
                             <td>{{ $destytojas->el_pastas }}</td>
-                            <td><form action="/studijos/grupes/{{ $grupe->id }}/nariai/{{ $narys->id }}" method="post">@csrf @method('delete')<button class="btn btn-primary">Pašalinti</button></form></td>
+                            <td><form action="/studijos/grupes/{{ $grupe->id }}/nariai/{{ $narys->id }}" method="post">@csrf @method('delete')<button class="btn btn-dark">Pašalinti</button></form></td>
                         @endif
                     @endforeach
                 </tr>

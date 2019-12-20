@@ -20,10 +20,10 @@
             <textarea class="form-control" id="motyvacinis" name="motyvacinis" style="width:30vw;height:30vh"></textarea>
         </div>
         @csrf
-        <button class="btn btn-primary" type="submit" style="float:left">Pateikti</button>
+        <button class="btn btn-dark" type="submit" style="float:left">Pateikti</button>
     </form>
     <form action="/studijos/projektai" method="get" style="float:left;margin-left: 15px">
         @csrf
-        <button class="btn btn-primary" type="submit">Atgal</button>
+        <button class="btn btn-dark" type="submit">Atgal</button>
     </form>
 @endsection

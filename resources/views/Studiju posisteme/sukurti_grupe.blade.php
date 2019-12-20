@@ -33,6 +33,6 @@
                 @endforeach
             </select>
         </div>
-        <button class="btn btn-primary">Sukurti</button>
+        <button class="btn btn-dark">Sukurti</button>
     </form>
 @endsection

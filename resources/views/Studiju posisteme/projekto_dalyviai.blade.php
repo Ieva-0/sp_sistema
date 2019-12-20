@@ -22,7 +22,7 @@
             <td>{{ $studentas->Pavarde }}</td>
             <td>{{ $studentas->Studiju_programa }}, {{ $studentas->Kursas }}</td>
             <td>{{ $studentas->El_pastas }}</td>
-            <td><form action="/studijos/projektai/{{ $projektas->id }}/dalyviai/{{ $dalyvis->id }}" method="post">@csrf @method('delete')<button class="btn btn-primary">Pašalinti</button></form></td>
+            <td><form action="/studijos/projektai/{{ $projektas->id }}/dalyviai/{{ $dalyvis->id }}" method="post">@csrf @method('delete')<button class="btn btn-dark">Pašalinti</button></form></td>
             @endif
             @endforeach
         </tr>
@@ -34,7 +34,7 @@
             <td>{{ $destytojas->pavarde }}</td>
             <td>{{ $destytojas->tabelio_nr }}</td>
             <td>{{ $destytojas->el_pastas }}</td>
-            <td><form action="/studijos/projektai/{{ $projektas->id }}/dalyviai/{{ $dalyvis->id }}" method="post">@csrf @method('delete')<button class="btn btn-primary">Pašalinti</button></form></td>
+            <td><form action="/studijos/projektai/{{ $projektas->id }}/dalyviai/{{ $dalyvis->id }}" method="post">@csrf @method('delete')<button class="btn btn-dark">Pašalinti</button></form></td>
                 @endif
                 @endforeach
             </tr>

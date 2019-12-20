@@ -46,4 +46,16 @@ class MentorysteController extends Controller
         $destytojai = Destytojas::where('laisvas_karjeros_mentorius', true)->get();
         return view('Studiju posisteme.laisvi_mentoriai', compact('destytojai'));
     }
+    public function atsisakyti($id) {
+        //$user = auth()->user()->id;
+        $studentas = Studentas::where('fk_studentas_user', $id);
+        $destytojas = Destytojas::where('fk_destytojas_user', $studentas->fk_Destytojastabelio_nr);
+        $studentas->update([
+            'fk_Destytojastabelio_nr' => ''
+        ]);
+        $destytojas->update([
+            'laisvas_karjeros_mentorius' => true
+        ]);
+
+    }
 }

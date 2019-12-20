@@ -20,7 +20,7 @@
             <td>{{$destytojas->pavarde}}</td>
             <td>{{$destytojas->tabelio_nr}}</td>
             <td>{{$destytojas->el_pastas}}</td>
-            <td><form>@csrf<button class="btn btn-primary">Plačiau</button></form></td>
+            <td><form>@csrf<button class="btn btn-dark">Plačiau</button></form></td>
         </tr>
             @endforeach
         </tbody>

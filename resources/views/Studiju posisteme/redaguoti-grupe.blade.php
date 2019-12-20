@@ -28,18 +28,18 @@
                 @endforeach
             </select>
         </div>
-        <button class="btn btn-primary" type="submit" style="float:left">Patvirtinti</button>
+        <button class="btn btn-dark" type="submit" style="float:left">Patvirtinti</button>
     </form>
     <form action="/studijos/grupes/{{$grupe->id}}/nariai" style="float:left;margin-left:15px">
         @csrf
-        <button class="btn btn-primary" type="submit">Nariai</button>
+        <button class="btn btn-dark" type="submit">Nariai</button>
     </form>
     <form action="/studijos/grupes/{{$grupe->id}}/prasymai" style="float:left;margin-left:15px">
         @csrf
-        <button class="btn btn-primary" type="submit">Prašymai</button>
+        <button class="btn btn-dark" type="submit">Prašymai</button>
     </form>
     <form action="/studijos/grupes" style="float:left;margin-left:15px">
         @csrf
-        <button class="btn btn-primary" type="submit">Atšaukti</button>
+        <button class="btn btn-dark" type="submit">Atšaukti</button>
     </form>
 @endsection

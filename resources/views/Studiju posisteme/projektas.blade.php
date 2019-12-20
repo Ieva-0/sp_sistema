@@ -37,10 +37,10 @@
                 <option>Dėstytojai</option>
             </select>
         </div>
-        <button class="btn btn-primary" style="float:left">Patvirtinti</button>
+        <button class="btn btn-dark" style="float:left">Patvirtinti</button>
     </form>
     <form action="/studijos/projektai" style="float:left;margin-left:15px">
         @csrf
-        <button class="btn btn-primary" type="submit">Atšaukti</button>
+        <button class="btn btn-dark" type="submit">Atšaukti</button>
     </form>
 @endsection

@@ -44,19 +44,26 @@
                 <option value=2 {{ $projektas->dalyvio_tipas == 2 ? 'selected' : '' }}>Dėstytojai</option>
             </select>
         </div>
+        <div class="form-group">
+            <label for="tipas">Registracija</label>
+            <select class="form-control" id="registracija" name="registracija" style="width:15vw">
+                <option value=1 {{ $projektas->registracija == 1 ? 'selected' : '' }}>vyksta</option>
+                <option value=0 {{ $projektas->dalyvio_tipas == 0 ? 'selected' : '' }}>uždaryta</option>
+            </select>
+        </div>
         <input type="hidden" name="user" value="{{$projektas->user}}" />
-        <button class="btn btn-primary" style="float:left">Patvirtinti</button>
+        <button class="btn btn-dark" style="float:left">Patvirtinti</button>
     </form>
     <form action="/studijos/projektai/{{$projektas->id}}/dalyviai" style="float:left;margin-left:15px">
         @csrf
-        <button class="btn btn-primary" type="submit">Dalyviai</button>
+        <button class="btn btn-dark" type="submit">Dalyviai</button>
     </form>
     <form action="/studijos/projektai/{{$projektas->id}}/prasymai" style="float:left;margin-left:15px">
         @csrf
-        <button class="btn btn-primary" type="submit">Prašymai</button>
+        <button class="btn btn-dark" type="submit">Prašymai</button>
     </form>
     <form action="/studijos/projektai" style="float:left;margin-left:15px">
         @csrf
-        <button class="btn btn-primary" type="submit">Atšaukti</button>
+        <button class="btn btn-dark" type="submit">Atšaukti</button>
     </form>
 @endsection

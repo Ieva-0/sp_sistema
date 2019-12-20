@@ -4,7 +4,7 @@
 <h2>Karjeros mentorystės prašymai</h2>
 <form action="/studijos/mentoryste/laisvi" style="float:left;margin:10px 10px 15px 0">
     @csrf
-    <button class="btn btn-primary" type="submit">Laisvi mentoriai</button>
+    <button class="btn btn-dark" type="submit">Laisvi mentoriai</button>
 </form>
 <table class="table">
     <thead>
@@ -27,7 +27,7 @@
                 <td>{{ $studentas->Studiju_programa }}</td>
                 <td>{{ $studentas->Kursas }}</td>
                 <td>{{ $studentas->El_Pastas }}</td>
-                <td><form action="/studijos/mentoryste/prasymai/{{ $prasymas->id }}" method="get">@csrf <button class="btn btn-primary">Plačiau</button></form></td>
+                <td><form action="/studijos/mentoryste/prasymai/{{ $prasymas->id }}" method="get">@csrf <button class="btn btn-dark">Plačiau</button></form></td>
             </tr>
             @endif
         @endforeach

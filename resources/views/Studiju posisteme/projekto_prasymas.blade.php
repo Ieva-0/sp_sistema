@@ -31,12 +31,12 @@
         @csrf
         @method('delete')
         <input type="hidden" name="decision"  value=1 />
-        <button class="btn btn-primary" type="submit">Patvirtinti</button>
+        <button class="btn btn-dark" type="submit">Patvirtinti</button>
     </form>
     <form action="/studijos/projektai/{{ $projektas->id }}/prasymai/{{ $prasymas->id }}" method="post" style="float:left;margin:10px 0 15px 0">
         @csrf
         @method('delete')
         <input type="hidden" name="decision"  value=0 />
-        <button class="btn btn-primary" type="submit">Atmesti</button>
+        <button class="btn btn-dark" type="submit">Atmesti</button>
     </form>
 @endsection

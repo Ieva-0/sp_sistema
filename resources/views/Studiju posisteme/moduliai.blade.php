@@ -1,5 +1,5 @@
 @extends('Studiju posisteme.isdestymas')
-@section('title', 'Mokslo grupės')
+@section('title', 'Moduliai')
 @section('content')
     <h2>Moduliai</h2>
     <table class="table">
@@ -13,20 +13,23 @@
         </tr>
         </thead>
         <tbody>
+        @foreach($moduliai as $modulis)
         <tr>
-            <th scope="row">P111B125</th>
-            <td>Molekulinė fizika</td>
-            <td>Jonas Jonauskas</td>
-            <td>8.5</td>
-            <td><form action="/studijos/moduliai/1">@csrf<button class="btn btn-primary">Modulio įvertinimai</button></form></td>
+            <th scope="row">{{ $modulis->kodas }}</th>
+            <td>{{ $modulis->Pavadinimas }}</td>
+            @foreach($destytojai as $destytojas)
+                @if($destytojas->fk_destytojas_user == $modulis->fk_Destytojastabelio_nr)
+            <td>{{ $destytojas->vardas }} {{ $destytojas->pavarde }}</td>
+                @endif
+            @endforeach
+            @foreach($ivertinimai as $ivertinimas)
+                @if($ivertinimas->modulis == $modulis->kodas)
+                    <td>{{ number_format($ivertinimas->avg, '1') }}</td>
+                @endif
+            @endforeach
+            <td><form action="/studijos/moduliai/{{ $modulis->kodas }}/ivertinimai" method="get">@csrf<button class="btn btn-dark">Modulio įvertinimai</button></form></td>
         </tr>
-        <tr>
-            <th scope="row">P785B462</th>
-            <td>Marketingo strategijos</td>
-            <td>Petras Petrauskas</td>
-            <td>7.3</td>
-            <td><form action="/studijos/moduliai/1">@csrf<button class="btn btn-primary">Modulio įvertinimai</button></form></td>
-        </tr>
+        @endforeach
         </tbody>
     </table>
 @endsection
