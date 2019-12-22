@@ -207,3 +207,6 @@ Route::get('/Destytojas/atsijungimas', 'DestytojuSessionController@destroy');
 
 Route::get('/Destytojas/registracija', 'DestytojuRegistracijaController@create');
 Route::post('/Destytojas/registracija', 'DestytojuRegistracijaController@store');
+
+Route::get('/uploadfile','UploadFileController@index');
+Route::post('/uploadfile','UploadFileController@showUploadFile');
