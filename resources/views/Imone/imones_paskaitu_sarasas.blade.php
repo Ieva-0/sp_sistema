@@ -111,8 +111,10 @@
     
     <table id="customers" style="width:80%" class="content" align="center">
         <tr>
-            <th>Pavadinimas</th>
-            <th>Modulis</th>
+            <th>Vieta</th>
+            <th>Tema</th>
+            <th>Papildoma informacija</th>
+            <th>Lektorius</th>
             <th>Data</th>
             <th>Veiksmai:</th>
         </tr>
@@ -121,6 +123,8 @@
         <tr>
             <td>{{ $paskaita->vieta}}</td>
             <td>{{ $paskaita->tema}}</td>
+            <td>{{ $paskaita->papildoma_informacija}}</td>
+            <td>{{ $paskaita->lektorius}}</td>
             <td>{{ $paskaita->data}}</td>
             <td>
                 <a class="btn btn-primary" href="{{ route('paskaita-edit',['id' => $paskaita->id]) }}">Edit</a>

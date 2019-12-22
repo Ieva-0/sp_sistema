@@ -18,6 +18,7 @@ class StudentoPraktikosController extends Controller
 
         //        return view('Imone/imones_praktiku_sarasas')->with('praktiku_list', $results);
         //$auditorija_list = DB::table('auditorija')->get();
+        //dd($praktiku_list);
         return view('Studentas.studento_praktikos_registracija')->with('praktiku_list', $praktiku_list); //->with('auditorija_list', $auditorija_list);
     }
     //
