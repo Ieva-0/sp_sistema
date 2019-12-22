@@ -130,23 +130,13 @@
 </div>
 
 <div class="content">
-    <form>
-        <div class="form-group" style="width: 18%">
-            <label for="exampleFormControlInput1">Pavadinimas</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Pavadinimas">
-        </div>
-
-        <div class="form-group" style="width: 50%">
-            <label for="exampleFormControlTextarea1">Tekstas</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-
-        <div class = "submit">
-            <button type="submit" class="btn btn-primary">Pridėti</button>
-        </div>
-
-
-    </form>
+<?php
+         echo Form::open(array('url' => '/uploadfile','files'=>'true'));
+         echo 'Select the file to upload.';
+         echo Form::file('image');
+         echo Form::submit('Upload File');
+         echo Form::close();
+      ?>
 
 
 </div>
