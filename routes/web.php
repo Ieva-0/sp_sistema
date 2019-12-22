@@ -116,17 +116,40 @@ Route::get('/studijos/moduliai/{id}/ivertinimai', 'IvertinimaiController@ivertin
 Route::delete('/studijos/moduliai/{id}/ivertinimai/{id2}', 'IvertinimaiController@destroy');
 
 //------------------------------------------------------------------
+
+// Studento posisteme
+
+//Route::get('/studentas/{id}/')
+
+
+
 Route::get('/studentas', function () {
     return view('Studentas/studento_pagrindinis_meniu');
 });
 
-Route::get('/studentas/prisijungti', function () {
-    return view('Studentas/studento_prisijungimas');
-});
+//Registracija ir prisijungimas
+Route::post('/studentas/registracija','StudentoRegistracijosController@store');
+Route::get('/studentas/registracija','StudentoRegistracijosController@create');
 
-Route::get('/studentas/uzsiemimu_registracija', function () {
-    return view('Studentas/studento_uzsiemimu_registracija');
-});
+Route::get('/studentas/prisijungimas', 'StudentoPrisijungimoController@create');
+Route::post('/studentas/prisijungimas','StudentoPrisijungimoController@store');
+Route::get('/studentas/atsijungti', 'StudentoPrisijungimoController@destroy');
+
+
+
+Route::get('/studentas/profilis','StudentoProfilisController@index');
+Route::get('studentas/profilis/redaguoti', 'StudentoProfilisController@edit');
+Route::patch('/studentas/profilis','StudentoProfilisController@update');
+
+//Studento moduliu sistema
+Route::post('/studentas/uzsiemimai','StudentoModuliaiController@store');
+Route::get('/studentas/uzsiemimai','StudentoModuliaiController@index');
+//detele padaryt
+
+Route::get('/studentas/tvarkarastis','StudentoTvarkarasciaiController@index');
+
+
+
 
 Route::get('/studentas/Erasmus', function () {
     return view('Studentas/studento_Erasmus_registracija');
@@ -145,17 +168,8 @@ Route::get('/studentas/mokslo_grupes', function () {
 // });
 Route::get('/studentas/praktikos', 'StudentoPraktikosController@index');
 
-Route::get('/studentas/profilis', function () {
-    return view('Studentas/studento_profilio_perziura');
-});
 
-Route::get('/studentas/profilio_redagavimas', function () {
-    return view('Studentas/studento_profilio_redagavimas');
-});
 
-Route::get('/studentas/tvarkarastis', function () {
-    return view('Studentas/studento_tvarkarastis');
-});
 
 //Destytojas
 

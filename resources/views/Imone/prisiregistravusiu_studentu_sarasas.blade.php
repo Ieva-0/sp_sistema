@@ -140,13 +140,11 @@
         </div>
         @endif
     </div>
-
+    @if(count($student_list)!=0)
     <h1 align="center" style="font-weight: bold;">Į praktiką prisiregistravę studentai</h1>
     <br>
 
-    <!-- <h3 id="noitems" style="display:none">Tuščia</h3> -->
-
-    @if(count($student_list)!=0)
+    <h3 id="noitems" style="display:none">Tuščia</h3>
 
     <table class="table" id="tasktable" style="width:80%" class="content" align="center">
         <thead>
@@ -190,30 +188,29 @@
 
             </tr>
             @endforeach
-
         </tbody>
-        @else
-        <tbody>
-            <div style="font-style: italic;  font-weight: bold;   margin: auto;
-  width: 50%;
-  padding: 10px;" class="container">
-
-                <table id="customers" style="width:80%" class="content" align="center">
-
-                    <table id="customers" style="width:80%" class="content" align="center">
-                        <div class="alert alert-info alert-dismissable">
-                            <a class="panel-close close" data-dismiss="alert">×</a>
-                            <i class="fa fa-coffee">
-                                Prisiregistravusių studentų į jūsų praktiką nėra!</i>
-                        </div>
-
-                    </table>
-            </div>
-        </tbody>
-        @endif
 
 
     </table>
+    @else
+    <tbody>
+        <div style="font-style: italic;  font-weight: bold;   margin: auto;
+  width: 50%;
+  padding: 10px;" class="container">
+
+            <table id="customers" style="width:80%" class="content" align="center">
+
+                <table id="customers" style="width:80%" class="content" align="center">
+                    <div class="alert alert-info alert-dismissable">
+                        <a class="panel-close close" data-dismiss="alert">×</a>
+                        <i class="fa fa-coffee">
+                            Prisiregistravusių studentų į jūsų praktiką nėra!</i>
+                    </div>
+
+                </table>
+        </div>
+    </tbody>
+    @endif
 </div>
 
 <script>
@@ -237,7 +234,6 @@
             } else {
                 tre = document.getElementById("noitems").style;
                 tre = "display: none;";
-
             }
         }
     }
