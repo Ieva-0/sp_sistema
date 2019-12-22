@@ -28,7 +28,6 @@ class PraktikosController extends Controller
         $imone = $first->pavadinimas;
         // return view('Imone/imones_praktiku_sarasas')->with('praktiku_list', $praktiku_list)->with('imone', $imone);
 
-
         if (sizeof($praktiku_list) == 0) {
             return view('Imone/imones_praktiku_sarasas_tuscia')->with('praktiku_list', $praktiku_list)->with('imone', $imone)->with('message', 'Jūs neturite sukūrę paskaitų jeigu norėtumėte matyti paskaitas, spauskite „Paskaitos sukūrimas”.');
         } else {

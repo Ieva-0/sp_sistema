@@ -1,100 +1,95 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-<style>
-    .top-right > a{
-        position: absolute;
-        right: 10px;
-        top: 18px;
-        color: #636b6f;
-        padding: 0 25px;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: .1rem;
-        text-decoration: none;
-        text-transform: uppercase;
-    }
-</style>
+@extends('Studentas.studento_isdestymas')
+@section('title', 'Profilio redagavimas')
 
-<div class="top-right ">
-    <a href="{{ url('studentas') }}">Pagrindinis puslapis</a>
-</div>
+@section('content')
 
-<div class="container" style="padding-top: 60px;">
+
+<div class="container" style="padding-top: 20px;">
     <h1 class="page-header">Profilio redagavimas</h1>
-    <div class="row">
-        <!-- left column -->
-        <div class="col-md-4 col-sm-6 col-xs-12">
-            <div class="text-center">
-                <img src="" class="avatar img-circle img-thumbnail" alt="avatar">
-                <h6>Upload a different photo...</h6>
-                <input type="file" class="text-center center-block well well-sm">
-            </div>
-        </div>
+{{--    <div class="row">--}}
+{{--        <!-- left column -->--}}
+{{--        <div class="col-md-4 col-sm-6 col-xs-12">--}}
+{{--            <div class="text-center">--}}
+{{--                <img src="" class="avatar img-circle img-thumbnail" alt="avatar">--}}
+{{--                <h6>Upload a different photo...</h6>--}}
+{{--                <input type="file" class="text-center center-block well well-sm">--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <!-- edit form column -->
-        <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+      <div class="col-md-8 col-sm-6 col-xs-12 col-lg-8 personal-info" style="font-size: 15px">
             <!-- edit form column  <div class="alert alert-info alert-dismissable">
                 <a class="panel-close close" data-dismiss="alert">×</a>
                 <i class="fa fa-coffee"></i>
                 This is an <strong>.alert</strong>. Use this to show important messages to the user.
             </div>
             -->
-            <h3>Personal info</h3>
-            <form class="form-horizontal" role="form">
+            <h3>Asmenine informacija</h3>
+            <form action="/studentas/profilis" method="post" class="form-horizontal" role="form">
+                @csrf
+                @method('patch')
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Vardas:</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" value="Vardas" type="text">
+                    <div class="col-md-8">
+                        <input class="form-control" id="Vardas" name="Vardas" type="text" value="{{$studentas->Vardas}}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Pavardė:</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" value="Pavardė" type="text">
+                    <div class="col-md-8">
+                        <input class="form-control" id="Pavarde" name="Pavarde" type="text"  value="{{$studentas->Pavarde}}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Elektroninis paštas:</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" value="janesemail@gmail.com" type="text">
+                    <div class="col-md-8">
+                        <input class="form-control" id="El_Pastas" name="El_Pastas" type="text"  value="{{$studentas->El_Pastas}}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-md-3 control-label">Studijų programa</label>
                     <div class="col-md-8">
-                        <input class="form-control" value="Programų sistemos" type="text">
+                        <input class="form-control" id="Studiju_programa" name="Studiju_programa" type="text"  value="{{$studentas->Studiju_programa}}">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Vartotojo vardas:</label>
+                    <label class="col-md-3 control-label"> Kursas</label>
                     <div class="col-md-8">
-                        <input class="form-control" value="janeuser" type="text">
+                        <input class="form-control" id="Kursas" name="Kursas" type="text"  value="{{$studentas->Kursas}}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Akademinė grupė:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" id="Akademine_grupe" name="Akademine_grupe" type="text"  value="{{$studentas->Akademine_grupe}}">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Slaptazodis:</label>
+                    <label class="col-md-3 control-label">Stojimo metai:</label>
                     <div class="col-md-8">
-                        <input class="form-control" value="11111122333" type="password">
+                        <input class="form-control" id="Stojimo_metai" name="Stojimo_metai" type="number" min="2000" max="2030"  value="{{$studentas->Stojimo_metai}}">
                     </div>
                 </div>
+
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Confirm password:</label>
+                    <label class="col-md-3 control-label">Gimimo data:</label>
                     <div class="col-md-8">
-                        <input class="form-control" value="11111122333" type="password">
+                        <input class="form-control" id="Gimimo_data" name="Gimimo_data" type="date"  value="{{$studentas->Gimimo_data}}">
                     </div>
                 </div>
+
+
                 <div class="form-group">
                     <label class="col-md-3 control-label"></label>
                     <div class="col-md-8">
-                        <input class="btn btn-primary" value="Save Changes" type="button">
+                        <input class="btn btn-primary" value="Išsaugoti" type="submit">
                         <span></span>
-                        <input class="btn btn-default" value="Cancel" type="reset">
+                        <input class="btn btn-default" value="Atšaukti" type="reset">
                     </div>
                 </div>
             </form>
         </div>
-    </div>
 </div>
+    @endsection

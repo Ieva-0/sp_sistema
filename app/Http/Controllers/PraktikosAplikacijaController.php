@@ -25,6 +25,7 @@ class PraktikosAplikacijaController extends Controller
 
         //        return view('Imone/imones_praktiku_sarasas')->with('praktiku_list', $results);
         //$auditorija_list = DB::table('auditorija')->get();
+
         return view('Imone.registracija.registracija_praktikai')->with('results', $results); //->with('auditorija_list', $auditorija_list);
     }
 
@@ -66,7 +67,6 @@ class PraktikosAplikacijaController extends Controller
     public function show($id = 0)
     {
         $results = DB::select("SELECT praktikos.id,praktikos.trukme,praktikos.id,dalyviu_Skaicius,projekto_Tema,laikas,pavadinimas,sritis,el_pastas  FROM praktikos LEFT JOIN imones ON praktikos.fk_Imoneid=imones.id");
-
         //        return view('Imone/imones_praktiku_sarasas')->with('praktiku_list', $results);
         //$auditorija_list = DB::table('auditorija')->get();
         return view('Imone.registracija.registracija_praktikai')->with('results', $results)->with('id',$id); //->with('auditorija_list', $auditorija_list);
