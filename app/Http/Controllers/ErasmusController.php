@@ -11,17 +11,34 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class ErasmusController extends Controller
 {
     public function index()
     {
-        $projektai = Projektas::all();
-        $semestro_tipai = DB::table('semestro_tipai')->get();
-        $dalyvio_tipai = DB::table('erasmus_dalyvio_tipas')->get();
-        $dalyviai = ProjDalyvis::all();
-        $prasymai = ProjPrasymas::all();
-        return view('Studiju posisteme.projektai', compact('projektai', 'semestro_tipai', 'dalyvio_tipai', 'dalyviai', 'prasymai'));
+        if(Gate::allows('all')) {
+            if(auth()->user()->user_level == 1 || auth()->user()->user_level == 2) {
+                $projektai = Projektas::where('dalyvio_tipas', auth()->user()->user_level)->where('registracija', 1)->get();
+                $semestro_tipai = DB::table('semestro_tipai')->get();
+
+                $dalyvis = ProjDalyvis::where('user', auth()->user()->id)->count();
+                $prasymas = ProjPrasymas::where('user', auth()->user()->id)->count();
+                if($dalyvis > 0 || $prasymas > 0)
+                    $gali = false;
+                else $gali = true;
+                return view('Studiju posisteme.projektai', compact('projektai', 'semestro_tipai', 'gali'));
+            }
+            else {
+                $projektai = Projektas::all();
+                $dalyviai = ProjDalyvis::all();
+                $prasymai = ProjPrasymas::all();
+                $semestro_tipai = DB::table('semestro_tipai')->get();
+                $dalyvio_tipai = DB::table('erasmus_dalyvio_tipas')->get();
+                return view('Studiju posisteme.projektai', compact('projektai', 'semestro_tipai', 'dalyvio_tipai', 'dalyviai', 'prasymai'));
+            }
+        }
+        else abort(404);
     }
     public function create()
     {

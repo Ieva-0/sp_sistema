@@ -11,6 +11,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class ErasmusPrasymaiController extends Controller
 {
@@ -33,14 +34,18 @@ class ErasmusPrasymaiController extends Controller
             $prasymas = ProjPrasymas::FindOrFail($id2);
             $user = User::FindOrFail($prasymas->user);
             $semestro_tipai = DB::table('semestro_tipai')->get();
-//        if($projektas->dalyvio_tipas == 1) {
             $studentas = Studentas::where('fk_studentas_user', $user->id)->first();
-//            return view('Studiju posisteme.projekto_prasymas', compact('projektas', 'prasymas', 'studentas', 'semestro_tipai'));
-//        }
-//        else {
             $destytojas = Destytojas::where('fk_destytojas_user', $user->id)->first();
             return view('Studiju posisteme.projekto_prasymas', compact('projektas', 'prasymas', 'destytojas', 'studentas', 'semestro_tipai'));
-//        }
+        }
+        else abort(404);
+    }
+    public function show2($id)
+    {
+        if(auth()->user()->id == $id) {
+            $prasymai = ProjPrasymas::where('id', $id)->get();
+            $semestro_tipai = DB::table('semestro_tipai')->get();
+            return view('Studiju posisteme.projekto_prasymas', compact('projektas', 'prasymas', 'destytojas', 'studentas', 'semestro_tipai'));
         }
         else abort(404);
     }
@@ -53,6 +58,12 @@ class ErasmusPrasymaiController extends Controller
                 'user' => $prasymas->user,
                 'projektas' => $id
             ]);
+            $count = ProjDalyvis::where('projektas', $id)->count();
+            $projektas = Projektas::FindOrFail($id);
+            if($count == $projektas)
+                $projektas->update([
+                    'registracija' => 0,
+                ]);
             $prasymas->delete();
         }
         else {

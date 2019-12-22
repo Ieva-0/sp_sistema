@@ -14,10 +14,10 @@
             <th scope="col">Mokymo įstaiga</th>
             <th scope="col">Dalyvių tipas</th>
             <th scope="col">Dalyvių skaičius</th>
-            @if(false)
-            <th scope="col">Prašymų skaičius</th>
+            @can('centras')
+                <th scope="col">Prašymų skaičius</th>
             <th scope="col"></th>
-            @endif
+            @endcan
             <th scope="col"></th>
         </tr>
         </thead>
@@ -29,13 +29,17 @@
             <td>{{ $projektas->mokymo_istaiga }}</td>
             <td>@foreach($dalyvio_tipai as $tipas) @if($tipas->id == $projektas->dalyvio_tipas) {{ $tipas->name }} @endif @endforeach</td>
             <td>{{ $dalyviai->where('projektas', $projektas->id)->count() }}/{{ $projektas->dalyviu_skaicius }}</td>
-            @if(false)
+            @can('centras')
             <td>{{ $prasymai->where('projektas', $projektas->id)->count() }}</td>
             <td><form action="/studijos/projektai/{{$projektas->id}}/redaguoti" method="get">@csrf<button class="btn btn-dark">Redaguoti</button></form></td>
             <td><form action="/studijos/projektai/{{$projektas->id}}" method="post">@csrf @method('delete')<button class="btn btn-dark">Ištrinti</button></form></td>
+            @elsecan('studdest')
+                @if($gali)
+                    <td><form action="/studijos/projektai/{{$projektas->id}}/prasymai/sukurti" method="get">@csrf <button class="btn btn-dark">Pateikti prašymą</button></form></td>
                 @else
-                <td><form action="/studijos/projektai/{{$projektas->id}}/prasymai/sukurti" method="get">@csrf <button class="btn btn-dark">Pateikti prašymą</button></form></td>
-            @endif
+                    <td>Neturite galimybės teikti prašymą</td>
+                @endif
+            @endcan
         </tr>
         @endforeach
         </tbody>

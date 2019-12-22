@@ -34,5 +34,11 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('destytojas', function($user) {
             return $user->user_level == '2';
         });
+        Gate::define('studdest', function($user) {
+            return $user->user_level == '2' || $user->user_level == '1';
+        });
+        Gate::define('all', function($user) {
+           return $user->user_level != '4';
+        });
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Destytojas;
 use App\MentorPrasymas;
 use App\Studentas;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class MentorysteController extends Controller
@@ -56,6 +57,26 @@ class MentorysteController extends Controller
         $destytojas->update([
             'laisvas_karjeros_mentorius' => true
         ]);
-
+    }
+    public function create()
+    {
+        return view('Studiju posisteme.sukurti_mentor_prasyma');
+    }
+    public function store()
+    {
+        $this->validate(request(), [
+            'motyvacinis' => 'required|max:1000|min:30',
+        ],
+            [
+                'motyvacinis.required' => 'Būtina pateikti motyvacinį laišką.',
+                'motyvacinis.max' => 'Motyvacinis laiškas turi būti trumpesnis nei 1000 simbolių.',
+                'motyvacinis.min' => 'Motyvacinis laiškas turi būti ilgesnis nei 30 simbolių.',
+            ]);
+        MentorPrasymas::create([
+            'studentas' => '1',
+            'motyvacinis_tekstas' => request('motyvacinis'),
+            'data' => Carbon::now()->format('Y-m-d')
+        ]);
+        return redirect('/studijos');
     }
 }

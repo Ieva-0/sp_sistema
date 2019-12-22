@@ -8,6 +8,7 @@ use App\Projektas;
 use App\Studentas;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ErasmusDalyviaiController extends Controller
 {
@@ -28,5 +29,17 @@ class ErasmusDalyviaiController extends Controller
         $dalyvis = ProjDalyvis::FindOrFail($id2);
         $dalyvis->delete();
         return redirect()->action('ErasmusDalyviaiController@index', ['id' => $id]);
+    }
+    public static function check($idp, $idu)
+    {
+        $projektas = Projektas::where('id', $idp)->first();
+        $dalyviai = ProjDalyvis::where('projektas', $idp)->where('user', $idu)->get();
+        foreach($dalyviai as $dalyvis)
+        {
+            $p = Projektas::where('id', $dalyvis->projektas)->first();
+            if($p->semestro_tipas == $projektas->semestro_tipas && $p->metai == $projektas->metai)
+                return false;
+        }
+        return true;
     }
 }

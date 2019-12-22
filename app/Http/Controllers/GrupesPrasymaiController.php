@@ -74,7 +74,7 @@ class GrupesPrasymaiController extends Controller
             ]);
         Prasymas::create([
             'user' => '1',
-            'projektas' => $id,
+            'grupe' => $id,
             'motyvacinis_tekstas' => request('motyvacinis'),
             'data' => Carbon::now()->format('Y-m-d')
         ]);

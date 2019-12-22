@@ -91,6 +91,8 @@ Route::post('/studijos/projektai/{id}/prasymai', 'ErasmusPrasymaiController@stor
 
 // KARJEROS MENTORYSTE
 Route::get('/studijos/mentoryste/prasymai', 'MentorysteController@index');
+Route::get('/studijos/mentoryste/prasymai/create', 'MentorysteController@create');
+Route::post('/studijos/mentoryste/prasymai', 'MentorysteController@store');
 Route::get('/studijos/mentoryste/prasymai/{id}', 'MentorysteController@show');
 Route::get('/studijos/mentoryste/laisvi', 'MentorysteController@laisvi');
 Route::delete('/studijos/mentoryste/prasymai/{id}', 'MentorysteController@destroy');

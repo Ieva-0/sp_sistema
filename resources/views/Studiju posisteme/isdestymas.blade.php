@@ -75,7 +75,7 @@
 <body style="background-color: rgb(245,245,245);">
 <div class="content" style="background-color: rgb(230,230,230);padding:30px">
     <div class="title m-b-md">
-        Įmonės posistemė
+        Studijų posistemė
     </div>
     <div class="links">
         @guest

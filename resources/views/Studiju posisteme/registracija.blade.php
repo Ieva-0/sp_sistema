@@ -18,7 +18,7 @@
             <input type="text" class="form-control" id="vardas" name="vardas" style="width:15vw">
         </div>
         <div class="form-group">
-            <label for="pavarde">Vardas</label>
+            <label for="pavarde">Pavardė</label>
             <input type="text" class="form-control" id="pavarde" name="pavarde" style="width:15vw">
         </div>
         <div class="form-group">
