@@ -10,7 +10,8 @@
     <p>{{ $dalyviai->where('projektas', $projektas->id)->count() }}/{{ $projektas->dalyviu_skaicius }}</p>
     <h6 style="margin-top:10px">Semestras</h6>
     <p style="width:40vw">@foreach($semestro_tipai as $tipas) @if($tipas->id == $projektas->semestras) {{ $tipas->name }} @endif @endforeach {{ $projektas->metai }}</p>
-
+    <h6 style="margin-top:10px">Registracija</h6>
+    <p style="width:40vw">{{ $projektas->registracija ? 'vyksta' : 'uždaryta' }}</p>
     <form action="/studijos/projektai" style="float:left;margin-left:15px">
         @csrf
         <button class="btn btn-dark" type="submit">Atgal</button>

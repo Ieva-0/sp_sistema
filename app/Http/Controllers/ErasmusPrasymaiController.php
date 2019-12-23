@@ -60,21 +60,31 @@ class ErasmusPrasymaiController extends Controller
             ]);
             $count = ProjDalyvis::where('projektas', $id)->count();
             $projektas = Projektas::FindOrFail($id);
-            if($count == $projektas)
+            if($count == $projektas->dalyviu_skaicius)
                 $projektas->update([
                     'registracija' => 0,
                 ]);
+
+            $subject = "Jūsų prašymas dalyvauti Erasmus+ projekte priimtas.";
+            $message = "Šalis: ".$projektas->salis.", įstaiga: ".$projektas->istaiga.". Sveikiname ir linkime sėkmės!";
+            PranesimaiController::user($prasymas->user, $message, $subject);
+
             $prasymas->delete();
         }
         else {
             $prasymas = ProjPrasymas::FindOrFail($id2);
+            $projektas = Projektas::FindOrFail($id);
+
+            $subject = "Jūsų prašymas dalyvauti Erasmus+ projekte atmestas.";
+            $message = "Šalis: ".$projektas->salis.", įstaiga: ".$projektas->istaiga.". Dėl daugiau informacijos teiraukitės fakulteto administracijos.";
+            PranesimaiController::user($prasymas->user, $message, $subject);
             $prasymas->delete();
         }
-        return redirect()->action('ErasmusPrasymaiController@index', ['id' => $id]);
+        return redirect()->action('ErasmusPrasymaiController@index', ['id' => $id])->withErrors(['status' => 'Prašymas ištrintas.']);
     }
     public function create($id)
     {
-        if(Gate::allows('centras')) {
+        if(Gate::allows('studdest')) {
             $projektas = Projektas::FindOrFail($id);
             $semestro_tipai = DB::table('semestro_tipai')->get();
             return view('Studiju posisteme.sukurti_projekto_prasyma', compact('projektas', 'semestro_tipai'));
@@ -97,6 +107,6 @@ class ErasmusPrasymaiController extends Controller
             'motyvacinis_tekstas' => request('motyvacinis'),
             'data' => Carbon::now()->format('Y-m-d')
         ]);
-        return redirect('/studijos/projektai');
+        return redirect('/studijos/projektai')->withErrors(['status' => 'Prašymas sukurtas.']);
     }
 }

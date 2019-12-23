@@ -1,6 +1,11 @@
 @extends('Studiju posisteme.isdestymas')
 @section('title', 'Projekto prašymas')
 @section('content')
+    @if($errors->first())
+        <div class="alert alert-info" >
+            {{ $errors->first() }}
+        </div>
+    @endif
     <h2>Apie mokslo grupę</h2>
     <h6 style="margin-top:10px">Pavadinimas</h6>
     <p>{{ $grupe->Pavadinimas }}</p>
@@ -14,7 +19,6 @@
     <p>{{ $destytojas->vardas }} {{ $destytojas->pavarde }}</p>
     <h6 style="margin-top:10px">Vadovo el. paštas</h6>
     <p>{{ $destytojas->el_pastas }}</p>
-
     <form action="/studijos/grupes/{{ $grupe->id }}/prasymai/sukurti" method="get" style="float:left;">
         @csrf
         @method('delete')

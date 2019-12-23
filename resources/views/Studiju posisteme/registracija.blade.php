@@ -3,7 +3,7 @@
 @section('content')
     <h2>Registracija</h2>
     @if($errors->first())
-        <div class="alert alert-danger" >
+        <div class="alert alert-info" >
             {{ $errors->first() }}
         </div>
     @endif

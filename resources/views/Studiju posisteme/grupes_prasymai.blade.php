@@ -1,7 +1,16 @@
 @extends('Studiju posisteme.isdestymas')
-@section('title', 'Erasmus+ prašymai')
+@section('title', 'Mokslo grupės prašymai')
 @section('content')
-    <h2>Erasmus+ prašymai</h2>
+    <h2>Mokslo grupės prašymai</h2>
+    <form action="/studijos/grupes/{{ $grupe-> id }}/redaguoti" style="margin:10px">
+        @csrf
+        <button class="btn btn-dark" type="submit">Atgal</button>
+    </form>
+    @if($errors->first())
+        <div class="alert alert-info" style="width:30vw">
+            {{ $errors->first() }}
+        </div>
+    @endif
     <table class="table">
         <thead>
         <tr>
@@ -14,31 +23,17 @@
         </thead>
         <tbody>
         @foreach($prasymai as $prasymas)
-            @if($projektas->dalyvio_tipas == 1)
                 <tr>
                     @foreach($studentai as $studentas)
-                        @if($prasymas->user == $studentas->fk_studentas_user)
+                        @if($prasymas->studentas == $studentas->fk_studentas_user)
                             <td>{{ $studentas->Vardas }} </td>
                             <td>{{ $studentas->Pavarde }}</td>
                             <td>{{ $studentas->Studiju_programa }}, {{ $studentas->Kursas }}</td>
                             <td>{{ $studentas->El_Pastas }}</td>
-                            <td><form action="/studijos/projektai/{{ $projektas->id }}/prasymai/{{ $prasymas->id }}" method="get">@csrf <button class="btn btn-dark">Plačiau</button></form></td>
+                            <td><form action="/studijos/grupes/{{ $grupe->id }}/prasymai/{{ $prasymas->id }}" method="get">@csrf <button class="btn btn-dark">Plačiau</button></form></td>
                         @endif
                     @endforeach
                 </tr>
-            @else
-                <tr>
-                    @foreach($destytojai as $destytojas)
-                        @if($prasymas->user == $destytojas->fk_destytojas_user)
-                            <td>{{ $destytojas->vardas }}</td>
-                            <td>{{ $destytojas->pavarde }}</td>
-                            <td>{{ $destytojas->tabelio_nr }}</td>
-                            <td>{{ $destytojas->el_pastas }}</td>
-                            <td><form action="/studijos/projektai/{{ $projektas->id }}/prasymai/{{ $prasymas->id }}" method="get">@csrf <button class="btn btn-dark">Plačiau</button></form></td>
-                        @endif
-                    @endforeach
-                </tr>
-            @endif
         @endforeach
         </tbody>
     </table>

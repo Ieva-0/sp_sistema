@@ -12,51 +12,74 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class GrupesPrasymaiController extends Controller
 {
     public function index($id)
     {
-        $prasymai = GrupPrasymas::all();
-        $grupe = Grupe::FindOrFail($id);
-        $users = User::all();
-        $studentai = Studentas::all();
-        $destytojai = Destytojas::all();
-        return view('Studiju posisteme.grupes_prasymai', compact('prasymai', 'grupe', 'users', 'studentai', 'destytojai'));
+        if(Gate::allows('centras')) {
+            $prasymai = GrupPrasymas::where('grupe', $id)->get();
+            $grupe = Grupe::FindOrFail($id);
+            $users = User::all();
+            $studentai = Studentas::all();
+            $check = GrupPrasymas::where('grupe', $id)->count();
+            if($check == 0) {
+                return view('Studiju posisteme.grupes_prasymai', compact('prasymai', 'grupe', 'users', 'studentai'))->withErrors(['status' => 'Nėra prašymų.']);
+            }
+            else return view('Studiju posisteme.grupes_prasymai', compact('prasymai', 'grupe', 'users', 'studentai'));
+        }
+        else abort(404);
 
     }
     public function show($id, $id2)
     {
-        $grupe = Grupe::FindOrFail($id);
-        $prasymas = GrupPrasymas::FindOrFail($id2);
-        $user = User::FindOrFail($prasymas->user);
-        $studentas = Studentas::where('fk_studentas_user', $user->id)->first();
-        $destytojas = Destytojas::where('fk_destytojas_user', $grupe->vadovas)->first();
-        return view('Studiju posisteme.grupes_prasymai', compact('grupe', 'prasymas', 'destytojas', 'studentas'));
-//        }
+        if(Gate::allows('centras')) {
+            $grupe = Grupe::FindOrFail($id);
+            $prasymas = GrupPrasymas::FindOrFail($id2);
+            $user = User::FindOrFail($prasymas->studentas);
+            $studentas = Studentas::where('fk_studentas_user', $user->id)->first();
+            $destytojas = Destytojas::where('fk_destytojas_user', $grupe->vadovas)->first();
+            return view('Studiju posisteme.grupes_prasymas', compact('grupe', 'prasymas', 'destytojas', 'studentas'));
+        }
+        else abort(404);
     }
     public function destroy($id, $id2)
     {
         if(request('decision') == 1)
         {
+            $grupe = Grupe::FindOrFail($id);
             $prasymas = GrupPrasymas::FindOrFail($id2);
             GrupNarys::create([
                 'user' => $prasymas->user,
                 'grupe' => $id
             ]);
+
+            $subject = "Jūsų prašymas prisijungti prie mokslo grupės priimtas.";
+            $message = "Pavadinimas: ".$grupe->Pavadinimas.", fakultetas: ".$grupe->Fakultetas.". Sveikiname ir linkime sėkmės!";
+            PranesimaiController::user($prasymas->user, $message, $subject);
+
             $prasymas->delete();
         }
         else {
             $prasymas = GrupPrasymas::FindOrFail($id2);
+            $grupe = Grupe::FindOrFail($id);
+            $subject = "Jūsų prašymas prisijungti prie mokslo grupės atmestas.";
+            $message = "Pavadinimas: ".$grupe->Pavadinimas.", fakultetas: ".$grupe->Fakultetas.". Dėl daugiau informacijos kreipkitės į grupės vadovą arba fakulteto administraciją.";
+            PranesimaiController::user($prasymas->studentas, $message, $subject);
+
             $prasymas->delete();
         }
-        return redirect()->action('GrupesPrasymaiController@index', ['id' => $id]);
+        return redirect()->action('GrupesPrasymaiController@index', ['id' => $id])->withErrors(['status' => 'Prašymas ištrintas']);
     }
     public function create($id)
     {
-        $grupe = Grupe::FindOrFail($id);
-        $destytojas = Destytojas::where('fk_destytojas_user', $grupe->vadovas)->first();
-        return view('Studiju posisteme.sukurti_grupes_prasyma', compact('grupe', 'destytojas'));
+        if(Gate::allows('studentas')) {
+            $grupe = Grupe::FindOrFail($id);
+            $destytojas = Destytojas::where('fk_destytojas_user', $grupe->vadovas)->first();
+            return view('Studiju posisteme.sukurti_grupes_prasyma', compact('grupe', 'destytojas'));
+        }
+        else abort(404);
     }
     public function store($id)
     {
@@ -74,6 +97,6 @@ class GrupesPrasymaiController extends Controller
             'motyvacinis_tekstas' => request('motyvacinis'),
             'data' => Carbon::now()->format('Y-m-d')
         ]);
-        return redirect('/studijos/grupes');
+        return redirect('/studijos/grupes')->withErrors(['status' => 'Prašymas pateiktas.']);
     }
 }

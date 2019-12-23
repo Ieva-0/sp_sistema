@@ -1,6 +1,12 @@
 @extends('Studiju posisteme.isdestymas')
 @section('title', 'Redaguoti grupę')
 @section('content')
+    <h2>Redaguoti mokslo grupę</h2>
+    @if($errors->first())
+        <div class="alert alert-info" >
+            {{ $errors->first() }}
+        </div>
+    @endif
     <form action="/studijos/grupes/{{$grupe->id}}" method="post">
         @csrf
         @method('patch')

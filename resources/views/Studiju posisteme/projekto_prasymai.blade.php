@@ -2,6 +2,15 @@
 @section('title', 'Erasmus+ prašymai')
 @section('content')
     <h2>Erasmus+ prašymai</h2>
+    <form action="/studijos/projektai/{{ $projektas-> id }}/redaguoti" style="float:left;margin:10px">
+        @csrf
+        <button class="btn btn-dark" type="submit">Atgal</button>
+    </form>
+    @if($errors->first())
+        <div class="alert alert-info" >
+            {{ $errors->first() }}
+        </div>
+    @endif
     <table class="table">
         <thead>
         <tr>
