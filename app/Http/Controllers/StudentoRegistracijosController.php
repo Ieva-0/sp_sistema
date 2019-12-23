@@ -15,6 +15,7 @@ class StudentoRegistracijosController extends Controller
 
     public function store()
     {
+      //dd(request()->all());
         $this->validate(request(), [
             'email' => 'required|email',
             'vardas' => 'required|regex:/(^[\pL ]+)$/u',
@@ -37,19 +38,22 @@ class StudentoRegistracijosController extends Controller
             'name' => request('vardas'),
             'email' => request('email'),
             'password' => request('slaptazodis'),
-            'user_level' => 4
+            'user_level' => 1
         ]);
-        Studentas::create([
-            'vardas' => request('vardas'),
-            'pavarde' => request('pavarde'),
-            'El_Pastas' => request('El_Pastas'),
+
+        $studentas = Studentas::create([
+            'Vardas' => request('vardas'),
+            'Pavarde' => request('pavarde'),
+            'El_Pastas' => request('email'),
             'Akademine_grupe' =>request('Akademine_grupe'),
             'Stojimo_metai' => request('Stojimo_metai'),
             'Kursas' => request('Kursas'),
             'Studiju_programa' => request('Studiju_programa'),
-            'Gimimo_data' => request('Gimimo_data')
+            'Gimimo_data' => request('Gimimo_data'),
+            'user_id' => 1
         ]);
+        //dd("daejo");
 
-        return redirect()->to('/studentas/profilis');
+        return redirect()->to('/studentas/prisijungimas');
     }
 }
