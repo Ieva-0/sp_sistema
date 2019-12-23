@@ -126,11 +126,14 @@
 </div>
 
 <div class="align-middle">
-    
+@if($errors->first())
+        <div class="alert alert-info" >
+            {{ $errors->first() }}
+        </div>
+    @endif
 </div>
 
 <div class="content">
-    <form>
 
     <form action="/Destytojas/laiskas" method="post">
         @csrf
@@ -147,8 +150,7 @@
             <label for="tekstas">tekstas</label>
             <input type="text" class="form-control" id="tekstas" name="tekstas" style="width:50vw">
         </div>
-        <button class="btn btn-dark">Siųsti</button>
-
+        <button type="submit" class="btn btn-dark">Siųsti</button>
 
     </form>
 
