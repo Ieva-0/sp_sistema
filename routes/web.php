@@ -178,10 +178,10 @@ Route::get('/Destytojas', function () {
 Route::get('/Destytojas/Dokumentai', function () {
     return view('Destytojas/Destytojo_dokumento_pridejimas');
 });
-
+/*
 Route::get('/Destytojas/Laiskai', function () {
     return view('Destytojas/Destytojo_laisku_siuntimas');
-});
+});*/
 
 Route::get('/Destytojas/Auditorijos', function () {
     return view('Destytojas/Destytojo_Auditorijos_rezervacija');
@@ -214,6 +214,10 @@ Route::post('/Destytojas/registracija', 'DestytojuRegistracijaController@store')
 
 Route::get('/uploadfile','UploadFileController@index');
 Route::post('/uploadfile','UploadFileController@showUploadFile');
+
+Route::get('/Destytojas/laiskas', 'DestytojuLaiskasController@create');
+Route::post('/Destytojas/laiskas', 'DestytojuLaiskasController@store');
+
 
 Route::get('/Sample1', function () {
     return view('Destytojas/Sample1');
