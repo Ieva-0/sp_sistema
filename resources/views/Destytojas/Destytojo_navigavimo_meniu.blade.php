@@ -71,7 +71,6 @@
         <div class="links">
             <a href="{{ url('Destytojas/Dokumentai ') }}">Dokumentu Peržiūra</a>
             <a href="{{ url('Destytojas/laiskas ') }}">Pranešimų siuntimas</a>
-            <a href="{{ url('Destytojas/Auditorijos ') }}">Auditorijos rezervacija</a>
             <a href="{{ url('Destytojas/Profilis ') }}">Profilis</a>
             <a href="/Destytojas/atsijungimas">Atsijungti</a>
         </div>

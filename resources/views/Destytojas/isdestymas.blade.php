@@ -84,8 +84,9 @@
         @endguest
         @auth
             <a href="/Destytojas/Dokumentai">Dokumentai</a>
-            <a href="/Destytojas/Laiskai">Laiskai</a>
+            <a href="/Destytojas/laiskas">Laiskai</a>
             <a href="/Destytojas/Auditorijos">Auditorijos</a>
+            <a href="/Destytojas/atsijungimas">Atsijungti</a>
         @endauth
     </div>
 </div>

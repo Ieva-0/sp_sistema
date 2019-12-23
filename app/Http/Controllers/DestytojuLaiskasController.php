@@ -2,7 +2,7 @@
 
 
 namespace App\Http\Controllers;
-
+use App\Laiskas;
 use App\User;
 use App\Destytojas2;
 use App\Product;
@@ -41,9 +41,9 @@ class DestytojuLaiskasController extends Controller
         Laiskas::create([
             'tema' => request('tema'),
             'tekstas' => request('tekstas'),
-            'El_Pastas' => request('el_pastas'),
+            'el_pastas' => request('email'),
         ]);
 
-        return redirect()->to('/Destytojas/Destytojo_laisku_siuntimas')->with('message', 'Sėkmingai išsiųstas pranešimas');
+        return redirect()->to('/Destytojas/laiskas')->withErrors(['message'=> 'Sėkmingai išsiųstas pranešimas']);
     }
 }
