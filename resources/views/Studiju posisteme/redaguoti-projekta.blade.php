@@ -47,8 +47,8 @@
         <div class="form-group">
             <label for="tipas">Registracija</label>
             <select class="form-control" id="registracija" name="registracija" style="width:15vw">
-                <option value=1 {{ $projektas->registracija == 1 ? 'selected' : '' }}>vyksta</option>
-                <option value=0 {{ $projektas->dalyvio_tipas == 0 ? 'selected' : '' }}>uždaryta</option>
+                <option value=1 {{ $projektas->registracija ? 'selected' : '' }}>vyksta</option>
+                <option value=0 {{ !$projektas->registracija ? 'selected' : '' }}>uždaryta</option>
             </select>
         </div>
         <input type="hidden" name="user" value="{{$projektas->user}}" />

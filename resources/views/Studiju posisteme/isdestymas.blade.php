@@ -75,7 +75,7 @@
 <body style="background-color: rgb(245,245,245);">
 <div class="content" style="background-color: rgb(230,230,230);padding:30px">
     <div class="title m-b-md">
-        Įmonės posistemė
+        Studijų posistemė
     </div>
     <div class="links">
         @guest
@@ -84,10 +84,12 @@
         @endguest
         @auth
             <a href="/studijos/projektai">Erasmus+ projektai</a>
+            @can('centras')
             <a href="/studijos/mentoryste/prasymai">Karjeros mentorystė</a>
-            <a href="/studijos/grupes">Mokslo grupės</a>
             <a href="/studijos/moduliai">Modulių įvertinimai</a>
-            <a href="/studijos/atsijungti">Atsijungti</a>
+                @endcan
+                <a href="/studijos/grupes">Mokslo grupės</a>
+                <a href="/studijos/atsijungti">Atsijungti</a>
         @endauth
     </div>
 </div>

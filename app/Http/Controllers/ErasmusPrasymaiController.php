@@ -11,18 +11,22 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class ErasmusPrasymaiController extends Controller
 {
     public function index($id)
     {
         if(Gate::allows('centras')) {
-            $prasymai = ProjPrasymas::all();
+            $prasymai = ProjPrasymas::where('projektas', $id)->get();
             $projektas = Projektas::FindOrFail($id);
             $users = User::all();
             $studentai = Studentas::all();
             $destytojai = Destytojas::all();
-            return view('Studiju posisteme.projekto_prasymai', compact('prasymai', 'projektas', 'studentai', 'destytojai'));
+            $check = ProjPrasymas::where('projektas', $id)->count();
+            if($check == 0)
+            return view('Studiju posisteme.projekto_prasymai', compact('prasymai', 'projektas', 'studentai', 'destytojai'))->withErrors(['status' => 'Nėra prašymų.']);
+            else return view('Studiju posisteme.projekto_prasymai', compact('prasymai', 'projektas', 'studentai', 'destytojai'));
         }
         else abort(404);
     }
@@ -33,14 +37,18 @@ class ErasmusPrasymaiController extends Controller
             $prasymas = ProjPrasymas::FindOrFail($id2);
             $user = User::FindOrFail($prasymas->user);
             $semestro_tipai = DB::table('semestro_tipai')->get();
-//        if($projektas->dalyvio_tipas == 1) {
             $studentas = Studentas::where('fk_studentas_user', $user->id)->first();
-//            return view('Studiju posisteme.projekto_prasymas', compact('projektas', 'prasymas', 'studentas', 'semestro_tipai'));
-//        }
-//        else {
             $destytojas = Destytojas::where('fk_destytojas_user', $user->id)->first();
             return view('Studiju posisteme.projekto_prasymas', compact('projektas', 'prasymas', 'destytojas', 'studentas', 'semestro_tipai'));
-//        }
+        }
+        else abort(404);
+    }
+    public function show2($id)
+    {
+        if(auth()->user()->id == $id) {
+            $prasymai = ProjPrasymas::where('id', $id)->get();
+            $semestro_tipai = DB::table('semestro_tipai')->get();
+            return view('Studiju posisteme.projekto_prasymas', compact('projektas', 'prasymas', 'destytojas', 'studentas', 'semestro_tipai'));
         }
         else abort(404);
     }
@@ -53,17 +61,33 @@ class ErasmusPrasymaiController extends Controller
                 'user' => $prasymas->user,
                 'projektas' => $id
             ]);
+            $count = ProjDalyvis::where('projektas', $id)->count();
+            $projektas = Projektas::FindOrFail($id);
+            if($count == $projektas->dalyviu_skaicius)
+                $projektas->update([
+                    'registracija' => 0,
+                ]);
+
+            $subject = "Jūsų prašymas dalyvauti Erasmus+ projekte priimtas.";
+            $message = "Šalis: ".$projektas->salis.", įstaiga: ".$projektas->istaiga.". Sveikiname ir linkime sėkmės!";
+            PranesimaiController::user($prasymas->user, $message, $subject);
+
             $prasymas->delete();
         }
         else {
             $prasymas = ProjPrasymas::FindOrFail($id2);
+            $projektas = Projektas::FindOrFail($id);
+
+            $subject = "Jūsų prašymas dalyvauti Erasmus+ projekte atmestas.";
+            $message = "Šalis: ".$projektas->salis.", įstaiga: ".$projektas->istaiga.". Dėl daugiau informacijos teiraukitės fakulteto administracijos.";
+            PranesimaiController::user($prasymas->user, $message, $subject);
             $prasymas->delete();
         }
-        return redirect()->action('ErasmusPrasymaiController@index', ['id' => $id]);
+        return redirect()->action('ErasmusPrasymaiController@index', ['id' => $id])->withErrors(['status' => 'Prašymas ištrintas.']);
     }
     public function create($id)
     {
-        if(Gate::allows('centras')) {
+        if(Gate::allows('studdest')) {
             $projektas = Projektas::FindOrFail($id);
             $semestro_tipai = DB::table('semestro_tipai')->get();
             return view('Studiju posisteme.sukurti_projekto_prasyma', compact('projektas', 'semestro_tipai'));
@@ -86,6 +110,6 @@ class ErasmusPrasymaiController extends Controller
             'motyvacinis_tekstas' => request('motyvacinis'),
             'data' => Carbon::now()->format('Y-m-d')
         ]);
-        return redirect('/studijos/projektai');
+        return redirect('/studijos/projektai')->withErrors(['status' => 'Prašymas sukurtas.']);
     }
 }

@@ -2,6 +2,15 @@
 @section('title', 'Projekto dalyviai')
 @section('content')
     <h2>Dalyviai</h2>
+    <form action="/studijos/projektai/{{ $projektas-> id }}/redaguoti" style="margin:10px">
+        @csrf
+        <button class="btn btn-dark" type="submit">Atgal</button>
+    </form>
+    @if($errors->first())
+        <div class="alert alert-info" style="width:30vw">
+            {{ $errors->first() }}
+        </div>
+    @endif
     <table class="table">
         <thead>
         <tr>

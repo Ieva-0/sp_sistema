@@ -19,7 +19,7 @@ class StudCentrasRegistrationController extends Controller
     public function store()
     {
         $this->validate(request(), [
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'vardas' => 'required|regex:/(^[\pL ]+)$/u',
             'pavarde' => 'required|regex:/(^[\pL ]+)$/u',
             'slaptazodis' => 'required|confirmed',
@@ -27,6 +27,7 @@ class StudCentrasRegistrationController extends Controller
             [
                 'email.email' => 'Įveskite galiojantį el. paštą.',
                 'email.required' => 'El. paštas yra būtinas.',
+                'email.unique' => 'Toks el. paštas jau yra.',
                 'vardas.required' => 'Vardas yra būtinas.',
                 'vardas.regex' => 'Vardas turi būti sudarytas tik iš raidžių.',
                 'pavarde.required' => 'Pavardė yra būtina.',

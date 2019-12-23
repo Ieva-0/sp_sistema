@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Destytojas;
 use App\GrupNarys;
 use App\Grupe;
+use App\GrupPrasymas;
 use App\ProjPrasymas;
 use App\Studentas;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class GrupesController extends Controller
 {
@@ -19,15 +21,22 @@ class GrupesController extends Controller
         $grupes = Grupe::all();
         $nariai = GrupNarys::all();
         $destytojai = Destytojas::all();
-        //$prasymai = ProjPrasymas::all();
-        return view('Studiju posisteme.grupes', compact('grupes', 'nariai', 'destytojai'));
+        $prasymai = GrupPrasymas::all();
+        $check = Grupe::count();
+        if($check == 0) {
+            return view('Studiju posisteme.grupes', compact('grupes', 'nariai', 'destytojai', 'prasymai'))->withErrors(['status' => 'Nėra grupių.']);
+        }
+        else return view('Studiju posisteme.grupes', compact('grupes', 'nariai', 'destytojai', 'prasymai'));
     }
     public function create()
     {
-        $destytojai = Destytojas::leftJoin('mokslo_grupe', function($join) {
-            $join->on('destytojas.fk_destytojas_user', '=', 'mokslo_grupe.vadovas');
-        })->whereRaw('mokslo_grupe.Pavadinimas IS NULL')->get();
-        return view('Studiju posisteme.sukurti_grupe', compact('destytojai'));
+        if(Gate::allows('centras')) {
+            $destytojai = Destytojas::leftJoin('mokslo_grupe', function ($join) {
+                $join->on('destytojas.fk_destytojas_user', '=', 'mokslo_grupe.vadovas');
+            })->whereRaw('mokslo_grupe.Pavadinimas IS NULL')->get();
+            return view('Studiju posisteme.sukurti_grupe', compact('destytojai'));
+        }
+        else abort(404);
     }
     public function store()
     {
@@ -60,7 +69,7 @@ class GrupesController extends Controller
             'Aprasymas' => request('aprasymas'),
             'vadovas' => request('vadovas'),
         ]);
-        return redirect('/studijos/grupes');
+        return redirect('/studijos/grupes')->withErrors(['status' => 'Mokslo grupė sėkmingai sukurta.']);
     }
     public function show($id)
     {
@@ -71,11 +80,14 @@ class GrupesController extends Controller
     }
     public function edit($id)
     {
-        $grupe = Grupe::FindOrFail($id);
-        $destytojai = Destytojas::leftJoin('mokslo_grupe', function($join) {
-            $join->on('destytojas.fk_destytojas_user', '=', 'mokslo_grupe.vadovas');
-        })->whereRaw('mokslo_grupe.Pavadinimas IS NULL OR mokslo_grupe.id = ?', [$grupe->id])->get();
-        return view('Studiju posisteme.redaguoti-grupe', compact('destytojai', 'grupe'));
+        if(Gate::allows('centras')) {
+            $grupe = Grupe::FindOrFail($id);
+            $destytojai = Destytojas::leftJoin('mokslo_grupe', function ($join) {
+                $join->on('destytojas.fk_destytojas_user', '=', 'mokslo_grupe.vadovas');
+            })->whereRaw('mokslo_grupe.Pavadinimas IS NULL OR mokslo_grupe.id = ?', [$grupe->id])->get();
+            return view('Studiju posisteme.redaguoti-grupe', compact('destytojai', 'grupe'));
+        }
+        else abort(404);
     }
     public function update($id)
     {
@@ -108,13 +120,23 @@ class GrupesController extends Controller
             'Aprasymas' => request('tipas'),
             'vadovas' => request('vadovas'),
         ]);
-        return redirect('/studijos/grupes');
+        return redirect('/studijos/grupes')->withErrors(['status' => 'Mokslo grupė sėkmingai atnaujinta.']);
     }
     public function destroy($id)
     {
         $grupe = Grupe::FindOrFail($id);
+        $dalyviai = GrupNarys::where('grupe', $id)->get();
+        $prasymai = ProjPrasymas::where('grupe', $id)->get();
+        foreach($dalyviai as $dalyvis)
+        {
+            $dalyvis->delete();
+        }
+        foreach($prasymai as $prasymas)
+        {
+            $prasymas->delete();
+        }
         $grupe->delete();
-        return redirect('/studijos/grupes');
+        return redirect('/studijos/grupes')->withErrors(['status' => 'Mokslo grupė sėkmingai ištrinta.']);
     }
 
 }

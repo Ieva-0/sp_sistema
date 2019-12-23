@@ -3,7 +3,7 @@
 @section('content')
     <h2>Sukurti naują Erasmus+ projektą</h2>
     @if($errors->first())
-        <div class="alert alert-info" >
+        <div class="alert alert-info" style="width:30vw">
             {{ $errors->first() }}
         </div>
     @endif
@@ -46,8 +46,8 @@
         <div class="form-group">
             <label for="tipas">Registracija</label>
             <select class="form-control" id="registracija" name="registracija" style="width:15vw">
-                <option value=1 {{ $projektas->registracija == 1 ? 'selected' : '' }}>vyksta</option>
-                <option value=0 {{ $projektas->dalyvio_tipas == 0 ? 'selected' : '' }}>uždaryta</option>
+                <option value=1 >vyksta</option>
+                <option value=0 >uždaryta</option>
             </select>
         </div>
         <input type="hidden" value="1" name="user" />

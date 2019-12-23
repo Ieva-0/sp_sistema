@@ -1,46 +1,19 @@
 @extends('Studiju posisteme.isdestymas')
 @section('title', 'Projektas')
 @section('content')
-    <form action="/studijos/projektai">
-        @csrf
-        <div class="form-group">
-            <label for="metai">Metai</label>
-            <select class="form-control" id="metai" style="width:15vw">
-                <option>2019/2020</option>
-                <option>2020/2021</option>
-                <option>2021/2022</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="semestras">Semestras</label>
-            <select class="form-control" id="semestras" style="width:15vw">
-                <option>Rudens</option>
-                <option>Pavasario</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="salis">Šalis</label>
-            <input type="text" class="form-control" id="salis" style="width:15vw" value="Slovakija">
-        </div>
-        <div class="form-group">
-            <label for="istaiga">Mokymo įstaiga</label>
-            <input type="text" class="form-control" id="istaiga" style="width:15vw" value="Technologijų universitetas">
-        </div>
-        <div class="form-group">
-            <label for="dalyviai">Dalyvių kiekis</label>
-            <input type="text" class="form-control" id="dalyviai" style="width:15vw" value="13">
-        </div>
-        <div class="form-group">
-            <label for="semestras">Dalyvių tipas</label>
-            <select class="form-control" id="semestras" style="width:15vw">
-                <option>Studentai</option>
-                <option>Dėstytojai</option>
-            </select>
-        </div>
-        <button class="btn btn-dark" style="float:left">Patvirtinti</button>
-    </form>
+    <h2>Apie Erasmus+ projektą</h2>
+    <h6 style="margin-top:10px">Šalis</h6>
+    <p>{{ $projektas->salis }}</p>
+    <h6 style="margin-top:10px">Aukštoji mokykla</h6>
+    <p>{{ $projektas->mokymo_istaiga }}</p>
+    <h6 style="margin-top:10px">Dalyviai</h6>
+    <p>{{ $dalyviai->where('projektas', $projektas->id)->count() }}/{{ $projektas->dalyviu_skaicius }}</p>
+    <h6 style="margin-top:10px">Semestras</h6>
+    <p style="width:40vw">@foreach($semestro_tipai as $tipas) @if($tipas->id == $projektas->semestras) {{ $tipas->name }} @endif @endforeach {{ $projektas->metai }}</p>
+    <h6 style="margin-top:10px">Registracija</h6>
+    <p style="width:40vw">{{ $projektas->registracija ? 'vyksta' : 'uždaryta' }}</p>
     <form action="/studijos/projektai" style="float:left;margin-left:15px">
         @csrf
-        <button class="btn btn-dark" type="submit">Atšaukti</button>
+        <button class="btn btn-dark" type="submit">Atgal</button>
     </form>
 @endsection
