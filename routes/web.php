@@ -151,25 +151,12 @@ Route::post('/studentas/moduliai/{id}','IvertinimaiController@store');
 Route::get('/studentas/moduliai/{id}','IvertinimaiController@create');
 
 
+Route::get('/studentas/pranesimai','StudentoPranesimaiController@index');
+Route::get('/studentas/pranesimai/{id}','StudentoPranesimaiController@show');
 
 
 
 
-Route::get('/studentas/Erasmus', function () {
-    return view('Studentas/studento_Erasmus_registracija');
-});
-
-Route::get('/studentas/karjeros_mentorius', function () {
-    return view('Studentas/studento_karjeros_mentorio_registracija');
-});
-
-Route::get('/studentas/mokslo_grupes', function () {
-    return view('Studentas/studento_mokslo_grupes_registracija');
-});
-
-// Route::get('/studentas/praktikos', function () {
-//     return view('Studentas/studento_praktikos_registracija');
-// });
 Route::get('/studentas/praktikos', 'StudentoPraktikosController@index');
 
 
