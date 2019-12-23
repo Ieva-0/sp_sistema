@@ -6,6 +6,7 @@ use App\Destytojas;
 use App\Ivertinimas;
 use App\Modulis;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
@@ -45,4 +46,45 @@ class IvertinimaiController extends Controller
         $ivertinimas->delete();
         return redirect()->action('IvertinimaiController@ivertinimai', ['id' => $id])->withErrors(['status' => 'Įvertinimas ištrintas.']);
     }
+
+    public function index()
+    {
+
+        $id = Auth::id();
+
+
+
+//
+        $moduliai = DB::table('studentai_moduliai')->where('fk_studentasid','=',$id)
+            ->join('modulis','fk_Moduliskodas','=','kodas')
+         //   ->join('ivertinimas','ivertinimas.modulis','!=','kodas')
+            //->where('kodas','!=','modulis')
+            ->get();
+
+
+      // dd($moduliai);
+        return view('Studentas.studento_moduliai',compact('moduliai'));
+    }
+
+    public function create($id)
+    {
+
+        $modulioId = $id;
+        return view('Studentas.studento_vertinimas')->with('modulioId',$id);
+    }
+
+    public function store($id)
+    {
+        $idStudentas = Auth::id();
+
+       $ivertinimas = Ivertinimas::create([
+                'aprasymas' => request('aprasas'),
+                'ivertinimas' =>  request('vertinimas'),
+                'studentas' => $idStudentas,
+                'modulis' => $id
+            ]);
+        return redirect()->action('IvertinimaiController@index');
+    }
+
+
 }

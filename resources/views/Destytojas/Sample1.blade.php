@@ -60,6 +60,19 @@
             text-transform: uppercase;
         }
 
+        .bottom-right > a{
+            position: absolute;
+            left: 10px;
+            top: 18px;
+            color: #636b6f;
+            padding: 0 25px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
         .links > a {
             text-align: center;
             color: #636b6f;
@@ -111,53 +124,43 @@
             padding-top: 20px;
         }
 
-
-
     </style>
 
-</head>
-<body>
-<div class="title">
-    Pranešimai
-</div>
-
 <div class="top-right ">
-    <a href="{{ url('Destytojas') }}">Pagrindinis puslapis</a>
+    <a href="{{ url('/Destytojas/Dokumentai') }}">Atgal</a>
 </div>
-
-<div class="align-middle">
-    
-</div>
-
 <div class="content">
-    <form>
 
-    <form action="/Destytojas/laiskas" method="post">
-        @csrf
-        <div class="form-group">
-            <label for="email">El. Paštas</label>
-            <input type="text" class="form-control" id="email" name="email" style="width:15vw">
-        </div>
+2020 – 2019 metais Lietuvoje įgijusiems vidurinį išsilavinimą
 
-        <div class="form-group">
-            <label for="tema">Tema</label>
-            <input type="text" class="form-control" id="tema" name="tema" style="width:15vw">
-        </div>
-        <div class="form-group" style="width: 50%">
-            <label for="tekstas">tekstas</label>
-            <input type="text" class="form-control" id="tekstas" name="tekstas" style="width:50vw">
-        </div>
-        <button class="btn btn-dark">Siųsti</button>
+Reikalavimai stojantiems į valstybės finansuojamas studijų vietas:
 
+    Išlaikyti trys valstybiniai brandos egzaminai, kurių įvertinimų aritmetinis vidurkis turi būti ne mažesnis negu 40 (suapvalintas iki sveiko skaičiaus):
+    lietuvių kalbos ir literatūros;
+    užsienio kalbos (anglų, vokiečių ar prancūzų) ne žemesniu nei B1 lygiu pagal Bendruosius Europos kalbų metmenis (arba tarptautinis užsienio egzaminas);
+    matematikos (išskyrus stojantiems į menų krypčių grupės studijų programas Architektūra ir Muzikos technologijos);
 
-    </form>
+Stojančiojo, brandos atestato priedo, penkių dalykų geriausių metinių įvertinimų aritmetinis vidurkis turi būti ne mažesnis negu 7 (suapvalintas iki sveiko skaičiaus):
+
+    lietuvių kalba ir literatūra;
+    gimtoji kalba (baltarusių arba lenkų, arba rusų, arba vokiečių);
+    užsienio kalba;
+    matematika;
+    istorija arba geografija, arba integruotas istorijos ir geografijos kursas;
+    biologija arba fizika, arba chemija, arba integruotas gamtos mokslų kursas;
+    meninio ugdymo srities dalykas arba technologijų programos krypties dalykas, arba integruotas menų ir technologijų kursas, arba specializuoto ugdymo krypties (dailės arba inžinerinio, arba meninio, arba muzikos) programos dalykas;
+    bendroji kūno kultūra arba pasirinkta sporto šaka, arba specializuoto ugdymo krypties (sporto) programos dalykas.
+
+Konkursinis balas yra ne žemesnis kaip nustatytas Lietuvos Respublikos švietimo, mokslo ir sporto ministro, išskyrus stojantiesiems, kurie yra atleisti nuo brandos egzaminų dėl ligų, nurodytų Lietuvos Respublikos sveikatos apsaugos ministro.
+
+Reikalavimai stojantiems į valstybės nefinansuojamas studijų vietas:
+
+    Išlaikytas vienas bet kurio dalyko valstybinis brandos egzaminas.
+    Konkursinis balas yra ne žemesnis kaip nustatytas Lietuvos Respublikos švietimo, mokslo ir sporto ministro, išskyrus stojantiesiems, kurie yra atleisti nuo brandos egzaminų dėl ligų, nurodytų Lietuvos Respublikos sveikatos apsaugos ministro.
 
 
 </div>
 
-
-
-
-</body>
-
-</html>
+<div class = "submit">
+            <button type="submit" class="btn btn-primary">Redaguoti</button>
+        </div>

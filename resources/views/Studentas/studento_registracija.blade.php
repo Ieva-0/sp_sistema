@@ -22,8 +22,8 @@
             <input type="text" class="form-control" id="pavarde" name="pavarde" style="width:15vw">
         </div>
         <div class="form-group">
-            <label for="Akedemine_grupe">Akedemine grupe</label>
-            <input type="text" class="form-control" id="Akedemine_grupe" name="Akedemine_grupe" style="width:15vw">
+            <label for="Akademine_grupe">Akedemine grupe</label>
+            <input type="text" class="form-control" id="Akademine_grupe" name="Akademine_grupe" style="width:15vw">
         </div>
         <div class="form-group">
             <label for="Kursas">Kursas</label>
@@ -35,10 +35,12 @@
         </div>
         <div class="form-group">
             <label for="Gimimo_data">Gimimo metai</label>
-            <input type="text" class="form-control" id="Gimimo_data" name="Gimimo_data" style="width:15vw">
+            <input type="date" class="form-control" id="Gimimo_data" name="Gimimo_data" style="width:15vw">
         </div>
-
-
+        <div class="form-group">
+            <label for="Stojimo_metai">Stojimo metai:</label>
+            <input type="number" min="2015" max="2030"  class="form-control" id="Stojimo_metai" name="Stojimo_metai" style="width:15vw">
+        </div>
 
 
         <div class="form-group">

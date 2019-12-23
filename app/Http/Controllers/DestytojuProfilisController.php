@@ -3,24 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Studentas;
+use App\Destytojas2;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 
 
-class StudentoProfilisController extends Controller
+class DestytojuProfilisController extends Controller
 {
     public function index()
     {
-        if(Gate::allows('studentas')) {
         $id = Auth::id();
-        //dd($id);
-        $studentas = DB::table('studentas')->where('fk_user_id',$id)->first();
+        $destytojas = DB::table('destytojai')->where('id',$id)->first();
 
-        return view('Studentas.studento_profilio_perziura', compact('studentas'));
-        }
-        else abort(404);
+        return view('Destytojas.Destytojo_profilis', compact('destytojas'));
+
     }
     public function update()
     {
@@ -28,7 +25,7 @@ class StudentoProfilisController extends Controller
 
 
         $id = Auth::id();
-        $studentas = Studentas::where('fk_user_id',$id)->first();
+        $destytojas = Destytojas2::where('id',$id)->first();
 //        $this->validate(request(), [
 //            'pavadinimas' => 'required|regex:/(^[\pL ]+)$/u|max:250|unique:mokslo_grupe',
 //            'fakultetas' => 'required|regex:/(^[\pL ]+)$/u|max:250',
@@ -56,11 +53,6 @@ class StudentoProfilisController extends Controller
             'El_Pastas' => 'required|email',
             'Vardas' => 'required|regex:/(^[\pL ]+)$/u',
             'Pavarde' => 'required|regex:/(^[\pL ]+)$/u',
-            'Akademine_grupe' => 'required',
-            'Stojimo_metai' => 'required',
-            'Kursas' => 'required|integer|max:4|min:1',
-            'Studiju_programa' => 'required',
-            'Gimimo_data' => 'required',
         ],
             [
                 'El_Pastas.email' => 'Įveskite galiojantį el. paštą.',
@@ -69,27 +61,19 @@ class StudentoProfilisController extends Controller
                 'Vardas.regex' => 'Vardas turi būti sudarytas tik iš raidžių.',
                 'Pavarde.required' => 'Pavardė yra būtina.',
                 'Pavarde.regex' => 'Pavardė turi būti sudaryta tik iš raidžių.',
-                'Kursas.required' => 'Nurodyti kursą'
-
-
             ]);
-        $studentas->update([
+        $destytojas->update([
             'vardas' => request('Vardas'),
             'pavarde' => request('Pavarde'),
             'el_Pastas' => request('El_Pastas'),
-            'akademine_grupe' =>request('Akademine_grupe'),
-            'stojimo_metai' => request('Stojimo_metai'),
-            'kursas' => request('Kursas'),
-            'studiju_programa' => request('Studiju_programa'),
-            'gimimo_data' => request('Gimimo_data'),
         ]);
-        return redirect('/studentas/profilis');
+        return redirect('/Destytojas/Profilis');
     }
 
     public function edit()
     {
     $id = Auth::id();
-       $studentas =  Studentas::where('fk_user_id',$id)->first();
-        return view('Studentas.studento_profilio_redagavimas', compact('studentas'));
+       $destytojas =  Destytojas2::where('id',$id)->first();
+        return view('Destytojo_profilio_redagavimas', compact('destytojas'));
     }
 }

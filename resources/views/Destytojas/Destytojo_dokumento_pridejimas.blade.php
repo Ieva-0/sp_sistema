@@ -28,6 +28,13 @@
         .content {
 
             padding: 60px;
+            color: #636b6f;
+            padding: 0 25px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .1rem;
+            text-decoration: none;
+            text-transform: uppercase;
         }
 
         .title {
@@ -47,6 +54,8 @@
             text-decoration: none;
             text-transform: uppercase;
         }
+
+        
         .top-left > a{
             position: absolute;
             left: 10px;
@@ -129,27 +138,26 @@
     
 </div>
 
-<div class="content">
-    <form>
-        <div class="form-group" style="width: 18%">
-            <label for="exampleFormControlInput1">Pavadinimas</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Pavadinimas">
-        </div>
-
-        <div class="form-group" style="width: 50%">
-            <label for="exampleFormControlTextarea1">Tekstas</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-
-        <div class = "submit">
-            <button type="submit" class="btn btn-primary">Pridėti</button>
-        </div>
-
-
-    </form>
-
-
-</div>
+<main role="main" class="content">
+                <h1>Prieinami dokumentai:</h1>
+                <div class="submit">
+                <a >Minimalus reikalavimai</a>
+                <td><button onclick="location.href='{{ url('Sample1') }}'">
+     Peržiūrėti</button></td>
+                </div>
+                <div>
+                </div>
+                <div>
+                <a>Studiju sutarties sudarymas</a>
+                <td><button onclick="location.href='{{ url('Sample2') }}'">
+                Peržiūrėti</button></td>
+                </div>
+                <div>
+                <a>Universiteto statutas</a>
+                <td><button onclick="location.href='{{ url('Sample3') }}'">
+                Peržiūrėti</button></td>
+                </div>
+            </main>
 
 
 

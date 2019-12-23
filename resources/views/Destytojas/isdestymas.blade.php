@@ -8,11 +8,6 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,600" rel="stylesheet" type="text/css">
 
-
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -75,72 +70,65 @@
         .m-b-md {
             margin-bottom: 30px;
         }
-
-        .top-right1>a {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .top-right2>a {
-            position: absolute;
-            right: 200px;
-            top: 18px;
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
     </style>
 </head>
 <body style="background-color: rgb(245,245,245);">
 <div class="content" style="background-color: rgb(230,230,230);padding:30px">
     <div class="title m-b-md">
-        Studento posistemė
+        Dėstytojų posistemė
     </div>
-
     <div class="links">
-        @if (Auth::guest())
-            <a href="{{ url('/studentas/prisijungimas') }}">Prisijungimas</a>
-            <a href="{{ url('/studentas/registracija') }}">Registracija</a>
-        @endif
+        @guest
+            <a href="/Destytojas/Prisijungti">Prisijungti</a>
+            <a href="/Destytojas/registracija">Registruotis</a>
+        @endguest
         @auth
-        <a href="{{ url('studentas/tvarkarastis') }}">Tvarkaraštis</a>
-        <a href="{{ url('studentas/uzsiemimai') }}">Registracija į užsiemimus</a>
-        <a href="{{ url('studentas/karjeros_mentorius') }}">Registracija pas karjeros mentorių</a>
-        <a href="{{ url('studentas/praktikos') }}">Registracija į praktiką</a>
-        <a href="{{ url('studentas/Erasmus') }}">Registracija į Erasmus+</a>
-        <a href="{{ url('studentas/mokslo_grupes') }}">Registracija į Mokslo grupes</a>
+            <a href="/Destytojas/Dokumentai">Dokumentai</a>
+            <a href="/Destytojas/Laiskai">Laiskai</a>
+            <a href="/Destytojas/Auditorijos">Auditorijos</a>
         @endauth
-
-        @if (Auth::check())
-            <a href="{{ url('/studentas/atsijungti') }}">atsijungti</a>
-        @endif
-
     </div>
+</div>
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-dark" style="height:7vh">
+    <a class="navbar-brand" href="/studijos" style="color:white">Studijų patirties sistema</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-    @auth
-        <div class="top-right1">
-            <a href="{{ url('studentas/profilis') }}">Profilis</a>
-        </div>
-        <div class="top-right2">
-            <a href="{{ url('studentas/pranesimai') }}">Pranešimai</a>
-
-        </div>
-
-    @endauth
- </div>
-
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/studijos" style="color:white">Pradinis</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/studijos/projektai" style="color:white">Erasmus+</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/studijos/mentoryste/prasymai" style="color:white">Karjeros mentorystė</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/studijos/grupes" style="color:white">Mokslo grupės</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/studijos/moduliai" style="color:white">Modulių įvertinimai</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-right">
+            @auth
+                <li class="nav-item active">
+                    <a class="nav-link" href="/studijos/paskyra" style="color:white">Mano paskyra</a>
+                </li>
+            @else
+                <li class="nav-item active">
+                    <a class="nav-link" href="/studijos/registracija" style="color:white">Registracija</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/studijos/prisijungti" style="color:white">Prisijungti</a>
+                </li>
+            @endauth
+        </ul>
+    </div>
+</nav>-->
 <div class="container" style="padding:50px">
     @yield('content')
 </div>

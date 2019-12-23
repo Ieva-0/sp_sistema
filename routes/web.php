@@ -151,24 +151,17 @@ Route::get('/studentas/uzsiemimai','StudentoModuliaiController@index');
 
 Route::get('/studentas/tvarkarastis','StudentoTvarkarasciaiController@index');
 
+Route::get('/studentas/moduliai','IvertinimaiController@index');
+Route::post('/studentas/moduliai/{id}','IvertinimaiController@store');
+Route::get('/studentas/moduliai/{id}','IvertinimaiController@create');
+
+
+Route::get('/studentas/pranesimai','StudentoPranesimaiController@index');
+Route::get('/studentas/pranesimai/{id}','StudentoPranesimaiController@show');
 
 
 
-Route::get('/studentas/Erasmus', function () {
-    return view('Studentas/studento_Erasmus_registracija');
-});
 
-Route::get('/studentas/karjeros_mentorius', function () {
-    return view('Studentas/studento_karjeros_mentorio_registracija');
-});
-
-Route::get('/studentas/mokslo_grupes', function () {
-    return view('Studentas/studento_mokslo_grupes_registracija');
-});
-
-// Route::get('/studentas/praktikos', function () {
-//     return view('Studentas/studento_praktikos_registracija');
-// });
 Route::get('/studentas/praktikos', 'StudentoPraktikosController@index');
 
 
@@ -183,23 +176,54 @@ Route::get('/Destytojas', function () {
 Route::get('/Destytojas/Dokumentai', function () {
     return view('Destytojas/Destytojo_dokumento_pridejimas');
 });
-
+/*
 Route::get('/Destytojas/Laiskai', function () {
     return view('Destytojas/Destytojo_laisku_siuntimas');
-});
+});*/
 
 Route::get('/Destytojas/Auditorijos', function () {
     return view('Destytojas/Destytojo_Auditorijos_rezervacija');
 });
-
+/*
 Route::get('/Destytojas/Profilis', function () {
     return view('Destytojas/Destytojo_profilis');
+});*/
+Route::get('/destytojas', function () {
+    return view('Destytojas/pradinis');
 });
-
+/*
 Route::get('/Destytojas/Prisijungti', function () {
     return view('Destytojas/Destytojo_prisijungimo_langas');
 });
 
 Route::get('/Destytojas/registracija', function () {
     return view('Destytojas/Destytojo_registracijos_langas');
+});*/
+Route::get('/Destytojas/Profilis','DestytojuProfilisController@index');
+Route::get('Destytojas/Profilis/redaguoti', 'DestytojuProfilisController@edit');
+Route::patch('/Destytojas/Profilis','DestytojuProfilisController@update');
+
+Route::get('/Destytojas/Prisijungti', 'DestytojuSessionController@create');
+Route::post('/Destytojas/Prisijungti', 'DestytojuSessionController@store');
+Route::get('/Destytojas/atsijungimas', 'DestytojuSessionController@destroy');
+
+Route::get('/Destytojas/registracija', 'DestytojuRegistracijaController@create');
+Route::post('/Destytojas/registracija', 'DestytojuRegistracijaController@store');
+
+Route::get('/uploadfile','UploadFileController@index');
+Route::post('/uploadfile','UploadFileController@showUploadFile');
+
+Route::get('/Destytojas/laiskas', 'DestytojuLaiskasController@create');
+Route::post('/Destytojas/laiskas', 'DestytojuLaiskasController@store');
+
+
+Route::get('/Sample1', function () {
+    return view('Destytojas/Sample1');
 });
+Route::get('/Sample2', function () {
+    return view('Destytojas/Sample2');
+});
+Route::get('/Sample3', function () {
+    return view('Destytojas/Sample3');
+});
+

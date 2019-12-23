@@ -87,7 +87,7 @@
             @if (Auth::check())
             <a href="{{ url('imone/paskaitos ') }}">Paskaitu sąrašas</a>
             <a href="{{ url('imone/praktikos ') }}">Praktikų sąrašas</a>
-            <a href="{{ url('atsijungimas') }}">Atsijungti</a>
+            <a href="{{ url('/studijos/atsijungti') }}">Atsijungti</a>
             <a href="{{ url('aplikacija-praktikai') }}">Prašymo pateikimas praktikai</a>
         </div>
     </div>

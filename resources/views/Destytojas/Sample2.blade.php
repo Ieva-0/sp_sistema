@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,53 +113,29 @@
             padding-top: 20px;
         }
 
-
-
     </style>
 
-</head>
-<body>
-<div class="title">
-    Pranešimai
-</div>
-
 <div class="top-right ">
-    <a href="{{ url('Destytojas') }}">Pagrindinis puslapis</a>
+    <a href="{{ url('/Destytojas/Dokumentai') }}">Atgal</a>
 </div>
-
-<div class="align-middle">
-    
-</div>
-
 <div class="content">
-    <form>
-
-    <form action="/Destytojas/laiskas" method="post">
-        @csrf
-        <div class="form-group">
-            <label for="email">El. Paštas</label>
-            <input type="text" class="form-control" id="email" name="email" style="width:15vw">
-        </div>
-
-        <div class="form-group">
-            <label for="tema">Tema</label>
-            <input type="text" class="form-control" id="tema" name="tema" style="width:15vw">
-        </div>
-        <div class="form-group" style="width: 50%">
-            <label for="tekstas">tekstas</label>
-            <input type="text" class="form-control" id="tekstas" name="tekstas" style="width:50vw">
-        </div>
-        <button class="btn btn-dark">Siųsti</button>
 
 
-    </form>
+Studijų sutarties sudarymas
 
+Numatytomis datomis MPIS skiltyje PAGEIDAVIMAI yra skelbiami kvietimai studijuoti, kviečiamieji papildomai informuojami el. paštu, kurį nurodė teikdami priėmimo prašymą.
+Kviečiamieji pagal nustatytus terminus turi su Universitetu sudaryti studijų sutartį.
+Sudarant studijų sutartį privaloma sumokėti registracijos studijoms įmoką. Nutraukus studijų sutartį, registracijos studijoms įmoka negrąžinama.
+Nepasirašius studijų sutarties pagal kvietime nustatytą terminą, kvietimas studijuoti anuliuojamas, o atsilaisvinusios vietos perkeliamos į kitą priėmimo etapą.
+Studijų sutartį su Universitetu sudaryti galima:
+    nuotoliniu būdu (rekomenduojama)
+    tiesioginiu būdu
+Studijų sutartį tiesioginiu būdu pasirašyti ir dokumentus pateikti galima ir per įgaliotą asmenį, tokiu atveju, būtinas notaro patvirtintas įgaliojimas.
+Studijų sutartį valstybės finansuojamoje studijų vietoje stojantysis gali sudaryti tik nutraukęs anksčiau sudarytą studijų sutartį valstybės finansuojamoje vietoje.
+Stojantysis gali būti sudaręs studijų sutartį valstybės finansuojamoje vietoje ir kitą studijų sutartį valstybės nefinansuojamoje vietoje.
 
 </div>
 
-
-
-
-</body>
-
-</html>
+<div class = "submit">
+            <button type="submit" class="btn btn-primary">Redaguoti</button>
+        </div>
