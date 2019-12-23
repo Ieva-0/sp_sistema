@@ -138,16 +138,24 @@
     
 </div>
 
-<main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+<main role="main" class="content">
                 <h1>Prieinami dokumentai:</h1>
-                <div>
-                <a href="{{ url('Sample1') }}">Minimalus reikalavimai</a>
+                <div class="submit">
+                <a >Minimalus reikalavimai</a>
+                <td><button onclick="location.href='{{ url('Sample1') }}'">
+     Peržiūrėti</button></td>
                 </div>
                 <div>
-                <a href="{{ url('Sample2') }}">Studiju sutarties sudarymas</a>
                 </div>
                 <div>
-                <a href="{{ url('Sample3') }}">Universiteto statutas</a>
+                <a>Studiju sutarties sudarymas</a>
+                <td><button onclick="location.href='{{ url('Sample2') }}'">
+                Peržiūrėti</button></td>
+                </div>
+                <div>
+                <a>Universiteto statutas</a>
+                <td><button onclick="location.href='{{ url('Sample3') }}'">
+                Peržiūrėti</button></td>
                 </div>
             </main>
 

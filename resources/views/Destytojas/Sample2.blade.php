@@ -135,3 +135,7 @@ Studijų sutartį valstybės finansuojamoje studijų vietoje stojantysis gali su
 Stojantysis gali būti sudaręs studijų sutartį valstybės finansuojamoje vietoje ir kitą studijų sutartį valstybės nefinansuojamoje vietoje.
 
 </div>
+
+<div class = "submit">
+            <button type="submit" class="btn btn-primary">Redaguoti</button>
+        </div>

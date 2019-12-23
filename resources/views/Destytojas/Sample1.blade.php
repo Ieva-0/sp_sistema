@@ -60,6 +60,19 @@
             text-transform: uppercase;
         }
 
+        .bottom-right > a{
+            position: absolute;
+            left: 10px;
+            top: 18px;
+            color: #636b6f;
+            padding: 0 25px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
         .links > a {
             text-align: center;
             color: #636b6f;
@@ -147,3 +160,7 @@ Reikalavimai stojantiems į valstybės nefinansuojamas studijų vietas:
 
 
 </div>
+
+<div class = "submit">
+            <button type="submit" class="btn btn-primary">Redaguoti</button>
+        </div>

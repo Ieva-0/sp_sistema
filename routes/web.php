@@ -224,3 +224,4 @@ Route::get('/Sample2', function () {
 Route::get('/Sample3', function () {
     return view('Destytojas/Sample3');
 });
+

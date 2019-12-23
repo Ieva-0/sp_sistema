@@ -1,6 +1,13 @@
 @extends('Destytojas.isdestymas')
 @section('title', 'Prisijungti')
 @section('content')
+
+
+
+
+
+
+
     <div class="title">
         Stazuotes
     </div>
@@ -25,9 +32,14 @@
                     <td> projekto_Tema</td>
                     <td>el_pastas</td>
                     <td>trukme</td>
+                    <?php
+    $variable = 'testing';
+    echo '<span class="label-' . $variable .'">' . $variable . '</span>';
+?>
                     <td>dalyviu_Skaicius</td>
                     <td>
-                    <a class="btn btn-primary" href="">Pateikti</a>   
+                    <input type="button" id="sample0" onclick="javascript:setval(1)" Registruoti />
+<button type="submit" class="btn btn-primary">Siūsti</button>
                     </td>
                 </tr>
 

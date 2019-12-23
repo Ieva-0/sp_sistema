@@ -129,3 +129,7 @@ Kauno technologijos universitetas yra kilęs iš Lietuvos universiteto, įkurto 
 Kauno technologijos universiteto (toliau – Universitetas) misija – teikti moksliniais tyrimais grįstas tarptautinio lygio studijas; kurti ir perduoti žinias bei novatoriškas technologijas darniai valstybės raidai ir inovacijų plėtojimui; formuoti atvirą, talentus ir lyderius įkvepiančią kūrybingą aplinką; puoselėti demokratiją ir nacionalinę kultūrą.
 
 </div>
+
+<div class = "submit">
+            <button type="submit" class="btn btn-primary">Redaguoti</button>
+        </div>
