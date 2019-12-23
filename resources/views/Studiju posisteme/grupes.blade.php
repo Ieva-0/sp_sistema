@@ -2,10 +2,12 @@
 @section('title', 'Mokslo grupės')
 @section('content')
     <h2>Mokslo grupės</h2>
+    @can('centras')
     <form action="/studijos/grupes/sukurti" style="margin:10px 10px 15px 0">
         @csrf
         <button class="btn btn-dark" type="submit">Sukurti naują grupę</button>
     </form>
+    @endcan
     @if($errors->first())
         <div class="alert alert-info" >
             {{ $errors->first() }}

@@ -114,22 +114,20 @@
             <a href="{{ url('/studentas/prisijungimas') }}">Prisijungimas</a>
             <a href="{{ url('/studentas/registracija') }}">Registracija</a>
         @endif
-        @auth
+        @can('studentas')
         <a href="{{ url('studentas/tvarkarastis') }}">Tvarkaraštis</a>
         <a href="{{ url('studentas/uzsiemimai') }}">Registracija į užsiemimus</a>
         <a href="{{ url('studentas/karjeros_mentorius') }}">Registracija pas karjeros mentorių</a>
         <a href="{{ url('studentas/praktikos') }}">Registracija į praktiką</a>
         <a href="{{ url('studentas/Erasmus') }}">Registracija į Erasmus+</a>
         <a href="{{ url('studentas/mokslo_grupes') }}">Registracija į Mokslo grupes</a>
-        @endauth
 
-        @if (Auth::check())
             <a href="{{ url('/studentas/atsijungti') }}">atsijungti</a>
-        @endif
+        @endcan
 
     </div>
 
-    @auth
+    @can('studentas')
         <div class="top-right1">
             <a href="{{ url('studentas/profilis') }}">Profilis</a>
         </div>
@@ -138,7 +136,7 @@
 
         </div>
 
-    @endauth
+    @endcan
  </div>
 
 <div class="container" style="padding:50px">
