@@ -40,7 +40,7 @@ class StudentoRegistracijosController extends Controller
             'password' => request('slaptazodis'),
             'user_level' => 1
         ]);
-
+//dd($user->id);
         $studentas = Studentas::create([
             'Vardas' => request('vardas'),
             'Pavarde' => request('pavarde'),
@@ -49,6 +49,7 @@ class StudentoRegistracijosController extends Controller
             'Stojimo_metai' => request('Stojimo_metai'),
             'Kursas' => request('Kursas'),
             'Studiju_programa' => request('Studiju_programa'),
+            'fk_user_id' => $user->id,
             'Gimimo_data' => request('Gimimo_data'),
             'user_id' => 1
         ]);

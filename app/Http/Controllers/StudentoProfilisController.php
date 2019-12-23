@@ -6,17 +6,21 @@ use App\Studentas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 
 class StudentoProfilisController extends Controller
 {
     public function index()
     {
+        if(Gate::allows('studentas')) {
         $id = Auth::id();
-        $studentas = DB::table('studentas')->where('id',$id)->first();
+        //dd($id);
+        $studentas = DB::table('studentas')->where('fk_user_id',$id)->first();
 
         return view('Studentas.studento_profilio_perziura', compact('studentas'));
-
+        }
+        else abort(404);
     }
     public function update()
     {
@@ -24,7 +28,7 @@ class StudentoProfilisController extends Controller
 
 
         $id = Auth::id();
-        $studentas = Studentas::where('id',$id)->first();
+        $studentas = Studentas::where('fk_user_id',$id)->first();
 //        $this->validate(request(), [
 //            'pavadinimas' => 'required|regex:/(^[\pL ]+)$/u|max:250|unique:mokslo_grupe',
 //            'fakultetas' => 'required|regex:/(^[\pL ]+)$/u|max:250',
@@ -85,7 +89,7 @@ class StudentoProfilisController extends Controller
     public function edit()
     {
     $id = Auth::id();
-       $studentas =  Studentas::where('id',$id)->first();
+       $studentas =  Studentas::where('fk_user_id',$id)->first();
         return view('Studentas.studento_profilio_redagavimas', compact('studentas'));
     }
 }

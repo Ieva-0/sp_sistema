@@ -133,6 +133,10 @@
         <div class="top-right1">
             <a href="{{ url('studentas/profilis') }}">Profilis</a>
         </div>
+        <div class="top-right2">
+            <a href="{{ url('studentas/pranesimai') }}">Pranešimai</a>
+
+        </div>
 
     @endauth
  </div>
