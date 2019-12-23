@@ -118,7 +118,7 @@
 </head>
 <body>
 <div class="title">
-    Laiškai
+    Pranešimai
 </div>
 
 <div class="top-right ">
@@ -131,30 +131,23 @@
 
 <div class="content">
     <form>
-        <div class="form-group" style="width: 18%">
-            <label for="exampleFormControlInput1">Elektroninis paštas</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+
+    <form action="/Destytojas/laiskas" method="post">
+        @csrf
+        <div class="form-group">
+            <label for="email">El. Paštas</label>
+            <input type="text" class="form-control" id="email" name="email" style="width:15vw">
         </div>
 
-        <div class="form-group" style="width: 18%">
-            <label for="exampleFormControlInput1">Vardas</label>
-            <input type="vardas" class="form-control" id="exampleFormControlInput1" placeholder="vardas">
+        <div class="form-group">
+            <label for="tema">Tema</label>
+            <input type="text" class="form-control" id="tema" name="tema" style="width:15vw">
         </div>
-
-        <div class="form-group" style="width: 18%">
-            <label for="exampleFormControlInput1">Pavardė</label>
-            <input type="pavarde" class="form-control" id="exampleFormControlInput1" placeholder="pavardė">
-        </div>
-
         <div class="form-group" style="width: 50%">
-            <label for="exampleFormControlTextarea1">laiškas</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label for="tekstas">tekstas</label>
+            <input type="text" class="form-control" id="tekstas" name="tekstas" style="width:50vw">
         </div>
-
-
-        <div class = "submit">
-            <button type="submit" class="btn btn-primary">Siūsti</button>
-        </div>
+        <button class="btn btn-dark">Siųsti</button>
 
 
     </form>
