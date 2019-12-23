@@ -83,8 +83,9 @@
             <a href="/Destytojas/registracija">Registruotis</a>
         @endguest
         @auth
-
-            <a href="/Destytojas/atsijungimas">Atsijungti</a>
+            <a href="/Destytojas/Dokumentai">Dokumentai</a>
+            <a href="/Destytojas/Laiskai">Laiskai</a>
+            <a href="/Destytojas/Auditorijos">Auditorijos</a>
         @endauth
     </div>
 </div>
