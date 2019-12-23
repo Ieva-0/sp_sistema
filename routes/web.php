@@ -146,6 +146,12 @@ Route::get('/studentas/uzsiemimai','StudentoModuliaiController@index');
 
 Route::get('/studentas/tvarkarastis','StudentoTvarkarasciaiController@index');
 
+Route::get('/studentas/moduliai','IvertinimaiController@index');
+Route::post('/studentas/moduliai/{id}','IvertinimaiController@store');
+Route::get('/studentas/moduliai/{id}','IvertinimaiController@create');
+
+
+
 
 
 

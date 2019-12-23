@@ -13,7 +13,7 @@
                 <th scope="col">Dėstytojas</th>
                 <th scope="col">Fakultetas</th>
                  <th scope="col">Kalba</th>
-                <th scope="col">Pasirinkimas</th>
+                <th scope="col">Pasirinkti</th>
             </tr>
             </thead>
             @foreach($moduliai as $modulis)
