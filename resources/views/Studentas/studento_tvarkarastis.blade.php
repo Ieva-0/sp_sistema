@@ -9,6 +9,9 @@
     <div class="title">
         Tvarkaraštis
     </div>
+    <div style="text-align: right; font-size: 15px; padding-bottom: 10px">
+        <a style="color: inherit;" href="{{ url('studentas/moduliai') }}">Modulių vertinimas</a>
+    </div>
 <div class="align-middle">
     <table class="table table-bordered " style="width: 100%; font-size: 15px; position: center ">
         <thead class="thead-dark">
