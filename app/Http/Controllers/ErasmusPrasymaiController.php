@@ -18,12 +18,15 @@ class ErasmusPrasymaiController extends Controller
     public function index($id)
     {
         if(Gate::allows('centras')) {
-            $prasymai = ProjPrasymas::all();
+            $prasymai = ProjPrasymas::where('projektas', $id)->get();
             $projektas = Projektas::FindOrFail($id);
             $users = User::all();
             $studentai = Studentas::all();
             $destytojai = Destytojas::all();
-            return view('Studiju posisteme.projekto_prasymai', compact('prasymai', 'projektas', 'studentai', 'destytojai'));
+            $check = ProjPrasymas::where('projektas', $id)->count();
+            if($check == 0)
+            return view('Studiju posisteme.projekto_prasymai', compact('prasymai', 'projektas', 'studentai', 'destytojai'))->withErrors(['status' => 'Nėra prašymų.']);
+            else return view('Studiju posisteme.projekto_prasymai', compact('prasymai', 'projektas', 'studentai', 'destytojai'));
         }
         else abort(404);
     }

@@ -13,8 +13,6 @@
         <p>{{ $grupe->Pavadinimas }}</p>
         <h6 style="margin-top:10px">Fakultetas</h6>
         <p>{{ $grupe->Fakultetas }}</p>
-        <h6 style="margin-top:10px">Nariai</h6>
-        <p>{{ $nariai->where('grupe', $grupe->id)->count() }}/{{ $grupe->Nariu_kiekis }}</p>
         <h6 style="margin-top:10px">Aprašymas</h6>
         <p style="width:40vw">{{ $grupe->Aprasymas }}</p>
         <h6 style="margin-top:10px">Vadovas</h6>

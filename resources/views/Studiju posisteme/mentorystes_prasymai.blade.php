@@ -2,10 +2,16 @@
 @section('title', 'Karjeros mentorystės prašymai')
 @section('content')
 <h2>Karjeros mentorystės prašymai</h2>
-<form action="/studijos/mentoryste/laisvi" style="float:left;margin:10px 10px 15px 0">
+
+<form action="/studijos/mentoryste/laisvi" style="margin:10px 10px 15px 0">
     @csrf
     <button class="btn btn-dark" type="submit">Laisvi mentoriai</button>
 </form>
+@if($errors->first())
+    <div class="alert alert-info" style="width:30vw">
+        {{ $errors->first() }}
+    </div>
+@endif
 <table class="table">
     <thead>
     <tr>
