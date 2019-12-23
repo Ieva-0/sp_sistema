@@ -4,7 +4,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-
+use App\Destytojas2;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Imone;
@@ -16,43 +16,41 @@ use App\Http\Controllers\Controller;
 
 class DestytojuRegistracijaController extends Controller
 {
-
     public function create()
     {
         return view('Destytojas.Destytojo_registracijos_langas');
     }
 
-    public function store(Request $request)
+    public function store()
     {
-
         $this->validate(request(), [
-            'name' => 'required',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|confirmed'
-        ]);
-        // return Validator::make($request, [
-        //     'name' => 'required|string|max:255:users',
-        //     'email' => 'required|string|email|max:255|unique:users',
-        //     'password' => 'required|string|min:6|confirmed',
-        // ]);
-
-        //return redirect('/imone/registracija')->with('message', 'Toks prisijungimo vardas/El. paštas jau yra');
+            'email' => 'required|email',
+            'vardas' => 'required|regex:/(^[\pL ]+)$/u',
+            'pavarde' => 'required|regex:/(^[\pL ]+)$/u',
+            'slaptazodis' => 'required|confirmed',
+        ],
+            [
+                'email.email' => 'Įveskite galiojantį el. paštą.',
+                'email.required' => 'El. paštas yra būtinas.',
+                'vardas.required' => 'Vardas yra būtinas.',
+                'vardas.regex' => 'Vardas turi būti sudarytas tik iš raidžių.',
+                'pavarde.required' => 'Pavardė yra būtina.',
+                'pavarde.regex' => 'Pavardė turi būti sudaryta tik iš raidžių.',
+                'password.required' => 'Slaptažodis yra būtinas.',
+                'password.confirmed' => 'Slaptažodis ir patvirtinimas turi sutapti.'
+            ]);
 
         $user = User::create([
-            'name' => request('name'),
             'email' => request('email'),
-            'password' => request('password'),
-            'user_level' => 3
+            'name' => request('vardas'),          
+            'password' => request('slaptazodis'),
         ]);
-
         Destytojas2::create([
-            'pavadinimas' => request('name'),
-            'sritis' => request('surname'),
-            'el_Pastas' => request('email'),
-            'fk_imone_user' => $user->id
+            'vardas' => request('vardas'),
+            'pavarde' => request('pavarde'),
+            'El_Pastas' => request('El_Pastas'),
         ]);
 
-        auth()->login($user);
-        return redirect('/Destytojas/Prisijungti')->with('message', 'Sėkmingai prisiregistravote prie įmonės posistemės');
+        return redirect()->to('/Destytojas/Prisijungti');
     }
 }

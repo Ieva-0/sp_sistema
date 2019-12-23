@@ -186,10 +186,10 @@ Route::get('/Destytojas/Laiskai', function () {
 Route::get('/Destytojas/Auditorijos', function () {
     return view('Destytojas/Destytojo_Auditorijos_rezervacija');
 });
-
+/*
 Route::get('/Destytojas/Profilis', function () {
     return view('Destytojas/Destytojo_profilis');
-});
+});*/
 Route::get('/destytojas', function () {
     return view('Destytojas/pradinis');
 });
@@ -201,6 +201,10 @@ Route::get('/Destytojas/Prisijungti', function () {
 Route::get('/Destytojas/registracija', function () {
     return view('Destytojas/Destytojo_registracijos_langas');
 });*/
+Route::get('/Destytojas/Profilis','DestytojuProfilisController@index');
+Route::get('Destytojas/Profilis/redaguoti', 'DestytojuProfilisController@edit');
+Route::patch('/Destytojas/Profilis','DestytojuProfilisController@update');
+
 Route::get('/Destytojas/Prisijungti', 'DestytojuSessionController@create');
 Route::post('/Destytojas/Prisijungti', 'DestytojuSessionController@store');
 Route::get('/Destytojas/atsijungimas', 'DestytojuSessionController@destroy');
