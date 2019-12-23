@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,13 +30,6 @@
         .content {
 
             padding: 60px;
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
         }
 
         .title {
@@ -54,8 +49,6 @@
             text-decoration: none;
             text-transform: uppercase;
         }
-
-        
         .top-left > a{
             position: absolute;
             left: 10px;
@@ -120,40 +113,25 @@
             padding-top: 20px;
         }
 
-
-
     </style>
 
-</head>
-<body>
-<div class="title">
-    Dokumentai
-</div>
-
 <div class="top-right ">
-    <a href="{{ url('Destytojas') }}">Pagrindinis puslapis</a>
+    <a href="{{ url('/Destytojas/Dokumentai') }}">Atgal</a>
 </div>
+<div class="content">
 
-<div class="align-middle">
-    
+
+Studijų sutarties sudarymas
+
+Numatytomis datomis MPIS skiltyje PAGEIDAVIMAI yra skelbiami kvietimai studijuoti, kviečiamieji papildomai informuojami el. paštu, kurį nurodė teikdami priėmimo prašymą.
+Kviečiamieji pagal nustatytus terminus turi su Universitetu sudaryti studijų sutartį.
+Sudarant studijų sutartį privaloma sumokėti registracijos studijoms įmoką. Nutraukus studijų sutartį, registracijos studijoms įmoka negrąžinama.
+Nepasirašius studijų sutarties pagal kvietime nustatytą terminą, kvietimas studijuoti anuliuojamas, o atsilaisvinusios vietos perkeliamos į kitą priėmimo etapą.
+Studijų sutartį su Universitetu sudaryti galima:
+    nuotoliniu būdu (rekomenduojama)
+    tiesioginiu būdu
+Studijų sutartį tiesioginiu būdu pasirašyti ir dokumentus pateikti galima ir per įgaliotą asmenį, tokiu atveju, būtinas notaro patvirtintas įgaliojimas.
+Studijų sutartį valstybės finansuojamoje studijų vietoje stojantysis gali sudaryti tik nutraukęs anksčiau sudarytą studijų sutartį valstybės finansuojamoje vietoje.
+Stojantysis gali būti sudaręs studijų sutartį valstybės finansuojamoje vietoje ir kitą studijų sutartį valstybės nefinansuojamoje vietoje.
+
 </div>
-
-<main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-                <h1>Prieinami dokumentai:</h1>
-                <div>
-                <a href="{{ url('Sample1') }}">Minimalus reikalavimai</a>
-                </div>
-                <div>
-                <a href="{{ url('Sample2') }}">Studiju sutarties sudarymas</a>
-                </div>
-                <div>
-                <a href="{{ url('Sample3') }}">Universiteto statutas</a>
-                </div>
-            </main>
-
-
-
-
-</body>
-
-</html>

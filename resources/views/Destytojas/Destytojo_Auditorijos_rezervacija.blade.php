@@ -1,45 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Redaguoti paskaitą</title>
-	
-
-    <!-- Fonts Testas-->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <!-- Styles -->
-    <style>
-        .links>a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-    </style>
-    <span style="display:inline-block; width:WIDTH;"></span>
-    <div class="content" align="center">
-
-        <div class="links">
-            <a href="{{ URL::previous() }}">Go Back</a>
-            <a href="{{ url('Destytojas/prisijungti ') }}">Prisijungti</a>
-            <a href="{{ url('Destytojas/registracija ') }}">Registruotis</a>
-            <a href="{{ url('Destytojas/registracija ') }}">Dokumentai</a>
-            <a href="{{ url('Destytojas/registracija ') }}">Laiškai</a>
-            <a href="{{ url('Destytojas/registracija ') }}">Profilis</a>
-        </div>
+@extends('Destytojas.isdestymas')
+@section('title', 'Prisijungti')
+@section('content')
+    <div class="title">
+        Stazuotes
     </div>
-</head>
+    <div class="container" style="padding:20px; width: 100%;">
+    <div class="align-middle">
+        <table class="table table-bordered " style="width: 100%; font-size: 15px">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">Stazuotes Pavadinimas</th>
+                    <th scope="col">Stazuotes tema</th>
+                    <th scope="col">Elektroninis paštas</th>
+                    <th scope="col">5h</th>
+                    <th scope="col">Prisiregistravusių</th>
+                    <th scope="col">Veiksmas</th>
+                </tr>
+                
+
+                <tr>
+                    <td>laikas</td>
+                    <td>pavadinimas</td>
+                    <td> projekto_Tema</td>
+                    <td>el_pastas</td>
+                    <td>trukme</td>
+                    <td>dalyviu_Skaicius</td>
+                    <td>
+                    <a class="btn btn-primary" href="">Pateikti</a>   
+                    </td>
+                </tr>
+
+                
+        </table>
+    </div>
+    </div>
+
+{{--    <div class="content">--}}
+{{--        <form>--}}
+{{--            <div class="form-group" style="width: 18%">--}}
+{{--                <label for="exampleFormControlInput1">Elektroninis paštas</label>--}}
+{{--                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">--}}
+{{--            </div>--}}
+
+{{--            <div class="form-group" style="width: 50%">--}}
+{{--                <label for="exampleFormControlTextarea1">Motyvacinis laiškas</label>--}}
+{{--                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>--}}
+{{--            </div>--}}
+
+{{--            <div class="custom-file" style="width: 50%">--}}
+{{--                <input type="file" class="custom-file-input" id="customFile">--}}
+{{--                <label class="custom-file-label" for="customFile">Įkelkite CV</label>--}}
+{{--            </div>--}}
+{{--            <div class="submit">--}}
+{{--                <button type="submit" class="btn btn-primary">Siūsti</button>--}}
+{{--            </div>--}}
+
+
+{{--        </form>--}}
+
+
+{{--    </div>--}}
+
+
+
+        @endsection

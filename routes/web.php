@@ -214,3 +214,13 @@ Route::post('/Destytojas/registracija', 'DestytojuRegistracijaController@store')
 
 Route::get('/uploadfile','UploadFileController@index');
 Route::post('/uploadfile','UploadFileController@showUploadFile');
+
+Route::get('/Sample1', function () {
+    return view('Destytojas/Sample1');
+});
+Route::get('/Sample2', function () {
+    return view('Destytojas/Sample2');
+});
+Route::get('/Sample3', function () {
+    return view('Destytojas/Sample3');
+});

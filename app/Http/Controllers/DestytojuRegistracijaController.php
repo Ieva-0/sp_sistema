@@ -48,7 +48,7 @@ class DestytojuRegistracijaController extends Controller
         Destytojas2::create([
             'vardas' => request('vardas'),
             'pavarde' => request('pavarde'),
-            'El_Pastas' => request('El_Pastas'),
+            'El_Pastas' => request('el_pastas'),
         ]);
 
         return redirect()->to('/Destytojas/Prisijungti');

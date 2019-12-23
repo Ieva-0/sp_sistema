@@ -69,7 +69,7 @@
         </div>
 
         <div class="links">
-            <a href="{{ url('Destytojas/Dokumentai ') }}">Dokumentu Pridėjimas</a>
+            <a href="{{ url('Destytojas/Dokumentai ') }}">Dokumentu Peržiūra</a>
             <a href="{{ url('Destytojas/Laiskai ') }}">Laiškų siuntimas</a>
             <a href="{{ url('Destytojas/Auditorijos ') }}">Auditorijos rezervacija</a>
             <a href="{{ url('Destytojas/Profilis ') }}">Profilis</a>
