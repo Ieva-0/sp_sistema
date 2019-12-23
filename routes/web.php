@@ -196,11 +196,20 @@ Route::get('/Destytojas/Auditorijos', function () {
 Route::get('/Destytojas/Profilis', function () {
     return view('Destytojas/Destytojo_profilis');
 });
-
+Route::get('/destytojas', function () {
+    return view('Destytojas/pradinis');
+});
+/*
 Route::get('/Destytojas/Prisijungti', function () {
     return view('Destytojas/Destytojo_prisijungimo_langas');
 });
 
 Route::get('/Destytojas/registracija', function () {
     return view('Destytojas/Destytojo_registracijos_langas');
-});
+});*/
+Route::get('/Destytojas/Prisijungti', 'DestytojuSessionController@create');
+Route::post('/Destytojas/Prisijungti', 'DestytojuSessionController@store');
+Route::get('/Destytojas/atsijungimas', 'DestytojuSessionController@destroy');
+
+Route::get('/Destytojas/registracija', 'DestytojuRegistracijaController@create');
+Route::post('/Destytojas/registracija', 'DestytojuRegistracijaController@store');

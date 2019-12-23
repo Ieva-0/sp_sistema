@@ -73,6 +73,7 @@
             <a href="{{ url('Destytojas/Laiskai ') }}">Laiškų siuntimas</a>
             <a href="{{ url('Destytojas/Auditorijos ') }}">Auditorijos rezervacija</a>
             <a href="{{ url('Destytojas/Profilis ') }}">Profilis</a>
+            <a href="/Destytojas/atsijungimas">Atsijungti</a>
         </div>
     </div>
 </head>
