@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Pranesimas;
 use App\ProjDalyvis;
 use App\Projektas;
 use App\ProjPrasymas;
@@ -27,6 +28,7 @@ class ErasmusController extends Controller
                 if($dalyvis > 0 || $prasymas > 0)
                     $gali = false;
                 else $gali = true;
+
                 return view('Studiju posisteme.projektai', compact('projektai', 'semestro_tipai', 'gali'));
             }
             else {
@@ -52,13 +54,14 @@ class ErasmusController extends Controller
         $this->validate(request(), [
             'salis' => 'required|regex:/(^[\pL ]+)$/u',
             'istaiga' => 'required|regex:/(^[\pL ]+)$/u',
-            'dalyviai' => 'required|integer',
+            'dalyviai' => 'required|integer|min:1',
         ],
             [
                 'salis.required' => 'Šalis yra būtinas laukas.',
                 'istaiga.required' => 'Mokymo įstaiga yra būtinas laukas.',
                 'dalyviai.required' => 'Dalyvių kiekis yra būtinas laukas.',
                 'dalyviai.integer' => 'Dalyvių kiekis turi būti sveikas skaičius.',
+                'dalyviai.min' => 'Dalyvių kiekis turi būti daugiau nei 0.',
                 'istaiga.regex' => 'Įstaigos pavadinimas turi būti sudarytas tik iš raidžių ir tarpų.',
                 'salis.regex' => 'Šalies pavadinimas turi būti sudarytas tik iš raidžių ir tarpų.',
             ]);
@@ -72,12 +75,21 @@ class ErasmusController extends Controller
             'metai' => request('metai'),
             'user' => request('user')
         ]);
-        return redirect('/studijos/projektai');
+
+        $subject = 'Naujas Erasmus+ projektas';
+        $message = 'Šalis: '.request('salis').', įstaiga: '.request('istaiga').', dalyvauti gali '.request('dalyviai').' dalyviai. Jau galite siųsti prašymus.';
+        if(request('tipas') == 1)
+            PranesimaiController::stud($message, $subject);
+        else PranesimaiController::dest($message, $subject);
+
+        return redirect('/studijos/projektai')->withErrors([ 'status' => 'Sėkmingai sukurtas projektas.']);
     }
     public function show($id)
     {
         $projektas = Projektas::FindOrFail($id);
-        return view('Studiju posisteme.projektas', compact('projektas'));
+        $dalyviai = ProjDalyvis::all();
+        $semestro_tipai = DB::table('semestro_tipai')->get();
+        return view('Studiju posisteme.projektas', compact('projektas', 'dalyviai', 'semestro_tipai'));
     }
     public function edit($id)
     {
@@ -112,7 +124,11 @@ class ErasmusController extends Controller
             'metai' => request('metai'),
             'user' => request('user')
         ]);
-        return redirect('/studijos/projektai');
+        $subject = 'Redaguotas Erasmus+ projektas';
+        $message = 'Šalis: '.request('salis').', įstaiga: '.request('istaiga').', dalyvauti gali '.request('dalyviai').' dalyviai. Tai informacinis pranešimas.';
+        PranesimaiController::projektas($projektas->id, $message, $subject);
+
+        return redirect('/studijos/projektai')->withErrors([ 'status' => 'Sėkmingai redaguota projekto informacija.']);
     }
     public function destroy($id)
     {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Destytojas;
 use App\Grupe;
 use App\GrupNarys;
+use App\GrupPrasymas;
 use App\ProjPrasymas;
 use App\Studentas;
 use App\User;
@@ -16,64 +17,59 @@ class GrupesPrasymaiController extends Controller
 {
     public function index($id)
     {
-        $prasymai = ProjPrasymas::all();
-        $projektas = Grupe::FindOrFail($id);
+        $prasymai = GrupPrasymas::all();
+        $grupe = Grupe::FindOrFail($id);
         $users = User::all();
         $studentai = Studentas::all();
         $destytojai = Destytojas::all();
-        return view('Studiju posisteme.projekto_prasymai', compact('prasymai', 'projektas', 'users', 'studentai', 'destytojai'));
+        return view('Studiju posisteme.grupes_prasymai', compact('prasymai', 'grupe', 'users', 'studentai', 'destytojai'));
 
     }
     public function show($id, $id2)
     {
-        $projektas = Grupe::FindOrFail($id);
-        $prasymas = ProjPrasymas::FindOrFail($id2);
+        $grupe = Grupe::FindOrFail($id);
+        $prasymas = GrupPrasymas::FindOrFail($id2);
         $user = User::FindOrFail($prasymas->user);
-        $semestro_tipai = DB::table('semestro_tipai')->get();
-//        if($projektas->dalyvio_tipas == 1) {
         $studentas = Studentas::where('fk_studentas_user', $user->id)->first();
-//            return view('Studiju posisteme.projekto_prasymas', compact('projektas', 'prasymas', 'studentas', 'semestro_tipai'));
-//        }
-//        else {
-        $destytojas = Destytojas::where('fk_destytojas_user', $user->id)->first();
-        return view('Studiju posisteme.projekto_prasymas', compact('projektas', 'prasymas', 'destytojas', 'studentas', 'semestro_tipai'));
+        $destytojas = Destytojas::where('fk_destytojas_user', $grupe->vadovas)->first();
+        return view('Studiju posisteme.grupes_prasymai', compact('grupe', 'prasymas', 'destytojas', 'studentas'));
 //        }
     }
     public function destroy($id, $id2)
     {
         if(request('decision') == 1)
         {
-            $prasymas = ProjPrasymas::FindOrFail($id2);
+            $prasymas = GrupPrasymas::FindOrFail($id2);
             GrupNarys::create([
                 'user' => $prasymas->user,
-                'projektas' => $id
+                'grupe' => $id
             ]);
             $prasymas->delete();
         }
         else {
-            $prasymas = ProjPrasymas::FindOrFail($id2);
+            $prasymas = GrupPrasymas::FindOrFail($id2);
             $prasymas->delete();
         }
-        return redirect()->action('ErasmusController@prasymai', ['id' => $id]);
+        return redirect()->action('GrupesPrasymaiController@index', ['id' => $id]);
     }
     public function create($id)
     {
-        $projektas = Grupe::FindOrFail($id);
-        $semestro_tipai = DB::table('semestro_tipai')->get();
-        return view('Studiju posisteme.sukurti_projekto_prasyma', compact('projektas', 'semestro_tipai'));
+        $grupe = Grupe::FindOrFail($id);
+        $destytojas = Destytojas::where('fk_destytojas_user', $grupe->vadovas)->first();
+        return view('Studiju posisteme.sukurti_grupes_prasyma', compact('grupe', 'destytojas'));
     }
     public function store($id)
     {
         $this->validate(request(), [
-            'motyvacinis' => 'required|max:250|min:30',
+            'motyvacinis' => 'required|max:1010|min:30',
         ],
             [
                 'motyvacinis.required' => 'Būtina pateikti motyvacinį laišką.',
                 'motyvacinis.max' => 'Motyvacinis laiškas turi būti trumpesnis nei 250 simbolių.',
                 'motyvacinis.min' => 'Motyvacinis laiškas turi būti ilgesnis nei 30 simbolių.',
             ]);
-        Prasymas::create([
-            'user' => '1',
+        GrupPrasymas::create([
+            'studentas' => '1',
             'grupe' => $id,
             'motyvacinis_tekstas' => request('motyvacinis'),
             'data' => Carbon::now()->format('Y-m-d')

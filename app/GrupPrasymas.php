@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class GrupPrasymas extends Model
 {
-    public $table = "erasmus_prasymas";
-    protected $fillable = ['user', 'projektas', 'motyvacinis_tekstas', 'data'];
+    public $table = "grupes_prasymas";
+    protected $fillable = ['studentas', 'grupe', 'motyvacinis_tekstas', 'data'];
     public $timestamps = false;
 }

@@ -2,20 +2,28 @@
 @section('title', 'Erasmus+')
 @section('content')
     <h2>Erasmus+ projektai</h2>
-    <form action="/studijos/projektai/sukurti" style="float:left;margin:10px 10px 15px 0">
+    @can('centras')
+    <form action="/studijos/projektai/sukurti" style="margin:10px 10px 15px 0">
         @csrf
         <button class="btn btn-dark" type="submit">Sukurti naują projektą</button>
     </form>
+    @endcan
+    @if($errors->first())
+        <div class="alert alert-info" style="width:30vw">
+            {{ $errors->first() }}
+        </div>
+    @endif
     <table class="table">
         <thead>
         <tr>
             <th scope="col">Semestras</th>
             <th scope="col">Šalis</th>
             <th scope="col">Mokymo įstaiga</th>
+            @can('centras')
             <th scope="col">Dalyvių tipas</th>
             <th scope="col">Dalyvių skaičius</th>
-            @can('centras')
-                <th scope="col">Prašymų skaičius</th>
+            <th scope="col">Prašymų skaičius</th>
+            <th scope="col"></th>
             <th scope="col"></th>
             @endcan
             <th scope="col"></th>
@@ -27,9 +35,9 @@
             <td>@foreach($semestro_tipai as $tipas) @if($tipas->id == $projektas->semestras) {{ $tipas->name }} @endif @endforeach {{ $projektas->metai }}</td>
             <td>{{ $projektas->salis }}</td>
             <td>{{ $projektas->mokymo_istaiga }}</td>
+            @can('centras')
             <td>@foreach($dalyvio_tipai as $tipas) @if($tipas->id == $projektas->dalyvio_tipas) {{ $tipas->name }} @endif @endforeach</td>
             <td>{{ $dalyviai->where('projektas', $projektas->id)->count() }}/{{ $projektas->dalyviu_skaicius }}</td>
-            @can('centras')
             <td>{{ $prasymai->where('projektas', $projektas->id)->count() }}</td>
             <td><form action="/studijos/projektai/{{$projektas->id}}/redaguoti" method="get">@csrf<button class="btn btn-dark">Redaguoti</button></form></td>
             <td><form action="/studijos/projektai/{{$projektas->id}}" method="post">@csrf @method('delete')<button class="btn btn-dark">Ištrinti</button></form></td>

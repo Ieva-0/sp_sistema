@@ -29,8 +29,8 @@ class StudentoRegistracijosController extends Controller
                 'vardas.regex' => 'Vardas turi būti sudarytas tik iš raidžių.',
                 'pavarde.required' => 'Pavardė yra būtina.',
                 'pavarde.regex' => 'Pavardė turi būti sudaryta tik iš raidžių.',
-                'password.required' => 'Slaptažodis yra būtinas.',
-                'password.confirmed' => 'Slaptažodis ir patvirtinimas turi sutapti.'
+                'slaptazodis.required' => 'Slaptažodis yra būtinas.',
+                'slaptazodis.confirmed' => 'Slaptažodis ir patvirtinimas turi sutapti.'
             ]);
 
         $user = User::create([
@@ -49,6 +49,8 @@ class StudentoRegistracijosController extends Controller
             'Studiju_programa' => request('Studiju_programa'),
             'Gimimo_data' => request('Gimimo_data')
         ]);
+
+        auth()->login($user);
 
         return redirect()->to('/studentas/profilis');
     }

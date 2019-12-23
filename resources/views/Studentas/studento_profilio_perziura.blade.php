@@ -30,13 +30,13 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Vardas:</label>
                     <div class="col-lg-8">
-                        <label class="col-lg-3 control-label">{{ $studentas->Vardas }}</label>
+                        <label class="col-lg-3 control-label">{{ $studentas->vardas }}</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Pavardė:</label>
                     <div class="col-lg-8">
-                        <label class="col-lg-3 control-label">{{ $studentas->Pavarde }}</label>
+                        <label class="col-lg-3 control-label">{{ $studentas->pavarde }}</label>
                     </div>
                 </div>
                 <div class="form-group">
